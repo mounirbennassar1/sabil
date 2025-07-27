@@ -6,12 +6,8 @@ import { useState, useEffect } from "react"
 import { ArrowRightIcon, BookOpenIcon, AcademicCapIcon, UserGroupIcon, ChartBarIcon, PlayIcon, StarIcon, CheckCircleIcon } from "@heroicons/react/24/outline"
 
 export default function LandingPage() {
-  const [scrollY, setScrollY] = useState(0)
-
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    // Scroll handler for future enhancements
   }, [])
 
   return (
@@ -92,7 +88,7 @@ export default function LandingPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-500 translate-y-0 opacity-100">
-              Empower your workforce with SABIL's cutting-edge Learning Management System. 
+              Empower your workforce with SABIL&apos;s cutting-edge Learning Management System. 
               Create engaging training programs, track progress in real-time, and certify achievements.
             </p>
             

@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react"
 import { signIn, getSession } from "next-auth/react"
 import Link from "next/link"
+import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 
@@ -75,9 +76,11 @@ function SignInContent() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto w-auto text-center">
-            <img 
+            <Image 
               src="/sabil.png" 
               alt="SABIL" 
+              width={120}
+              height={64}
               className="h-16 w-auto mx-auto"
             />
           </div>

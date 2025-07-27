@@ -2,7 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -43,14 +43,36 @@ interface Course {
   }
 }
 
+interface Enrollment {
+  id: string
+  enrolledAt: string
+  completedAt: string | null
+  progress: number
+  course: Course
+}
+
+interface Certificate {
+  id: string
+  number: string
+  issuedAt: string
+  course: {
+    title: string
+    level: string
+    category: {
+      name: string
+      color: string
+    }
+  }
+}
+
 export default function StudentDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("catalog")
   const [categories, setCategories] = useState<Category[]>([])
   const [courses, setCourses] = useState<Course[]>([])
-  const [enrolledCourses, setEnrolledCourses] = useState<any[]>([])
-  const [certificates, setCertificates] = useState<any[]>([])
+  const [enrolledCourses, setEnrolledCourses] = useState<Enrollment[]>([])
+  const [certificates, setCertificates] = useState<Certificate[]>([])
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [selectedLevel, setSelectedLevel] = useState<string>("all")
@@ -79,7 +101,7 @@ export default function StudentDashboard() {
     fetchData()
   }, [session, status, router])
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       // Fetch categories
       const categoriesResponse = await fetch("/api/categories")
@@ -115,7 +137,29 @@ export default function StudentDashboard() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    if (status === "loading") return
+
+    if (!session) {
+      router.push("/auth/signin")
+      return
+    }
+
+    if (session.user.role === "ADMIN") {
+      router.push("/admin")
+      return
+    }
+
+    const params = new URLSearchParams(window.location.search)
+    const tab = params.get('tab')
+    if (tab && ['catalog', 'my-courses', 'certificates', 'progress'].includes(tab)) {
+      setActiveTab(tab)
+    }
+
+    fetchData()
+  }, [session, status, router, fetchData])
 
   const fetchFilteredCourses = async () => {
     try {
