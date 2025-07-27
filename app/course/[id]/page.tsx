@@ -55,6 +55,7 @@ export default function CoursePage() {
     } finally {
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
 
   useEffect(() => {
@@ -230,7 +231,7 @@ export default function CoursePage() {
                     {course.description}
                   </p>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">What You'll Learn</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">What You&apos;ll Learn</h3>
                   <div className="text-gray-600 whitespace-pre-wrap">
                     {course.content}
                   </div>

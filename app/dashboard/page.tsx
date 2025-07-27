@@ -99,6 +99,7 @@ export default function StudentDashboard() {
     }
 
     fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, status, router])
 
   const fetchData = useCallback(async () => {
@@ -137,7 +138,7 @@ export default function StudentDashboard() {
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [session])
 
   useEffect(() => {
     if (status === "loading") return
@@ -182,6 +183,7 @@ export default function StudentDashboard() {
     if (!loading) {
       fetchFilteredCourses()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, selectedCategory, selectedLevel])
 
   const handleSignOut = () => {

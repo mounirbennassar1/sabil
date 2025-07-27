@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react"
 import { useRouter, useParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -53,6 +53,7 @@ export default function CourseLearningPage() {
     if (params.id) {
       fetchEnrollment()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, params.id])
 
   const fetchEnrollment = async () => {
@@ -192,10 +193,11 @@ export default function CourseLearningPage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
               {/* Video Player */}
               <div className="relative bg-black aspect-video flex items-center justify-center">
-                <img
+                <Image
                   src={course.thumbnail}
                   alt={course.title}
-                  className="w-full h-full object-cover opacity-60"
+                  fill
+                  className="object-cover opacity-60"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/20 backdrop-blur-sm rounded-full p-6">
