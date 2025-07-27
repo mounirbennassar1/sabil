@@ -4,43 +4,45 @@ import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { 
-  UserGroupIcon,
-  BookOpenIcon,
-  AcademicCapIcon,
-  ChartBarIcon,
-  Cog6ToothIcon
-} from "@heroicons/react/24/outline"
+// Icon imports commented out for future use
+// import { 
+//   UserGroupIcon,
+//   BookOpenIcon,
+//   AcademicCapIcon,
+//   ChartBarIcon,
+//   Cog6ToothIcon
+// } from "@heroicons/react/24/outline"
 // Chart imports commented out for future use
 // import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart } from "recharts"
 
-interface DashboardStats {
-  totalUsers: number
-  totalCourses: number
-  totalEnrollments: number
-  totalCertificates: number
-  activeUsers: number
-  completionRate: number
-}
+// Interfaces commented out for future use
+// interface DashboardStats {
+//   totalUsers: number
+//   totalCourses: number
+//   totalEnrollments: number
+//   totalCertificates: number
+//   activeUsers: number
+//   completionRate: number
+// }
 
-interface User {
-  id: string
-  name: string
-  email: string
-  role: string
-  department: string
-  createdAt: string
-}
+// interface User {
+//   id: string
+//   name: string
+//   email: string
+//   role: string
+//   department: string
+//   createdAt: string
+// }
 
-interface Course {
-  id: string
-  title: string
-  status: string
-  enrollments: number
-  category: {
-    name: string
-  }
-}
+// interface Course {
+//   id: string
+//   title: string
+//   status: string
+//   enrollments: number
+//   category: {
+//     name: string
+//   }
+// }
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession()
