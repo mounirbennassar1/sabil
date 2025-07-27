@@ -9,17 +9,10 @@ import {
   BookOpenIcon,
   AcademicCapIcon,
   ChartBarIcon,
-  Cog6ToothIcon,
-  ArrowRightOnRectangleIcon,
-  PlusIcon,
-  EyeIcon,
-  PencilIcon,
-  TrashIcon,
-  CheckCircleIcon,
-  ClockIcon,
-  ExclamationTriangleIcon
+  Cog6ToothIcon
 } from "@heroicons/react/24/outline"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart } from "recharts"
+// Chart imports commented out for future use
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart } from "recharts"
 
 interface DashboardStats {
   totalUsers: number
@@ -52,9 +45,6 @@ interface Course {
 export default function AdminDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [stats, setStats] = useState<DashboardStats | null>(null)
-  const [users, setUsers] = useState<User[]>([])
-  const [courses, setCourses] = useState<Course[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -75,26 +65,26 @@ export default function AdminDashboard() {
 
   const fetchDashboardData = async () => {
     try {
-      // Fetch stats
-      const statsResponse = await fetch("/api/admin/stats")
-      if (statsResponse.ok) {
-        const statsData = await statsResponse.json()
-        setStats(statsData)
-      }
+          // Fetch stats (commented out for future implementation)
+    // const statsResponse = await fetch("/api/admin/stats")
+    // if (statsResponse.ok) {
+    //   const statsData = await statsResponse.json()
+    //   setStats(statsData)
+    // }
 
-      // Fetch users
-      const usersResponse = await fetch("/api/admin/users")
-      if (usersResponse.ok) {
-        const usersData = await usersResponse.json()
-        setUsers(usersData)
-      }
+    // Fetch users (commented out for future implementation)
+    // const usersResponse = await fetch("/api/admin/users")
+    // if (usersResponse.ok) {
+    //   const usersData = await usersResponse.json()
+    //   setUsers(usersData)
+    // }
 
-      // Fetch courses
-      const coursesResponse = await fetch("/api/admin/courses")
-      if (coursesResponse.ok) {
-        const coursesData = await coursesResponse.json()
-        setCourses(coursesData)
-      }
+    // Fetch courses (commented out for future implementation)
+    // const coursesResponse = await fetch("/api/admin/courses")
+    // if (coursesResponse.ok) {
+    //   const coursesData = await coursesResponse.json()
+    //   setCourses(coursesData)
+    // }
     } catch (error) {
       console.error("Error fetching dashboard data:", error)
     } finally {
