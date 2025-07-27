@@ -3,13 +3,10 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 
-interface RouteParams {
-  params: {
-    courseId: string
-  }
-}
-
-export async function POST(request: NextRequest, { params }: RouteParams) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ courseId: string }> }
+) {
   try {
     const session = await getServerSession(authOptions)
 
@@ -20,12 +17,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       )
     }
 
+    const { courseId } = await params
     // Find the enrollment
     const enrollment = await prisma.enrollment.findUnique({
       where: {
         userId_courseId: {
           userId: session.user.id,
-          courseId: params.courseId
+          courseId
         }
       }
     })
@@ -68,7 +66,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     await prisma.certificate.create({
       data: {
         userId: session.user.id,
-        courseId: params.courseId,
+        courseId,
         number: certificateNumber,
         issuedAt: new Date()
       }

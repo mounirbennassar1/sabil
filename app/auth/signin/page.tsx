@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { signIn, getSession } from "next-auth/react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 
-export default function SignInPage() {
+function SignInContent() {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -185,5 +185,17 @@ export default function SignInPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-[#23544e] to-[#0b867a] flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    }>
+      <SignInContent />
+    </Suspense>
   )
 } 
