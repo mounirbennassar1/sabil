@@ -4,8 +4,20 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
+// Check if we're in build phase or have a real database connection
+const shouldUsePrismaAdapter = () => {
+  // Skip adapter during build or if no proper database URL
+  if (process.env.SKIP_DB_ADAPTER === 'true') return false;
+  if (!process.env.DATABASE_URL) return false;
+  if (process.env.DATABASE_URL.includes('username:password@localhost')) return false;
+  return true;
+}
+
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  // Conditionally include PrismaAdapter
+  ...(shouldUsePrismaAdapter() ? {
+    adapter: PrismaAdapter(prisma)
+  } : {}),
   providers: [
     CredentialsProvider({
       name: "credentials",
