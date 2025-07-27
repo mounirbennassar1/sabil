@@ -94,7 +94,7 @@ async function main() {
       title: 'Leadership Fundamentals',
       description: 'Master the essential skills needed to lead teams effectively in today\'s dynamic workplace.',
       content: 'This comprehensive course covers leadership principles, team motivation, conflict resolution, and strategic thinking.',
-      thumbnail: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 240, // 4 hours
       level: 'BEGINNER',
       status: 'PUBLISHED',
@@ -104,7 +104,7 @@ async function main() {
       title: 'Advanced Project Management',
       description: 'Learn advanced project management methodologies including Agile, Scrum, and traditional waterfall approaches.',
       content: 'Dive deep into project planning, risk management, stakeholder communication, and delivery optimization.',
-      thumbnail: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 360, // 6 hours
       level: 'ADVANCED',
       status: 'PUBLISHED',
@@ -114,7 +114,7 @@ async function main() {
       title: 'JavaScript ES6+ Mastery',
       description: 'Master modern JavaScript features and build robust web applications with ES6+ syntax.',
       content: 'Learn arrow functions, destructuring, modules, async/await, and other modern JavaScript features.',
-      thumbnail: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 480, // 8 hours
       level: 'INTERMEDIATE',
       status: 'PUBLISHED',
@@ -124,7 +124,7 @@ async function main() {
       title: 'React Development Bootcamp',
       description: 'Build dynamic user interfaces with React, including hooks, context, and modern development patterns.',
       content: 'Complete React course covering components, state management, routing, and integration with APIs.',
-      thumbnail: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 600, // 10 hours
       level: 'INTERMEDIATE',
       status: 'PUBLISHED',
@@ -134,7 +134,7 @@ async function main() {
       title: 'Effective Communication Skills',
       description: 'Enhance your verbal and written communication skills for professional success.',
       content: 'Develop clear communication strategies, active listening skills, and presentation techniques.',
-      thumbnail: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 180, // 3 hours
       level: 'BEGINNER',
       status: 'PUBLISHED',
@@ -144,7 +144,7 @@ async function main() {
       title: 'Public Speaking Mastery',
       description: 'Overcome fear and deliver compelling presentations with confidence and impact.',
       content: 'Learn presentation structure, audience engagement, vocal techniques, and handling Q&A sessions.',
-      thumbnail: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 300, // 5 hours
       level: 'INTERMEDIATE',
       status: 'PUBLISHED',
@@ -154,7 +154,7 @@ async function main() {
       title: 'Workplace Safety Protocols',
       description: 'Essential safety training for maintaining a secure and compliant workplace environment.',
       content: 'Comprehensive safety guidelines, emergency procedures, and regulatory compliance requirements.',
-      thumbnail: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 120, // 2 hours
       level: 'BEGINNER',
       status: 'PUBLISHED',
@@ -164,7 +164,7 @@ async function main() {
       title: 'Career Development Planning',
       description: 'Create a strategic plan for your professional growth and career advancement.',
       content: 'Goal setting, skill assessment, networking strategies, and personal branding techniques.',
-      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 240, // 4 hours
       level: 'BEGINNER',
       status: 'PUBLISHED',
@@ -174,7 +174,7 @@ async function main() {
       title: 'Time Management Excellence',
       description: 'Maximize productivity with proven time management techniques and tools.',
       content: 'Priority setting, delegation strategies, productivity tools, and work-life balance optimization.',
-      thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400',
+      thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
       duration: 180, // 3 hours
       level: 'BEGINNER',
       status: 'PUBLISHED',
