@@ -1,36 +1,202 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SABIL LMS - Learning Management System
 
-## Getting Started
+A modern, full-featured Learning Management System built with Next.js, TypeScript, Prisma, and PostgreSQL.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 🎨 Modern UI/UX
+- Responsive design with SABIL brand colors (#23544e, #0b867a)
+- Clean, professional interface
+- Modern authentication pages
+- Interactive dashboards
+
+### 👥 User Management
+- Role-based access control (Student, Admin, Instructor)
+- Secure authentication with NextAuth.js
+- User profiles with department and position tracking
+
+### 📚 Course Management
+- Course categories with filtering
+- Course enrollment system
+- Progress tracking
+- Certificate generation
+
+### 📊 Admin Dashboard
+- User analytics and management
+- Course creation and management
+- Real-time statistics
+- Interactive reporting
+
+### 🏆 Student Portal
+- Personal learning dashboard
+- Course catalog browsing
+- Progress tracking
+- Certificate collection
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **Styling**: Tailwind CSS
+- **Authentication**: NextAuth.js
+- **Database**: PostgreSQL with Prisma ORM
+- **Icons**: Heroicons
+- **Charts**: Recharts (ready for implementation)
+
+## 📦 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL database
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd sabil
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   Update the `.env` file with your database connection:
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/sabil_lms?schema=public"
+   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_SECRET="your-secret-key-here"
+   ```
+
+4. **Set up the database**
+   ```bash
+   # Generate Prisma client
+   npm run db:generate
+   
+   # Push schema to database
+   npm run db:push
+   
+   # Seed the database with admin user and sample data
+   npm run db:seed
+   ```
+
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🔐 Demo Accounts
+
+### Admin Account
+- **Email**: admin@sabil.com
+- **Password**: Admin@123123
+
+### Student Account
+- Create your own account using the sign-up page
+
+## 📋 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run db:generate` - Generate Prisma client
+- `npm run db:push` - Push schema to database
+- `npm run db:migrate` - Run database migrations
+- `npm run db:seed` - Seed database with initial data
+- `npm run db:studio` - Open Prisma Studio
+
+## 🏗️ Project Structure
+
+```
+sabil/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── auth/              # Authentication pages
+│   ├── admin/             # Admin dashboard
+│   ├── dashboard/         # Student dashboard
+│   └── globals.css        # Global styles
+├── components/            # Reusable components
+├── lib/                   # Utility libraries
+├── prisma/               # Database schema
+├── scripts/              # Database seeds and scripts
+└── types/                # TypeScript type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Brand Colors
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Primary**: #23544e (Dark teal)
+- **Secondary**: #0b867a (Teal)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔄 Current Status
 
-## Learn More
+### ✅ Completed Features
+- ✅ Modern landing page with SABIL branding
+- ✅ User authentication (sign up/sign in)
+- ✅ Role-based access control
+- ✅ Student dashboard with course categories
+- ✅ Admin dashboard with analytics framework
+- ✅ Database schema and relationships
+- ✅ Responsive design
+- ✅ Empty state handling
 
-To learn more about Next.js, take a look at the following resources:
+### 🚧 Ready for Implementation
+- 📝 Course creation and management
+- 📊 Advanced analytics and charts
+- 🏆 Certificate generation system
+- 👥 User management interface
+- 📱 Mobile app support
+- 🔍 Advanced search and filtering
+- 📧 Email notifications
+- 📈 Progress tracking
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically with each push
 
-## Deploy on Vercel
+### Other Platforms
+The application can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- Digital Ocean
+- AWS
+- Google Cloud Platform
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📝 Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+# Database
+DATABASE_URL="postgresql://..."
+
+# NextAuth
+NEXTAUTH_URL="https://your-domain.com"
+NEXTAUTH_SECRET="your-secret-key"
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Support
+
+For support and questions, please contact the development team or create an issue in the repository.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+**Built with ❤️ for SABIL by the development team**
