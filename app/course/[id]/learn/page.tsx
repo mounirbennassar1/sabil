@@ -116,7 +116,7 @@ export default function CourseLearningPage() {
         <div className="text-center">
           <BookOpenIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Course Not Found</h3>
-          <p className="text-gray-600 mb-6">You are not enrolled in this course or it doesn't exist.</p>
+                      <p className="text-gray-600 mb-6">You are not enrolled in this course or it doesn&apos;t exist.</p>
           <Link
             href="/dashboard?tab=my-courses"
             className="bg-[#23544e] text-white px-6 py-2 rounded-md hover:bg-[#1d453f] transition-colors"

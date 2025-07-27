@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { ArrowRightIcon, BookOpenIcon, AcademicCapIcon, UserGroupIcon, ChartBarIcon, PlayIcon, StarIcon, CheckCircleIcon } from "@heroicons/react/24/outline"
 
 export default function LandingPage() {

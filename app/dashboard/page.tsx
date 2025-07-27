@@ -404,9 +404,11 @@ export default function StudentDashboard() {
               {courses.map((course) => (
                 <div key={course.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
                   <div className="relative h-48">
-                    <img
+                    <Image
                       src={course.thumbnail}
                       alt={course.title}
+                      width={400}
+                      height={200}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 right-3">
@@ -476,9 +478,11 @@ export default function StudentDashboard() {
                   return (
                     <div key={enrollment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
                       <div className="relative h-48">
-                        <img
+                        <Image
                           src={course.thumbnail}
                           alt={course.title}
+                          width={400}
+                          height={200}
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute top-3 left-3">
@@ -546,7 +550,7 @@ export default function StudentDashboard() {
                 <PlayIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No Enrolled Courses</h3>
                 <p className="text-gray-600 mb-6">
-                  You haven't enrolled in any courses yet. Browse our catalog to get started!
+                  You haven&apos;t enrolled in any courses yet. Browse our catalog to get started!
                 </p>
                 <button
                   onClick={() => setActiveTab('catalog')}

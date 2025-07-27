@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react"
 import { useRouter, useParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { 
@@ -40,13 +40,7 @@ export default function CoursePage() {
   const [loading, setLoading] = useState(true)
   const [enrolling, setEnrolling] = useState(false)
 
-  useEffect(() => {
-    if (params.id) {
-      fetchCourse()
-    }
-  }, [params.id])
-
-  const fetchCourse = async () => {
+  const fetchCourse = useCallback(async () => {
     try {
       const response = await fetch(`/api/courses/${params.id}`)
       if (response.ok) {
@@ -61,7 +55,13 @@ export default function CoursePage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [params.id])
+
+  useEffect(() => {
+    if (params.id) {
+      fetchCourse()
+    }
+  }, [params.id, fetchCourse])
 
   const handleEnroll = async () => {
     if (!session) {
@@ -132,7 +132,7 @@ export default function CoursePage() {
         <div className="text-center">
           <BookOpenIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Course Not Found</h3>
-          <p className="text-gray-600 mb-6">The course you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-6">The course you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/dashboard"
             className="bg-[#23544e] text-white px-6 py-2 rounded-md hover:bg-[#1d453f] transition-colors"
@@ -180,9 +180,11 @@ export default function CoursePage() {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
               {/* Course Image */}
               <div className="relative h-64 lg:h-80">
-                <img
+                <Image
                   src={course.thumbnail}
                   alt={course.title}
+                  width={800}
+                  height={400}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 left-4">
