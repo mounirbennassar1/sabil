@@ -60,7 +60,7 @@ export default function SignUpPage() {
         const data = await response.json()
         setError(data.message || "Something went wrong")
       }
-    } catch (error) {
+    } catch {
       setError("Network error. Please try again.")
     } finally {
       setLoading(false)

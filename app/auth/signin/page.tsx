@@ -64,7 +64,7 @@ function SignInContent() {
           router.push("/dashboard")
         }
       }
-    } catch (error) {
+    } catch {
       setError("Network error. Please try again.")
     } finally {
       setLoading(false)

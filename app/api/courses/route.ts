@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category') || 'all'
     const level = searchParams.get('level') || 'all'
 
-    const whereClause: any = {
+    const whereClause: Record<string, unknown> = {
       status: 'PUBLISHED'
     }
 
