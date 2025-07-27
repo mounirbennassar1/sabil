@@ -3,6 +3,7 @@
 import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { 
   UserGroupIcon,
   BookOpenIcon,
@@ -18,7 +19,7 @@ import {
   ClockIcon,
   ExclamationTriangleIcon
 } from "@heroicons/react/24/outline"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart } from "recharts"
 
 interface DashboardStats {
   totalUsers: number
@@ -51,7 +52,6 @@ interface Course {
 export default function AdminDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState("overview")
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [users, setUsers] = useState<User[]>([])
   const [courses, setCourses] = useState<Course[]>([])
@@ -110,23 +110,23 @@ export default function AdminDashboard() {
     )
   }
 
-  // Mock data for charts
-  const enrollmentData = [
-    { month: 'Jan', enrollments: 0 },
-    { month: 'Feb', enrollments: 0 },
-    { month: 'Mar', enrollments: 0 },
-    { month: 'Apr', enrollments: 0 },
-    { month: 'May', enrollments: 0 },
-    { month: 'Jun', enrollments: 0 },
-  ]
+  // Mock data for charts (commented out for future use)
+  // const enrollmentData = [
+  //   { month: 'Jan', enrollments: 0 },
+  //   { month: 'Feb', enrollments: 0 },
+  //   { month: 'Mar', enrollments: 0 },
+  //   { month: 'Apr', enrollments: 0 },
+  //   { month: 'May', enrollments: 0 },
+  //   { month: 'Jun', enrollments: 0 },
+  // ]
 
-  const departmentData = [
-    { name: 'Engineering', value: 0, color: '#23544e' },
-    { name: 'Marketing', value: 0, color: '#0b867a' },
-    { name: 'HR', value: 0, color: '#4a90e2' },
-    { name: 'Sales', value: 0, color: '#f39c12' },
-    { name: 'Other', value: 0, color: '#e74c3c' },
-  ]
+       // const departmentData = [
+  //   { name: 'Engineering', value: 0, color: '#23544e' },
+  //   { name: 'Marketing', value: 0, color: '#0b867a' },
+  //   { name: 'HR', value: 0, color: '#4a90e2' },
+  //   { name: 'Sales', value: 0, color: '#f39c12' },
+  //   { name: 'Other', value: 0, color: '#e74c3c' },
+  // ]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -134,9 +134,11 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <img 
+              <Image 
                 src="/sabil.png" 
                 alt="SABIL" 
+                width={100}
+                height={32}
                 className="h-8 w-auto"
               />
               <span className="ml-2 text-sm text-gray-500">Admin Dashboard</span>
