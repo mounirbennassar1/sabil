@@ -93,7 +93,7 @@ A modern, full-featured Learning Management System built with Next.js, TypeScrip
 ## 🔐 Demo Accounts
 
 ### Admin Account
-- **Email**: admin@sabil.com
+- **Email**: admin@neongreenhydrogen.com
 - **Password**: Admin@123123
 
 ### Student Account

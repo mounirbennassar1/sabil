@@ -1,15 +1,9 @@
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
 export const authOptions: NextAuthOptions = {
-  // Only use PrismaAdapter in development or when DATABASE_URL is properly configured
-  ...(process.env.NODE_ENV === 'development' || 
-     (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('username:password@localhost')) ? {
-    adapter: PrismaAdapter(prisma)
-  } : {}),
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -19,30 +13,39 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.log('Missing credentials')
           return null
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email
+        try {
+          const user = await prisma.user.findUnique({
+            where: {
+              email: credentials.email
+            }
+          })
+
+          if (!user || !user.password) {
+            console.log('User not found or no password')
+            return null
           }
-        })
 
-        if (!user || !user.password) {
+          const passwordMatch = await bcrypt.compare(credentials.password, user.password)
+
+          if (!passwordMatch) {
+            console.log('Password does not match')
+            return null
+          }
+
+          console.log('User authenticated successfully:', user.email)
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role,
+          }
+        } catch (error) {
+          console.error('Error during authentication:', error)
           return null
-        }
-
-        const passwordMatch = await bcrypt.compare(credentials.password, user.password)
-
-        if (!passwordMatch) {
-          return null
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
         }
       }
     })
@@ -68,4 +71,5 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin",
   },
+  debug: process.env.NODE_ENV === 'development',
 } 

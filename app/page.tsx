@@ -45,7 +45,7 @@ export default function LandingPage() {
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center transform transition-transform duration-300 hover:scale-105">
                 <Image 
-                  src="/logo.png" 
+                  src="/logowhite.png" 
                   alt="neom hydrogen" 
                   width={120}
                   height={32}
@@ -310,7 +310,7 @@ export default function LandingPage() {
             <div className="text-center">
               <div className="hover:scale-105 transition-transform duration-300 inline-block">
                 <Image 
-                  src="/logo.png" 
+                  src="/logowhite.png" 
                   alt="neom hydrogen" 
                   width={200}
                   height={60}

@@ -73,8 +73,8 @@ export default function SignUpPage() {
         <div>
           <div className="mx-auto w-auto text-center">
             <Image 
-              src="/sabil.png" 
-              alt="SABIL" 
+              src="/logowhite.png" 
+              alt="neom hydrogen" 
               width={120}
               height={64}
               className="h-16 w-auto mx-auto"

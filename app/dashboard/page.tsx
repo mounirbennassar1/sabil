@@ -2,81 +2,89 @@
 
 import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { 
-  MagnifyingGlassIcon, 
-  FunnelIcon, 
-  BookOpenIcon, 
-  AcademicCapIcon,
-  ClockIcon,
-  UserIcon,
-  ArrowRightOnRectangleIcon,
+import {
+  HomeIcon,
+  BriefcaseIcon,
+  BookOpenIcon,
+  HeartIcon,
   StarIcon,
-  PlayIcon,
-  UsersIcon,
-  TagIcon
+  AcademicCapIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
 } from "@heroicons/react/24/outline"
-
-interface Category {
-  id: string
-  name: string
-  description: string
-  color: string
-  icon: string
-}
+import coursesData from "@/scripts/couses_seed.json"
 
 interface Course {
   id: string
   title: string
   description: string
   thumbnail: string
-  duration: number
+  duration: string
   level: string
-  category: {
+  category: string
+  sub_category: string
+  price: number
+  discount_price: number
+  rating: number
+  total_reviews: number
+  total_students: number
+  instructor: {
     name: string
-    color: string
+    bio: string
+    profile_picture: string
   }
-  _count: {
+  _count?: {
     enrollments: number
   }
 }
 
-interface Enrollment {
-  id: string
-  enrolledAt: string
-  completedAt: string | null
-  progress: number
-  course: Course
+// Transform JSON course data to match the expected format
+const transformCoursesData = () => {
+  return coursesData.courses.map(course => ({
+    id: course.id.toString(),
+    title: course.title,
+    description: course.description,
+    thumbnail: course.thumbnail,
+    duration: course.duration,
+    level: course.level,
+    category: course.category,
+    sub_category: course.sub_category,
+    price: course.price,
+    discount_price: course.discount_price,
+    rating: course.rating,
+    total_reviews: course.total_reviews,
+    total_students: course.total_students,
+    instructor: course.instructor,
+    _count: {
+      enrollments: course.total_students
+    }
+  }))
 }
 
-interface Certificate {
-  id: string
-  number: string
-  issuedAt: string
-  course: {
-    title: string
-    level: string
-    category: {
-      name: string
-      color: string
-    }
-  }
-}
+// Categories based on the course data
+const categories = [
+  { id: '1', name: 'Programming', description: 'Learn coding and software development', color: '#23544e', icon: '💻' },
+  { id: '2', name: 'Data Science', description: 'Master data analysis and machine learning', color: '#0b867a', icon: '📊' },
+  { id: '3', name: 'Design', description: 'Create beautiful digital experiences', color: '#8b5cf6', icon: '🎨' },
+  { id: '4', name: 'Business', description: 'Develop business and leadership skills', color: '#f59e0b', icon: '💼' },
+  { id: '5', name: 'IT & Software', description: 'Master technology and systems', color: '#ef4444', icon: '⚙️' },
+  { id: '6', name: 'Office Productivity', description: 'Improve workplace efficiency', color: '#10b981', icon: '📈' }
+]
 
 export default function StudentDashboard() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState("catalog")
-  const [categories, setCategories] = useState<Category[]>([])
   const [courses, setCourses] = useState<Course[]>([])
-  const [enrolledCourses, setEnrolledCourses] = useState<Enrollment[]>([])
-  const [certificates, setCertificates] = useState<Certificate[]>([])
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
-  const [selectedLevel, setSelectedLevel] = useState<string>("all")
   const [loading, setLoading] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  
+  // Carousel refs
+  const topPicksRef = useRef<HTMLDivElement>(null)
+  const weeklyCoursesRef = useRef<HTMLDivElement>(null)
+  const skillsCoursesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (status === "loading") return
@@ -91,573 +99,491 @@ export default function StudentDashboard() {
       return
     }
 
-    // Check for tab parameter in URL
-    const params = new URLSearchParams(window.location.search)
-    const tab = params.get('tab')
-    if (tab && ['catalog', 'my-courses', 'certificates', 'progress'].includes(tab)) {
-      setActiveTab(tab)
-    }
-
-    fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Load courses from JSON data
+    const transformedCourses = transformCoursesData()
+    setCourses(transformedCourses)
+    setLoading(false)
   }, [session, status, router])
-
-  const fetchData = useCallback(async () => {
-    try {
-      // Fetch categories
-      const categoriesResponse = await fetch("/api/categories")
-      if (categoriesResponse.ok) {
-        const categoriesData = await categoriesResponse.json()
-        setCategories(categoriesData)
-      }
-
-      // Fetch courses
-      const coursesResponse = await fetch("/api/courses")
-      if (coursesResponse.ok) {
-        const coursesData = await coursesResponse.json()
-        setCourses(coursesData)
-      }
-
-      // Fetch enrolled courses if user is logged in
-      if (session) {
-        const enrollmentsResponse = await fetch("/api/enrollments")
-        if (enrollmentsResponse.ok) {
-          const enrollmentsData = await enrollmentsResponse.json()
-          setEnrolledCourses(enrollmentsData)
-        }
-
-        // Fetch certificates
-        const certificatesResponse = await fetch("/api/certificates")
-        if (certificatesResponse.ok) {
-          const certificatesData = await certificatesResponse.json()
-          setCertificates(certificatesData)
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    } finally {
-      setLoading(false)
-    }
-  }, [session])
-
-  useEffect(() => {
-    if (status === "loading") return
-
-    if (!session) {
-      router.push("/auth/signin")
-      return
-    }
-
-    if (session.user.role === "ADMIN") {
-      router.push("/admin")
-      return
-    }
-
-    const params = new URLSearchParams(window.location.search)
-    const tab = params.get('tab')
-    if (tab && ['catalog', 'my-courses', 'certificates', 'progress'].includes(tab)) {
-      setActiveTab(tab)
-    }
-
-    fetchData()
-  }, [session, status, router, fetchData])
-
-  const fetchFilteredCourses = async () => {
-    try {
-      const params = new URLSearchParams()
-      if (searchTerm) params.append('search', searchTerm)
-      if (selectedCategory !== 'all') params.append('category', selectedCategory)
-      if (selectedLevel !== 'all') params.append('level', selectedLevel)
-
-      const response = await fetch(`/api/courses?${params.toString()}`)
-      if (response.ok) {
-        const data = await response.json()
-        setCourses(data)
-      }
-    } catch (error) {
-      console.error("Error fetching filtered courses:", error)
-    }
-  }
-
-  useEffect(() => {
-    if (!loading) {
-      fetchFilteredCourses()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, selectedCategory, selectedLevel])
 
   const handleSignOut = () => {
     signOut({ callbackUrl: "/" })
   }
 
-  const formatDuration = (minutes: number) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
-    if (hours > 0) {
-      return `${hours}h ${mins}m`
-    }
-    return `${mins}m`
-  }
-
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case 'BEGINNER':
-        return 'bg-green-100 text-green-800'
-      case 'INTERMEDIATE':
-        return 'bg-yellow-100 text-yellow-800'
-      case 'ADVANCED':
-        return 'bg-red-100 text-red-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
+  const scrollCarousel = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    if (ref.current) {
+      const scrollAmount = 320 // Width of one card plus margin
+      ref.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      })
     }
   }
 
-  if (status === "loading" || loading) {
+  // Get courses by category for different sections
+  const getTopPicksCourses = () => {
+    return courses.filter(course => course.rating >= 4.8).slice(0, 8)
+  }
+
+  const getWeeklyCourses = () => {
+    return courses.filter(course => course.category === 'Programming' || course.category === 'Data Science').slice(0, 8)
+  }
+
+  const getSkillsCourses = () => {
+    return courses.filter(course => course.category === 'Design' || course.category === 'Business').slice(0, 8)
+  }
+
+  if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#23544e]"></div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#23544e] mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading your dashboard...</p>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Top Navigation */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Image 
-                src="/sabil.png" 
-                alt="SABIL" 
-                width={120}
-                height={32}
-                className="h-8 w-auto"
-              />
-              <span className="ml-2 text-sm text-gray-500">Learning Portal</span>
-            </div>
-            
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <UserIcon className="h-5 w-5 text-gray-400" />
-                <span className="text-sm text-gray-700">{session?.user?.name}</span>
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 text-gray-400 hover:text-gray-600 lg:hidden"
+              >
+                <ChevronLeftIcon className="h-6 w-6" />
+              </button>
+              <Link href="/dashboard" className="flex items-center space-x-3">
+                            <Image 
+              src="/logo.png" 
+              alt="Neon Green Hydrogen Logo" 
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+              </Link>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-3">
+                <Image
+                  src={session?.user?.image || '/placeholder-avatar.svg'}
+                  alt="Profile"
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+                <span className="text-sm font-medium text-gray-700">
+                  {session?.user?.name}
+                </span>
               </div>
               <button
                 onClick={handleSignOut}
-                className="flex items-center space-x-1 text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className="p-2 text-gray-400 hover:text-gray-600"
               >
-                <ArrowRightOnRectangleIcon className="h-4 w-4" />
-                <span>Sign Out</span>
+                <ChevronRightIcon className="h-5 w-5" />
               </button>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      {/* Navigation */}
-      <nav className="bg-[#23544e] shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8">
-            {[
-              { id: 'catalog', label: 'Course Catalog', icon: BookOpenIcon },
-              { id: 'my-courses', label: 'My Courses', icon: PlayIcon },
-              { id: 'certificates', label: 'Certificates', icon: AcademicCapIcon },
-              { id: 'progress', label: 'Progress', icon: StarIcon },
-            ].map((tab) => {
-              const Icon = tab.icon
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-1 pt-4 pb-3 text-sm font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? 'border-b-2 border-white text-white'
-                      : 'border-b-2 border-transparent text-white/70 hover:text-white hover:border-white/20'
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{tab.label}</span>
-                </button>
-              )
-            })}
+      <div className="flex h-[calc(100vh-4rem)]">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <nav className="px-3 py-4 space-y-1">
+            <Link
+              href="/dashboard"
+              className="flex items-center px-3 py-2 text-sm font-medium text-[#23544e] bg-[#23544e]/10 rounded-lg"
+            >
+              <HomeIcon className="h-5 w-5 mr-3" />
+              Home
+            </Link>
+            <Link
+              href="/dashboard?tab=my-learning"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BookOpenIcon className="h-5 w-5 mr-3" />
+              My Career Journey
+            </Link>
+            <Link
+              href="/dashboard?tab=my-learning"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              Learn
+            </Link>
+            <Link
+              href="/dashboard?tab=my-courses"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HeartIcon className="h-5 w-5 mr-3" />
+              My Library
+            </Link>
+            <Link
+              href="/content"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              Content
+            </Link>
+            <Link
+              href="/ai"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <ChevronRightIcon className="h-5 w-5 mr-3" />
+              Apply AI
+            </Link>
+            <Link
+              href="/coding"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <ChevronRightIcon className="h-5 w-5 mr-3" />
+              Coding Practice
+            </Link>
+            <Link
+              href="/certificates"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              Certifications
+            </Link>
+          </nav>
+
+          <div className="px-3 py-4 border-t border-gray-200 mt-4">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              Trending topics
+            </h3>
+            <div className="space-y-1">
+              <Link href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
+                Leadership and Management
+              </Link>
+              <Link href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
+                Artificial Intelligence
+              </Link>
+              <Link href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
+                Cybersecurity
+              </Link>
+            </div>
+          </div>
+
+          <div className="px-3 py-4 border-t border-gray-200">
+            <Link
+              href="/help"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <ChevronRightIcon className="h-5 w-5 mr-3" />
+              Help
+            </Link>
           </div>
         </div>
-      </nav>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'catalog' && (
-          <div>
+        {/* Main Content */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-6">
             {/* Welcome Section */}
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome back, {session?.user?.name?.split(' ')[0]}!
-              </h2>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                Hello, {session?.user?.name}!
+              </h1>
               <p className="text-lg text-gray-600">
-                Discover new courses and continue your learning journey.
+                Ready to grow your skills and advance your career with Neon Green Hydrogen Learning?
               </p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <BookOpenIcon className="h-8 w-8 text-[#23544e]" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-500">Available Courses</p>
-                    <p className="text-2xl font-bold text-gray-900">{courses.length}</p>
-                  </div>
+            {/* Top Picks Section */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">Top picks for you</h2>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => scrollCarousel(topPicksRef, 'left')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel(topPicksRef, 'right')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronRightIcon className="w-6 h-6 text-gray-600" />
+                  </button>
                 </div>
               </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <PlayIcon className="h-8 w-8 text-[#0b867a]" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-500">Enrolled Courses</p>
-                    <p className="text-2xl font-bold text-gray-900">{enrolledCourses.length}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <ClockIcon className="h-8 w-8 text-[#f39c12]" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-500">Hours Learned</p>
-                    <p className="text-2xl font-bold text-gray-900">
-                      {Math.floor(enrolledCourses.reduce((total, enrollment) => total + (enrollment.course?.duration || 0), 0) / 60)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <AcademicCapIcon className="h-8 w-8 text-[#e74c3c]" />
-                  </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-500">Certificates</p>
-                    <p className="text-2xl font-bold text-gray-900">
-                      {enrolledCourses.filter(e => e.completedAt).length}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Search and Filter */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-              <div className="flex flex-col lg:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search courses..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
-                  />
-                </div>
-                
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center space-x-2">
-                    <FunnelIcon className="h-5 w-5 text-gray-400" />
-                    <select
-                      value={selectedCategory}
-                      onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
-                    >
-                      <option value="all">All Categories</option>
-                      {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <TagIcon className="h-5 w-5 text-gray-400" />
-                    <select
-                      value={selectedLevel}
-                      onChange={(e) => setSelectedLevel(e.target.value)}
-                      className="border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
-                    >
-                      <option value="all">All Levels</option>
-                      <option value="BEGINNER">Beginner</option>
-                      <option value="INTERMEDIATE">Intermediate</option>
-                      <option value="ADVANCED">Advanced</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Course Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {courses.map((course) => (
-                <div key={course.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-                  <div className="relative h-48">
-                    <Image
-                      src={course.thumbnail}
-                      alt={course.title}
-                      width={400}
-                      height={200}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-3 right-3">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getLevelColor(course.level)}`}>
-                        {course.level}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-center mb-2">
-                      <div 
-                        className="w-3 h-3 rounded-full mr-2"
-                        style={{ backgroundColor: course.category.color }}
-                      ></div>
-                      <span className="text-sm text-gray-500">{course.category.name}</span>
-                    </div>
-                    
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                      {course.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                      {course.description}
-                    </p>
-                    
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center">
-                        <ClockIcon className="h-4 w-4 mr-1" />
-                        {formatDuration(course.duration)}
-                      </div>
-                      <div className="flex items-center">
-                        <UsersIcon className="h-4 w-4 mr-1" />
-                        {course._count.enrollments} enrolled
+              <div
+                ref={topPicksRef}
+                className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
+              >
+                {getTopPicksCourses().map((course) => (
+                  <Link
+                    key={course.id}
+                    href={`/course/${course.id}`}
+                    className="flex-none w-80 h-80 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={course.thumbnail}
+                        alt={course.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                      <div className="absolute top-2 right-2">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
+                          {course.level}
+                        </span>
                       </div>
                     </div>
-                    
-                    <Link
-                      href={`/course/${course.id}`}
-                      className="block w-full text-center bg-[#23544e] text-white py-2 px-4 rounded-md hover:bg-[#1d453f] transition-colors"
-                    >
-                      View Course
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {courses.length === 0 && (
-              <div className="text-center py-12">
-                <BookOpenIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No courses found</h3>
-                <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {activeTab === 'my-courses' && (
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">My Courses</h2>
-            
-            {enrolledCourses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {enrolledCourses.map((enrollment) => {
-                  const course = enrollment.course
-                  return (
-                    <div key={enrollment.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-                      <div className="relative h-48">
-                        <Image
-                          src={course.thumbnail}
-                          alt={course.title}
-                          width={400}
-                          height={200}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-3 left-3">
-                          <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getLevelColor(course.level)}`}>
-                            {course.level}
-                          </span>
-                        </div>
-                        <div className="absolute top-3 right-3">
-                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                            Enrolled
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="p-6">
-                        <div className="flex items-center mb-2">
-                          <div 
-                            className="w-3 h-3 rounded-full mr-2"
-                            style={{ backgroundColor: course.category.color }}
-                          ></div>
-                          <span className="text-sm text-gray-500">{course.category.name}</span>
-                        </div>
-                        
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                    <div className="p-4 h-32 flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
                           {course.title}
                         </h3>
-                        
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                          {course.description}
+                        <p className="text-xs text-gray-600 mb-2">
+                          {course.instructor.name}
                         </p>
-                        
-                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                          <div className="flex items-center">
-                            <ClockIcon className="h-4 w-4 mr-1" />
-                            {formatDuration(course.duration)}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <StarIcon
+                                key={i}
+                                className={`h-3 w-3 ${
+                                  i < Math.floor(course.rating)
+                                    ? 'text-yellow-400 fill-current'
+                                    : 'text-gray-300'
+                                }`}
+                              />
+                            ))}
                           </div>
-                          <div className="flex items-center">
-                            <span className="text-xs text-gray-500">
-                              Enrolled {new Date(enrollment.enrolledAt).toLocaleDateString()}
-                            </span>
+                          <span className="text-xs text-gray-600">
+                            {course.rating} ({course.total_reviews.toLocaleString()})
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-gray-900">
+                            ${course.discount_price}
+                          </div>
+                          <div className="text-xs text-gray-500 line-through">
+                            ${course.price}
                           </div>
                         </div>
-                        
-                        <div className="flex space-x-2">
-                          <Link
-                            href={`/course/${course.id}/learn`}
-                            className="flex-1 text-center bg-[#23544e] text-white py-2 px-4 rounded-md hover:bg-[#1d453f] transition-colors"
-                          >
-                            Continue Learning
-                          </Link>
-                          <Link
-                            href={`/course/${course.id}`}
-                            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
-                          >
-                            Details
-                          </Link>
-                        </div>
                       </div>
                     </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-                <PlayIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Enrolled Courses</h3>
-                <p className="text-gray-600 mb-6">
-                  You haven&apos;t enrolled in any courses yet. Browse our catalog to get started!
-                </p>
-                <button
-                  onClick={() => setActiveTab('catalog')}
-                  className="bg-[#23544e] text-white px-6 py-2 rounded-md hover:bg-[#1d453f] transition-colors"
-                >
-                  Browse Courses
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {activeTab === 'certificates' && (
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">My Certificates</h2>
-            
-            {certificates.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {certificates.map((certificate) => (
-                  <div key={certificate.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="relative h-48 bg-gradient-to-br from-[#23544e] to-[#0b867a] flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <AcademicCapIcon className="h-16 w-16 mx-auto mb-4 opacity-80" />
-                        <h3 className="text-lg font-bold mb-2">Certificate of Completion</h3>
-                        <p className="text-sm opacity-90">SABIL Learning Portal</p>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      <div className="flex items-center mb-2">
-                        <div 
-                          className="w-3 h-3 rounded-full mr-2"
-                          style={{ backgroundColor: certificate.course.category.color }}
-                        ></div>
-                        <span className="text-sm text-gray-500">{certificate.course.category.name}</span>
-                      </div>
-                      
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                        {certificate.course.title}
-                      </h3>
-                      
-                      <div className="space-y-2 text-sm text-gray-600 mb-4">
-                        <div className="flex justify-between">
-                          <span>Certificate #:</span>
-                          <span className="font-mono text-xs">{certificate.number}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Issued:</span>
-                          <span>{new Date(certificate.issuedAt).toLocaleDateString()}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Level:</span>
-                          <span className="font-medium">{certificate.course.level}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex space-x-2">
-                        <button className="flex-1 text-center bg-[#23544e] text-white py-2 px-4 rounded-md hover:bg-[#1d453f] transition-colors text-sm">
-                          Download PDF
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm">
-                          Share
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
-            ) : (
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-                <AcademicCapIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Certificates Yet</h3>
-                <p className="text-gray-600 mb-6">
-                  Complete courses to earn certificates and showcase your achievements.
-                </p>
-                <button
-                  onClick={() => setActiveTab('catalog')}
-                  className="bg-[#23544e] text-white px-6 py-2 rounded-md hover:bg-[#1d453f] transition-colors"
-                >
-                  Start Learning
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+            </div>
 
-        {activeTab === 'progress' && (
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Learning Progress</h2>
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-              <StarIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Track Your Progress</h3>
-              <p className="text-gray-600 mb-6">
-                Your learning progress and achievements will be displayed here once you start taking courses.
-              </p>
-              <button
-                onClick={() => setActiveTab('catalog')}
-                className="bg-[#23544e] text-white px-6 py-2 rounded-md hover:bg-[#1d453f] transition-colors"
+            {/* Weekly Courses Section */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">Because you viewed programming courses</h2>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => scrollCarousel(weeklyCoursesRef, 'left')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel(weeklyCoursesRef, 'right')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronRightIcon className="w-6 h-6 text-gray-600" />
+                  </button>
+                </div>
+              </div>
+              <div
+                ref={weeklyCoursesRef}
+                className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
               >
-                Begin Your Journey
-              </button>
+                {getWeeklyCourses().map((course) => (
+                  <Link
+                    key={course.id}
+                    href={`/course/${course.id}`}
+                    className="flex-none w-80 h-80 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={course.thumbnail}
+                        alt={course.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                      <div className="absolute top-2 right-2">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
+                          {course.level}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4 h-32 flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
+                          {course.title}
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-2">
+                          {course.instructor.name}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <StarIcon
+                                key={i}
+                                className={`h-3 w-3 ${
+                                  i < Math.floor(course.rating)
+                                    ? 'text-yellow-400 fill-current'
+                                    : 'text-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-xs text-gray-600">
+                            {course.rating} ({course.total_reviews.toLocaleString()})
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-gray-900">
+                            ${course.discount_price}
+                          </div>
+                          <div className="text-xs text-gray-500 line-through">
+                            ${course.price}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Skills Development Section */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">Build essential skills</h2>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => scrollCarousel(skillsCoursesRef, 'left')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronLeftIcon className="w-6 h-6 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel(skillsCoursesRef, 'right')}
+                    className="p-3 rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:shadow-lg transition-all border border-gray-200"
+                  >
+                    <ChevronRightIcon className="w-6 h-6 text-gray-600" />
+                  </button>
+                </div>
+              </div>
+              <div
+                ref={skillsCoursesRef}
+                className="flex space-x-4 overflow-x-auto scrollbar-hide pb-4"
+              >
+                {getSkillsCourses().map((course) => (
+                  <Link
+                    key={course.id}
+                    href={`/course/${course.id}`}
+                    className="flex-none w-80 h-80 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={course.thumbnail}
+                        alt={course.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                      <div className="absolute top-2 right-2">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
+                          {course.level}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4 h-32 flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
+                          {course.title}
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-2">
+                          {course.instructor.name}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-1">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <StarIcon
+                                key={i}
+                                className={`h-3 w-3 ${
+                                  i < Math.floor(course.rating)
+                                    ? 'text-yellow-400 fill-current'
+                                    : 'text-gray-300'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-xs text-gray-600">
+                            {course.rating} ({course.total_reviews.toLocaleString()})
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-gray-900">
+                            ${course.discount_price}
+                          </div>
+                          <div className="text-xs text-gray-500 line-through">
+                            ${course.price}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Categories Section */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore categories</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    href={`/courses?category=${category.name}`}
+                    className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 group"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div 
+                        className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl"
+                        style={{ backgroundColor: `${category.color}20` }}
+                      >
+                        {category.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-900 group-hover:text-[#23544e] transition-colors">
+                          {category.name}
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {category.description}
+                        </p>
+                      </div>
+                      <ChevronRightIcon className="h-5 w-5 text-gray-400 group-hover:text-[#23544e] transition-colors" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        )}
-      </main>
+        </div>
+      </div>
     </div>
   )
 } 

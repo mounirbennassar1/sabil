@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
-import { prisma } from "@/lib/prisma"
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,50 +22,18 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if course exists and is published
-    const course = await prisma.course.findUnique({
-      where: {
-        id: courseId,
-        status: 'PUBLISHED'
-      }
-    })
-
-    if (!course) {
-      return NextResponse.json(
-        { message: "Course not found or not available" },
-        { status: 404 }
-      )
-    }
-
-    // Check if user is already enrolled
-    const existingEnrollment = await prisma.enrollment.findUnique({
-      where: {
-        userId_courseId: {
-          userId: session.user.id,
-          courseId: courseId
-        }
-      }
-    })
-
-    if (existingEnrollment) {
-      return NextResponse.json(
-        { message: "You are already enrolled in this course" },
-        { status: 400 }
-      )
-    }
-
-    // Create enrollment
-    const enrollment = await prisma.enrollment.create({
-      data: {
-        userId: session.user.id,
-        courseId: courseId,
-        enrolledAt: new Date()
-      }
-    })
-
+    // Dummy enrollment - just return success
+    console.log(`User ${session.user.email} enrolled in course ${courseId}`)
+    
     return NextResponse.json({
       message: "Successfully enrolled in course",
-      enrollment
+      enrollment: {
+        id: `dummy-${Date.now()}`,
+        userId: session.user.id,
+        courseId: courseId,
+        enrolledAt: new Date(),
+        progress: 0
+      }
     })
   } catch (error) {
     console.error("Error creating enrollment:", error)
@@ -88,28 +55,8 @@ export async function GET() {
       )
     }
 
-    const enrollments = await prisma.enrollment.findMany({
-      where: {
-        userId: session.user.id
-      },
-      include: {
-        course: {
-          include: {
-            category: true,
-            _count: {
-              select: {
-                enrollments: true
-              }
-            }
-          }
-        }
-      },
-      orderBy: {
-        enrolledAt: 'desc'
-      }
-    })
-
-    return NextResponse.json(enrollments)
+    // Dummy enrollments - return empty array for now
+    return NextResponse.json([])
   } catch (error) {
     console.error("Error fetching enrollments:", error)
     return NextResponse.json(

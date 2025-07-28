@@ -1,0 +1,1940 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "title": "Complete Web Development Bootcamp",
+        "slug": "complete-web-development-bootcamp",
+        "description": "Learn web development from scratch with HTML, CSS, JavaScript, React, Node.js, and MongoDB. This comprehensive bootcamp will take you from beginner to professional web developer with practical projects and real-world examples.",
+        "long_description": "Master the essential skills of modern web development in this comprehensive bootcamp. You'll learn everything from the fundamentals of HTML and CSS to advanced JavaScript frameworks like React. By the end of this course, you'll be able to build full-stack web applications using Node.js and MongoDB. This course includes over 30 hours of video content, coding challenges, and practical projects that you can add to your portfolio.",
+        "category": "Programming",
+        "sub_category": "Web Development",
+        "level": "Beginner to Advanced",
+        "price": 89.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://img-c.udemycdn.com/course/750x422/5018958_22cc_4.jpg",
+        "created_at": "2025-01-15",
+        "updated_at": "2025-07-10",
+        "language": "English",
+        "instructor": {
+          "name": "John Smith",
+          "bio": "Senior Web Developer with 10+ years of experience. Previously worked at Google and Amazon.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/1.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1245,
+        "total_students": 15689,
+        "duration": "32 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "HTML Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to HTML",
+                "duration": "15:30",
+                "video_url": "https://www.youtube.com/watch?v=qz0aGYrrlhU",
+                "is_preview": true
+              },
+              {
+                "id": 2,
+                "title": "HTML Structure and Elements",
+                "duration": "22:45",
+                "video_url": "https://www.youtube.com/watch?v=HD13eq_Pmp8",
+                "is_preview": false
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "CSS Styling",
+            "lectures": [
+              {
+                "id": 3,
+                "title": "CSS Basics",
+                "duration": "18:15",
+                "video_url": "https://www.youtube.com/watch?v=G3e-cpL7ofc",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic computer knowledge",
+          "No prior programming experience required",
+          "A computer with internet connection"
+        ],
+        "what_you_will_learn": [
+          "Build responsive websites with HTML, CSS, and JavaScript",
+          "Create full-stack applications with React, Node.js, and MongoDB",
+          "Deploy your applications to cloud platforms",
+          "Understand modern web development workflows"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "JavaScript Mastery: From Fundamentals to Advanced",
+        "slug": "javascript-mastery-fundamentals-advanced",
+        "description": "Master JavaScript programming from the ground up. Learn core concepts, ES6+ features, asynchronous programming, DOM manipulation, and popular frameworks.",
+        "long_description": "This comprehensive JavaScript course is designed to take you from a beginner to an advanced level. Starting with the fundamentals, you'll learn about variables, data types, functions, and control structures. Then, we'll dive into modern ES6+ features like arrow functions, destructuring, and modules. You'll master asynchronous programming with Promises and async/await, DOM manipulation for web applications, and explore popular frameworks and libraries in the JavaScript ecosystem.",
+        "category": "Programming",
+        "sub_category": "JavaScript",
+        "level": "All Levels",
+        "price": 79.99,
+        "discount_price": 39.99,
+        "thumbnail": "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/368625350/original/d60d50b6c1a019f047caa2aaf12fffbab3729317/design-thumbnails-for-coding-tutorial-for-youtube-or-online-courses.png",
+        "created_at": "2025-02-10",
+        "updated_at": "2025-06-15",
+        "language": "English",
+        "instructor": {
+          "name": "Emily Johnson",
+          "bio": "JavaScript Expert and Tech Lead at Netflix with 8+ years of experience.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/2.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 892,
+        "total_students": 12456,
+        "duration": "28 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "JavaScript Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to JavaScript",
+                "duration": "12:20",
+                "video_url": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "ES6+ Features",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Arrow Functions and Template Literals",
+                "duration": "16:45",
+                "video_url": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic knowledge of HTML and CSS",
+          "No prior JavaScript knowledge required",
+          "A code editor (VSCode recommended)"
+        ],
+        "what_you_will_learn": [
+          "Master JavaScript fundamentals and advanced concepts",
+          "Write clean, efficient, and maintainable code",
+          "Build interactive web applications",
+          "Work with modern JavaScript frameworks and libraries"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Python for Data Science and Machine Learning",
+        "slug": "python-data-science-machine-learning",
+        "description": "Learn Python programming and essential libraries for data analysis, visualization, and machine learning. Build real-world data science projects with Python.",
+        "long_description": "This comprehensive course covers everything you need to know about Python for data science and machine learning. Starting with Python basics, you'll progress to data manipulation with Pandas, visualization with Matplotlib and Seaborn, and advanced analytics. The course includes in-depth modules on machine learning algorithms using scikit-learn and deep learning with TensorFlow and Keras. Through hands-on projects, you'll apply your knowledge to real-world datasets and build a portfolio of data science projects.",
+        "category": "Data Science",
+        "sub_category": "Machine Learning",
+        "level": "Intermediate",
+        "price": 99.99,
+        "discount_price": 59.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.44.06-PM.png",
+        "created_at": "2025-03-05",
+        "updated_at": "2025-07-01",
+        "language": "English",
+        "instructor": {
+          "name": "Dr. Michael Chen",
+          "bio": "Data Scientist with PhD in Computer Science. Previously worked at Microsoft AI Research.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/3.jpg"
+        },
+        "rating": 4.7,
+        "total_reviews": 1567,
+        "total_students": 21045,
+        "duration": "42 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Python Fundamentals for Data Science",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Python Basics for Data Analysis",
+                "duration": "24:15",
+                "video_url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Machine Learning with Python",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Introduction to Machine Learning",
+                "duration": "35:10",
+                "video_url": "https://www.youtube.com/watch?v=7eh4d6sabA0",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic programming knowledge",
+          "High school level mathematics",
+          "Computer with at least 8GB RAM"
+        ],
+        "what_you_will_learn": [
+          "Master Python for data analysis and machine learning",
+          "Build and evaluate machine learning models",
+          "Perform data visualization and exploratory analysis",
+          "Deploy machine learning models to production"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "UI/UX Design Fundamentals with Figma",
+        "slug": "ui-ux-design-fundamentals-figma",
+        "description": "Learn the principles of UI/UX design and master Figma to create beautiful, user-friendly interfaces. Perfect for beginners and designers looking to enhance their skills.",
+        "long_description": "This comprehensive UI/UX design course will teach you the fundamentals of creating exceptional user experiences and visually appealing interfaces. You'll master Figma, the industry-leading design tool, and learn how to create wireframes, prototypes, and high-fidelity designs. The course covers design principles, color theory, typography, user research, usability testing, and modern design systems. By completing real-world projects, you'll build a professional portfolio and gain the skills needed to start or advance your career in UI/UX design.",
+        "category": "Design",
+        "sub_category": "UI/UX Design",
+        "level": "Beginner",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2023/05/1-How-to-Create-an-Online-Course-Thumbnail.jpg",
+        "created_at": "2025-01-20",
+        "updated_at": "2025-06-25",
+        "language": "English",
+        "instructor": {
+          "name": "Sarah Wilson",
+          "bio": "Senior UX Designer at Adobe with 12+ years of experience in digital product design.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/4.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 2134,
+        "total_students": 18976,
+        "duration": "26 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Introduction to UI/UX Design",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "What is UI/UX Design?",
+                "duration": "18:45",
+                "video_url": "https://www.youtube.com/watch?v=55NvZjUZIO8",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Figma Essentials",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Getting Started with Figma",
+                "duration": "26:30",
+                "video_url": "https://www.youtube.com/watch?v=jwCmIBJ8Jtc",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior design experience necessary",
+          "Computer with stable internet connection",
+          "Free Figma account"
+        ],
+        "what_you_will_learn": [
+          "Master UI/UX design principles and best practices",
+          "Create wireframes, prototypes, and high-fidelity designs in Figma",
+          "Conduct user research and usability testing",
+          "Build a professional UI/UX design portfolio"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Digital Marketing Masterclass",
+        "slug": "digital-marketing-masterclass",
+        "description": "Learn all aspects of digital marketing including SEO, social media, email marketing, PPC, content marketing, and analytics. Start growing your business or career in digital marketing.",
+        "long_description": "This comprehensive digital marketing course covers all essential aspects of online marketing strategies. You'll learn how to increase website traffic through SEO, build an effective social media presence, create successful email marketing campaigns, manage profitable PPC advertising, develop a content marketing strategy, and analyze results with Google Analytics. The course includes practical exercises, case studies, and real-world projects to help you apply your knowledge immediately. Whether you're a business owner, marketing professional, or looking to start a career in digital marketing, this course provides the skills and knowledge you need to succeed in the digital world.",
+        "category": "Business",
+        "sub_category": "Digital Marketing",
+        "level": "All Levels",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://static.vecteezy.com/system/resources/thumbnails/004/977/751/small_2x/it-course-banner-business-card-template-software-development-company-contact-with-phone-email-linear-icons-programming-coding-presentation-web-page-idea-corporate-print-design-layout-vector.jpg",
+        "created_at": "2025-02-15",
+        "updated_at": "2025-07-05",
+        "language": "English",
+        "instructor": {
+          "name": "Alex Thompson",
+          "bio": "Digital Marketing Consultant with 15+ years experience. Previously Marketing Director at Shopify.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/5.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1876,
+        "total_students": 24532,
+        "duration": "38 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Digital Marketing Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Digital Marketing",
+                "duration": "16:20",
+                "video_url": "https://www.youtube.com/watch?v=bixR-KIJKYM",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Search Engine Optimization (SEO)",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "SEO Fundamentals",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=h95cQkEWBx0",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior marketing experience required",
+          "Basic computer skills",
+          "Willingness to implement strategies in real-time"
+        ],
+        "what_you_will_learn": [
+          "Create and execute comprehensive digital marketing strategies",
+          "Optimize websites for search engines (SEO)",
+          "Build effective social media and email marketing campaigns",
+          "Analyze marketing data to improve results"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Entrepreneurship: Start and Grow Your Business",
+        "slug": "entrepreneurship-start-grow-business",
+        "description": "Learn how to validate your business idea, create a business plan, secure funding, and scale your startup. Practical guidance for entrepreneurs at any stage.",
+        "long_description": "This comprehensive entrepreneurship course provides practical guidance for starting and growing a successful business. You'll learn how to validate your business ideas, conduct market research, create a compelling business plan, secure funding, and implement effective marketing strategies. The course covers essential topics such as financial management, legal considerations, team building, and scaling operations. With insights from successful entrepreneurs and real-world case studies, you'll gain the knowledge and confidence to navigate the challenges of entrepreneurship and build a thriving business.",
+        "category": "Business",
+        "sub_category": "Entrepreneurship",
+        "level": "All Levels",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://templates.simplified.co/usetldr/1022255/thumb/5a108056-a070-44ee-a123-1afd489077e0.jpg",
+        "created_at": "2025-03-10",
+        "updated_at": "2025-07-15",
+        "language": "English",
+        "instructor": {
+          "name": "David Rodriguez",
+          "bio": "Serial Entrepreneur with 5 successful exits. Angel investor and business mentor.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/6.jpg"
+        },
+        "rating": 4.7,
+        "total_reviews": 1562,
+        "total_students": 17834,
+        "duration": "30 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Business Foundations",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Entrepreneurship",
+                "duration": "22:15",
+                "video_url": "https://www.youtube.com/watch?v=aozlwC3XwfY",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Business Growth Strategies",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Scaling Your Business",
+                "duration": "34:20",
+                "video_url": "https://www.youtube.com/watch?v=eHJnEHyyN1Y",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior business experience required",
+          "A business idea (optional)",
+          "Passion for entrepreneurship"
+        ],
+        "what_you_will_learn": [
+          "Validate your business idea and identify market opportunities",
+          "Create a comprehensive business plan",
+          "Secure funding and manage finances",
+          "Build and scale your business effectively"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Advanced React and Redux",
+        "slug": "advanced-react-redux",
+        "description": "Take your React skills to the next level with advanced patterns, hooks, context API, and Redux state management. Build complex, scalable applications.",
+        "long_description": "This advanced React course is designed for developers who already have a basic understanding of React and want to master advanced concepts and patterns. You'll learn how to build complex, scalable applications using React's latest features including hooks, context API, and advanced component patterns. The course covers state management with Redux, performance optimization techniques, testing strategies, and deployment best practices. Through hands-on projects, you'll gain practical experience building sophisticated React applications that are maintainable, performant, and follow industry best practices.",
+        "category": "Programming",
+        "sub_category": "React",
+        "level": "Advanced",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/323404125/original/9243f54d235e979db24dafc4080c51a1c63825c3/design-online-course-thumbnail-udemy-course-cover-image.png",
+        "created_at": "2025-02-25",
+        "updated_at": "2025-06-30",
+        "language": "English",
+        "instructor": {
+          "name": "Ryan Lee",
+          "bio": "Frontend Architect with 10+ years experience specializing in React. Creator of popular React libraries.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/7.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 943,
+        "total_students": 12543,
+        "duration": "24 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Advanced React Patterns",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Component Composition and HOCs",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=GxmfcnU3feo",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "State Management with Redux",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Redux Fundamentals",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=GxmfcnU3feo",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Solid understanding of JavaScript",
+          "Basic knowledge of React",
+          "Familiarity with ES6+ syntax"
+        ],
+        "what_you_will_learn": [
+          "Master advanced React patterns and hooks",
+          "Implement efficient state management with Redux",
+          "Optimize React application performance",
+          "Build complex, scalable React applications"
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Data Analysis with Excel and Power BI",
+        "slug": "data-analysis-excel-power-bi",
+        "description": "Master data analysis techniques using Microsoft Excel and Power BI. Learn formulas, pivot tables, dashboards, and data visualization to make data-driven decisions.",
+        "long_description": "This comprehensive data analysis course teaches you how to extract insights from data using Microsoft Excel and Power BI. Starting with Excel fundamentals, you'll learn advanced functions, formulas, pivot tables, and data modeling techniques. Then, you'll master Power BI for creating interactive dashboards and visualizations. The course covers data cleaning, transformation, analysis, and visualization best practices. With real-world case studies and projects, you'll develop practical skills that you can immediately apply in business environments to drive data-informed decision making.",
+        "category": "Data Science",
+        "sub_category": "Data Analysis",
+        "level": "Intermediate",
+        "price": 79.99,
+        "discount_price": 39.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-27-at-11.06.10-AM.png",
+        "created_at": "2025-01-30",
+        "updated_at": "2025-06-20",
+        "language": "English",
+        "instructor": {
+          "name": "Jennifer Martinez",
+          "bio": "Data Analysis Consultant with 12+ years experience specializing in Microsoft BI stack.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/8.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1245,
+        "total_students": 15678,
+        "duration": "28 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Excel for Data Analysis",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Advanced Excel Functions",
+                "duration": "24:30",
+                "video_url": "https://www.youtube.com/watch?v=9R3X0JoCLyU",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Power BI Fundamentals",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Introduction to Power BI",
+                "duration": "26:45",
+                "video_url": "https://www.youtube.com/watch?v=9R3X0JoCLyU",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic knowledge of Excel",
+          "Windows computer with Excel and Power BI Desktop installed",
+          "No programming experience required"
+        ],
+        "what_you_will_learn": [
+          "Master advanced Excel functions and data analysis techniques",
+          "Create interactive dashboards with Power BI",
+          "Perform data cleaning and transformation",
+          "Develop data visualization skills for effective storytelling"
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Mobile App Development with Flutter",
+        "slug": "mobile-app-development-flutter",
+        "description": "Build cross-platform mobile applications for iOS and Android using Flutter and Dart. Create beautiful, responsive, and feature-rich mobile apps.",
+        "long_description": "This comprehensive Flutter course will teach you how to build beautiful, high-performance cross-platform mobile applications for iOS and Android. You'll learn Dart programming language fundamentals before diving into Flutter framework, widgets, state management, and UI design. The course covers essential mobile app development concepts including navigation, data storage, API integration, authentication, and deployment to app stores. Through hands-on projects, you'll build real-world mobile applications and develop the skills needed to become a professional Flutter developer.",
+        "category": "Programming",
+        "sub_category": "Mobile Development",
+        "level": "Intermediate",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/12/top11.png",
+        "created_at": "2025-02-05",
+        "updated_at": "2025-07-10",
+        "language": "English",
+        "instructor": {
+          "name": "Amir Khan",
+          "bio": "Mobile App Developer with 8+ years experience. Google Developer Expert for Flutter.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/9.jpg"
+        },
+        "rating": 4.7,
+        "total_reviews": 1156,
+        "total_students": 14285,
+        "duration": "36 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Dart Programming Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Dart",
+                "duration": "22:15",
+                "video_url": "https://www.youtube.com/watch?v=Ej_Pcr4uC2Q",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Flutter Framework Basics",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Getting Started with Flutter",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=Ej_Pcr4uC2Q",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic programming knowledge",
+          "Computer with at least 8GB RAM",
+          "No prior mobile development experience required"
+        ],
+        "what_you_will_learn": [
+          "Build cross-platform mobile apps for iOS and Android",
+          "Master Dart programming language",
+          "Create beautiful UI with Flutter widgets",
+          "Implement state management and API integration"
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Complete Graphic Design Masterclass",
+        "slug": "complete-graphic-design-masterclass",
+        "description": "Learn graphic design principles, typography, color theory, and master tools like Photoshop, Illustrator, and InDesign. Create professional designs for print and digital media.",
+        "long_description": "This comprehensive graphic design course covers all essential aspects of both print and digital design. You'll learn fundamental design principles, typography, color theory, layout design, and branding. The course includes in-depth tutorials on industry-standard tools including Adobe Photoshop, Illustrator, and InDesign. Through practical projects, you'll create logos, marketing materials, social media graphics, and complete brand identities. Whether you're a beginner or looking to enhance your design skills, this course will help you become a confident, professional graphic designer.",
+        "category": "Design",
+        "sub_category": "Graphic Design",
+        "level": "All Levels",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.49.33-PM.png",
+        "created_at": "2025-03-15",
+        "updated_at": "2025-07-20",
+        "language": "English",
+        "instructor": {
+          "name": "Sophia Anderson",
+          "bio": "Graphic Designer with 15+ years experience. Art Director at major advertising agency.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/10.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1876,
+        "total_students": 22534,
+        "duration": "40 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Graphic Design Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Design Principles and Elements",
+                "duration": "26:30",
+                "video_url": "https://www.youtube.com/watch?v=9bKzDy3j82I",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Adobe Photoshop Essentials",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Introduction to Photoshop",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=IyR_uYsRdPs",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior design experience necessary",
+          "Computer with Adobe Creative Cloud subscription (trial version works)",
+          "Basic computer skills"
+        ],
+        "what_you_will_learn": [
+          "Master graphic design principles and best practices",
+          "Create professional designs using industry-standard tools",
+          "Develop a strong understanding of typography and color theory",
+          "Build a professional graphic design portfolio"
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Deep Learning Specialization",
+        "slug": "deep-learning-specialization",
+        "description": "Master deep learning concepts and techniques with TensorFlow and PyTorch. Build neural networks, CNNs, RNNs, and tackle real-world AI projects.",
+        "long_description": "This comprehensive deep learning course will take you from the fundamentals to advanced techniques in artificial neural networks. You'll learn the theoretical foundations of deep learning and gain hands-on experience implementing models using TensorFlow and PyTorch. The course covers essential architectures including Convolutional Neural Networks (CNNs) for computer vision, Recurrent Neural Networks (RNNs) for sequence modeling, and advanced topics like GANs and transformers. Through practical projects in computer vision, natural language processing, and reinforcement learning, you'll develop the skills needed to apply deep learning to complex real-world problems.",
+        "category": "Data Science",
+        "sub_category": "Deep Learning",
+        "level": "Advanced",
+        "price": 99.99,
+        "discount_price": 59.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.44.06-PM.png",
+        "created_at": "2025-02-20",
+        "updated_at": "2025-07-15",
+        "language": "English",
+        "instructor": {
+          "name": "Dr. Robert Zhang",
+          "bio": "AI Researcher with PhD from Stanford. Previously worked at OpenAI and Google Brain.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/11.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1543,
+        "total_students": 18965,
+        "duration": "45 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Neural Networks Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Neural Networks",
+                "duration": "34:15",
+                "video_url": "https://www.youtube.com/watch?v=0oyDqO8PjIg",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Convolutional Neural Networks",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "CNN Architecture and Applications",
+                "duration": "42:30",
+                "video_url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Intermediate Python programming skills",
+          "Basic understanding of linear algebra and calculus",
+          "Familiarity with machine learning concepts",
+          "Computer with GPU (recommended)"
+        ],
+        "what_you_will_learn": [
+          "Build and train deep neural networks from scratch",
+          "Implement computer vision and NLP applications",
+          "Master TensorFlow and PyTorch frameworks",
+          "Deploy deep learning models to production"
+        ]
+      },
+      {
+        "id": 12,
+        "title": "The Complete SQL Bootcamp",
+        "slug": "complete-sql-bootcamp",
+        "description": "Master SQL for data analysis, database management, and backend development. Learn to write complex queries, manage databases, and integrate SQL with applications.",
+        "long_description": "This comprehensive SQL course takes you from beginner to advanced level in database querying and management. You'll learn how to write efficient SQL queries, design databases using proper normalization principles, and perform data analysis using SQL. The course covers essential topics including joins, subqueries, aggregate functions, window functions, indexes, and optimization techniques. You'll work with real-world datasets across multiple database management systems including MySQL, PostgreSQL, and SQLite. By the end, you'll have the skills to use SQL for data analysis, database management, and application development.",
+        "category": "Data Science",
+        "sub_category": "Database",
+        "level": "All Levels",
+        "price": 84.99,
+        "discount_price": 42.99,
+        "thumbnail": "https://templates.simplified.co/usetldr/1022255/thumb/5a108056-a070-44ee-a123-1afd489077e0.jpg",
+        "created_at": "2025-01-25",
+        "updated_at": "2025-06-15",
+        "language": "English",
+        "instructor": {
+          "name": "Daniel Parker",
+          "bio": "Database Administrator and Data Engineer with 14+ years experience in major tech companies.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/12.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 2134,
+        "total_students": 26785,
+        "duration": "30 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "SQL Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Databases and SQL",
+                "duration": "24:15",
+                "video_url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Advanced SQL Queries",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Joins and Subqueries",
+                "duration": "38:45",
+                "video_url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior SQL or database experience required",
+          "Basic computer skills",
+          "No programming experience necessary"
+        ],
+        "what_you_will_learn": [
+          "Write complex SQL queries for data analysis",
+          "Design and manage relational databases",
+          "Optimize SQL queries for performance",
+          "Integrate SQL databases with applications"
+        ]
+      },
+      {
+        "id": 13,
+        "title": "DevOps Engineering: CI/CD with Docker and Kubernetes",
+        "slug": "devops-engineering-cicd-docker-kubernetes",
+        "description": "Learn DevOps practices including containerization with Docker, orchestration with Kubernetes, and CI/CD pipeline implementation. Automate software deployment and operations.",
+        "long_description": "This comprehensive DevOps course teaches you modern approaches to software delivery and infrastructure management. You'll learn containerization with Docker, container orchestration with Kubernetes, and how to implement continuous integration and continuous deployment (CI/CD) pipelines. The course covers infrastructure as code with Terraform, configuration management with Ansible, and monitoring solutions. Through hands-on projects, you'll build complete DevOps pipelines that automate testing, deployment, and scaling of applications in cloud environments. This course provides the practical skills needed to implement DevOps practices in organizations of any size.",
+        "category": "Programming",
+        "sub_category": "DevOps",
+        "level": "Intermediate to Advanced",
+        "price": 99.99,
+        "discount_price": 54.99,
+        "thumbnail": "https://static.vecteezy.com/system/resources/thumbnails/004/977/751/small_2x/it-course-banner-business-card-template-software-development-company-contact-with-phone-email-linear-icons-programming-coding-presentation-web-page-idea-corporate-print-design-layout-vector.jpg",
+        "created_at": "2025-03-20",
+        "updated_at": "2025-07-25",
+        "language": "English",
+        "instructor": {
+          "name": "Samantha Wright",
+          "bio": "DevOps Engineer with 10+ years experience. Previously led DevOps teams at AWS and Spotify.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/13.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 976,
+        "total_students": 11345,
+        "duration": "36 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Containerization with Docker",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Docker",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=pTFZFxd4hOI",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Kubernetes Orchestration",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Kubernetes Fundamentals",
+                "duration": "36:30",
+                "video_url": "https://www.youtube.com/watch?v=pTFZFxd4hOI",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic Linux command line knowledge",
+          "Fundamental understanding of software development",
+          "Familiarity with cloud concepts (AWS/Azure/GCP)",
+          "Computer with at least 8GB RAM"
+        ],
+        "what_you_will_learn": [
+          "Implement containerization with Docker",
+          "Orchestrate containers with Kubernetes",
+          "Build automated CI/CD pipelines",
+          "Manage infrastructure as code"
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Financial Modeling and Valuation",
+        "slug": "financial-modeling-valuation",
+        "description": "Learn financial modeling, valuation techniques, and financial analysis using Excel. Build DCF models, LBO models, M&A models, and conduct financial statement analysis.",
+        "long_description": "This comprehensive financial modeling course teaches you how to build sophisticated financial models and perform company valuations like a professional investment banker or financial analyst. You'll learn to create discounted cash flow (DCF) models, leveraged buyout (LBO) models, merger & acquisition (M&A) models, and conduct thorough financial statement analysis. The course covers financial accounting concepts, financial ratios, forecasting techniques, sensitivity analysis, and scenario modeling. Using real-world case studies and practical examples, you'll develop the skills needed for careers in investment banking, private equity, corporate finance, and financial analysis.",
+        "category": "Business",
+        "sub_category": "Finance",
+        "level": "Intermediate",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2023/05/1-How-to-Create-an-Online-Course-Thumbnail.jpg",
+        "created_at": "2025-02-12",
+        "updated_at": "2025-07-08",
+        "language": "English",
+        "instructor": {
+          "name": "James Sullivan",
+          "bio": "Former Investment Banker at Goldman Sachs with MBA from Wharton. Financial modeling expert.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/14.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1452,
+        "total_students": 18456,
+        "duration": "32 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Financial Statement Analysis",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Understanding Financial Statements",
+                "duration": "36:15",
+                "video_url": "https://www.youtube.com/watch?v=yS4QtrfJABQ",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Discounted Cash Flow (DCF) Modeling",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Building a DCF Model",
+                "duration": "42:30",
+                "video_url": "https://www.youtube.com/watch?v=yS4QtrfJABQ",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic knowledge of accounting and finance concepts",
+          "Intermediate Excel skills",
+          "No financial modeling experience required"
+        ],
+        "what_you_will_learn": [
+          "Build professional financial models from scratch",
+          "Perform company valuations using multiple methodologies",
+          "Analyze financial statements and forecast financials",
+          "Create sensitivity analyses and scenario models"
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Social Media Marketing Strategy",
+        "slug": "social-media-marketing-strategy",
+        "description": "Master social media marketing across all major platforms including Facebook, Instagram, Twitter, LinkedIn, and TikTok. Create effective strategies, content, and ads to grow your audience.",
+        "long_description": "This comprehensive social media marketing course teaches you how to build and execute effective social media strategies across all major platforms. You'll learn platform-specific techniques for Facebook, Instagram, Twitter, LinkedIn, TikTok, and YouTube. The course covers content creation, community management, paid advertising, influencer marketing, analytics, and ROI measurement. Through practical exercises and real-world case studies, you'll develop the skills to create engaging content, grow your audience, increase engagement, and drive conversions. Whether you're a business owner, marketer, or aspiring social media manager, this course provides the knowledge and tools to succeed in social media marketing.",
+        "category": "Business",
+        "sub_category": "Social Media Marketing",
+        "level": "All Levels",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/323404125/original/9243f54d235e979db24dafc4080c51a1c63825c3/design-online-course-thumbnail-udemy-course-cover-image.png",
+        "created_at": "2025-03-05",
+        "updated_at": "2025-07-12",
+        "language": "English",
+        "instructor": {
+          "name": "Olivia Turner",
+          "bio": "Social Media Strategist and Digital Marketing Consultant with 8+ years experience managing major brands.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/15.jpg"
+        },
+        "rating": 4.7,
+        "total_reviews": 1876,
+        "total_students": 22543,
+        "duration": "28 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Social Media Strategy Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Creating a Social Media Marketing Plan",
+                "duration": "24:45",
+                "video_url": "https://www.youtube.com/watch?v=QusJ4fpWQwA",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Platform-Specific Strategies",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Instagram Marketing Masterclass",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=QusJ4fpWQwA",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic understanding of marketing concepts",
+          "Active social media accounts (personal or business)",
+          "No prior social media marketing experience required"
+        ],
+        "what_you_will_learn": [
+          "Create platform-specific social media strategies",
+          "Produce engaging content for different platforms",
+          "Build and manage social media communities",
+          "Measure and optimize social media performance"
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Artificial Intelligence: Foundations to Applications",
+        "slug": "artificial-intelligence-foundations-applications",
+        "description": "Explore the foundations and applications of artificial intelligence. Learn machine learning, neural networks, natural language processing, computer vision, and ethical AI development.",
+        "long_description": "This comprehensive artificial intelligence course covers the theoretical foundations and practical applications of AI technology. You'll learn core AI concepts including machine learning algorithms, neural networks, deep learning, natural language processing, computer vision, and reinforcement learning. The course balances theory with hands-on implementation using Python and popular AI frameworks. You'll explore real-world AI applications in healthcare, finance, transportation, and entertainment industries. Additionally, the course addresses important ethical considerations and responsible AI development practices. By completing practical projects, you'll develop the skills to design, implement, and evaluate AI systems for diverse applications.",
+        "category": "Data Science",
+        "sub_category": "Artificial Intelligence",
+        "level": "Intermediate to Advanced",
+        "price": 99.99,
+        "discount_price": 59.99,
+        "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/12/top11.png",
+        "created_at": "2025-01-18",
+        "updated_at": "2025-07-05",
+        "language": "English",
+        "instructor": {
+          "name": "Dr. Priya Sharma",
+          "bio": "AI Researcher and Professor with PhD in Computer Science. Previously AI Research Lead at Microsoft.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/16.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1532,
+        "total_students": 17865,
+        "duration": "45 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Foundations of Artificial Intelligence",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to AI",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=JMUxmLyrhSk",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Natural Language Processing",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "NLP Fundamentals",
+                "duration": "38:45",
+                "video_url": "https://www.youtube.com/watch?v=JMUxmLyrhSk",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Intermediate Python programming skills",
+          "Basic understanding of mathematics (algebra, calculus, probability)",
+          "Familiarity with machine learning concepts (recommended)",
+          "Computer with at least 8GB RAM"
+        ],
+        "what_you_will_learn": [
+          "Understand core AI concepts and methodologies",
+          "Implement machine learning and deep learning algorithms",
+          "Build natural language processing and computer vision applications",
+          "Develop AI systems ethically and responsibly"
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Product Management Fundamentals",
+        "slug": "product-management-fundamentals",
+        "description": "Learn essential product management skills including product strategy, roadmapping, user research, agile methodologies, and product analytics to build successful products.",
+        "long_description": "This comprehensive product management course teaches you the skills and methodologies needed to build successful products in today's competitive market. You'll learn how to develop product strategies, create product roadmaps, conduct user research, define product requirements, and manage product lifecycles. The course covers agile methodologies, product analytics, A/B testing, prioritization frameworks, and stakeholder management. Through case studies and hands-on exercises, you'll experience the entire product development process from ideation to launch and iteration. This course is ideal for aspiring product managers, entrepreneurs, and professionals looking to transition into product management roles.",
+        "category": "Business",
+        "sub_category": "Product Management",
+        "level": "All Levels",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-27-at-11.06.10-AM.png",
+        "created_at": "2025-02-28",
+        "updated_at": "2025-07-18",
+        "language": "English",
+        "instructor": {
+          "name": "Marcus Williams",
+          "bio": "Senior Product Manager with 12+ years experience at Google, Amazon, and multiple startups.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/17.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1245,
+        "total_students": 14567,
+        "duration": "32 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Product Management Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Product Management",
+                "duration": "26:15",
+                "video_url": "https://www.youtube.com/watch?v=QusJ4fpWQwA",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Product Strategy and Roadmapping",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Developing Product Strategy",
+                "duration": "34:30",
+                "video_url": "https://www.youtube.com/watch?v=QusJ4fpWQwA",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior product management experience required",
+          "Basic understanding of business concepts",
+          "Interest in technology and product development"
+        ],
+        "what_you_will_learn": [
+          "Develop effective product strategies",
+          "Create and manage product roadmaps",
+          "Conduct user research and define requirements",
+          "Use data and analytics to drive product decisions"
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Cybersecurity Fundamentals",
+        "slug": "cybersecurity-fundamentals",
+        "description": "Learn essential cybersecurity concepts including network security, ethical hacking, cryptography, vulnerability assessment, and security best practices to protect systems and data.",
+        "long_description": "This comprehensive cybersecurity course introduces you to the fundamental concepts and practices of information security. You'll learn about network security, operating system hardening, web application security, cryptography, authentication systems, and security policies. The course covers threat modeling, vulnerability assessment, penetration testing techniques, and incident response procedures. Through hands-on labs and practical exercises, you'll develop the skills to identify security vulnerabilities, implement security controls, and protect systems from cyber threats. Whether you're looking to start a career in cybersecurity or enhance your organization's security posture, this course provides essential knowledge and practical skills.",
+        "category": "IT & Software",
+        "sub_category": "Cybersecurity",
+        "level": "Beginner to Intermediate",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.49.33-PM.png",
+        "created_at": "2025-03-25",
+        "updated_at": "2025-07-22",
+        "language": "English",
+        "instructor": {
+          "name": "Thomas Robinson",
+          "bio": "Cybersecurity Expert with 15+ years experience. CISSP, CEH certified. Previously Security Architect at Microsoft.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/18.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1342,
+        "total_students": 16789,
+        "duration": "38 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Introduction to Cybersecurity",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Cybersecurity Fundamentals",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Network Security",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Network Security Fundamentals",
+                "duration": "36:15",
+                "video_url": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic understanding of computer networks",
+          "Familiarity with operating systems (Windows, Linux)",
+          "No prior cybersecurity experience required"
+        ],
+        "what_you_will_learn": [
+          "Understand cybersecurity principles and attack vectors",
+          "Implement security controls and defenses",
+          "Conduct vulnerability assessments",
+          "Respond to security incidents effectively"
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Leadership and Management Skills",
+        "slug": "leadership-management-skills",
+        "description": "Develop essential leadership and management skills including communication, team building, conflict resolution, strategic thinking, and effective decision making.",
+        "long_description": "This comprehensive leadership and management course will help you develop the skills needed to lead teams and organizations effectively. You'll learn essential leadership principles, management techniques, and people skills that drive team success. The course covers crucial topics including leadership styles, effective communication, team building, conflict resolution, emotional intelligence, strategic thinking, and change management. Through case studies, role-playing exercises, and practical assignments, you'll apply these concepts to real-world scenarios. Whether you're an aspiring manager or an experienced leader looking to enhance your skills, this course provides actionable strategies to become a more effective leader.",
+        "category": "Business",
+        "sub_category": "Leadership",
+        "level": "All Levels",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://templates.simplified.co/usetldr/1022255/thumb/5a108056-a070-44ee-a123-1afd489077e0.jpg",
+        "created_at": "2025-01-10",
+        "updated_at": "2025-06-28",
+        "language": "English",
+        "instructor": {
+          "name": "Dr. Linda Washington",
+          "bio": "Executive Coach and Leadership Consultant with PhD in Organizational Psychology. Former HR Director at Fortune 500 company.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/19.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 2153,
+        "total_students": 24678,
+        "duration": "30 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Leadership Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Understanding Leadership",
+                "duration": "24:15",
+                "video_url": "https://www.youtube.com/watch?v=0PbjZ01ObLA",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Team Management and Motivation",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Building High-Performing Teams",
+                "duration": "32:45",
+                "video_url": "https://www.youtube.com/watch?v=0PbjZ01ObLA",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "No prior leadership experience required",
+          "Open mindset to personal development",
+          "Willingness to apply concepts in real-world situations"
+        ],
+        "what_you_will_learn": [
+          "Develop your personal leadership style",
+          "Build and manage high-performing teams",
+          "Communicate effectively as a leader",
+          "Make strategic decisions and manage change"
+        ]
+      },
+      {
+        "id": 20,
+        "title": "3D Modeling and Animation with Blender",
+        "slug": "3d-modeling-animation-blender",
+        "description": "Learn 3D modeling, texturing, rigging, and animation using Blender. Create professional 3D assets, characters, and animations for games, films, and visualization.",
+        "long_description": "This comprehensive Blender course takes you from beginner to advanced levels in 3D modeling, texturing, rigging, and animation. You'll learn to create detailed 3D models, apply realistic materials and textures, rig characters for animation, and create stunning animations and visual effects. The course covers Blender's complete toolset including modeling tools, sculpting, UV mapping, materials and nodes, lighting, rendering, rigging, and animation workflows. Through step-by-step projects, you'll create characters, environments, products, and animations suitable for games, films, architectural visualization, and product design. By the end, you'll have a professional portfolio of 3D work created entirely in Blender.",
+        "category": "Design",
+        "sub_category": "3D Modeling",
+        "level": "All Levels",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/323404125/original/9243f54d235e979db24dafc4080c51a1c63825c3/design-online-course-thumbnail-udemy-course-cover-image.png",
+        "created_at": "2025-02-15",
+        "updated_at": "2025-07-15",
+        "language": "English",
+        "instructor": {
+          "name": "Carlos Rodriguez",
+          "bio": "3D Artist and Animator with 10+ years experience. Worked on major game and film productions.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/20.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1653,
+        "total_students": 19456,
+        "duration": "45 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Introduction to Blender",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Blender Interface and Navigation",
+                "duration": "22:45",
+                "video_url": "https://www.youtube.com/watch?v=QGZ7a-Ks1LE",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "3D Modeling Fundamentals",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Mesh Modeling Basics",
+                "duration": "34:15",
+                "video_url": "https://www.youtube.com/watch?v=QGZ7a-Ks1LE",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Computer with minimum 8GB RAM, dedicated graphics card recommended",
+          "Latest version of Blender (free software)",
+          "Mouse with scroll wheel recommended",
+          "No prior 3D modeling experience required"
+        ],
+        "what_you_will_learn": [
+          "Create detailed 3D models and environments",
+          "Apply materials, textures, and lighting",
+          "Rig and animate characters and objects",
+          "Render professional-quality 3D images and animations"
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Full Stack Node.js Development",
+        "slug": "full-stack-nodejs-development",
+        "description": "Master full-stack JavaScript development with Node.js, Express, MongoDB, and React. Build complete, scalable web applications from scratch.",
+        "long_description": "This comprehensive full-stack JavaScript course teaches you how to build modern web applications using Node.js, Express, MongoDB, and React. You'll learn server-side programming with Node.js and Express, database design and operations with MongoDB, front-end development with React, and how to connect these technologies into complete applications. The course covers essential topics including RESTful API development, authentication and authorization, state management, testing, and deployment. Through hands-on projects, you'll build full-stack applications including an e-commerce platform, social network, and real-time chat application. By the end, you'll have the skills to develop, test, and deploy complete JavaScript applications.",
+        "category": "Programming",
+        "sub_category": "Node.js",
+        "level": "Intermediate",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.44.06-PM.png",
+        "created_at": "2025-03-05",
+        "updated_at": "2025-07-20",
+        "language": "English",
+        "instructor": {
+          "name": "Andrew Kim",
+          "bio": "Full Stack Developer with 12+ years experience. Previously Tech Lead at Airbnb and Dropbox.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/21.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1467,
+        "total_students": 18765,
+        "duration": "42 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Node.js Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Node.js",
+                "duration": "26:15",
+                "video_url": "https://www.youtube.com/watch?v=TlB_eWDSMt4",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Building APIs with Express",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "RESTful API Development",
+                "duration": "34:45",
+                "video_url": "https://www.youtube.com/watch?v=TlB_eWDSMt4",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic JavaScript knowledge",
+          "Understanding of HTML and CSS",
+          "Computer with Node.js installed",
+          "No prior back-end development experience required"
+        ],
+        "what_you_will_learn": [
+          "Build server-side applications with Node.js and Express",
+          "Create and manage MongoDB databases",
+          "Develop front-end interfaces with React",
+          "Deploy and scale full-stack JavaScript applications"
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Project Management Professional (PMP) Certification",
+        "slug": "pmp-certification-preparation",
+        "description": "Comprehensive preparation for the PMP certification exam. Learn project management methodologies, tools, techniques, and best practices based on PMBOK.",
+        "long_description": "This complete Project Management Professional (PMP) certification course prepares you to pass the PMP exam on your first attempt. The course covers all knowledge areas in the Project Management Body of Knowledge (PMBOK) Guide including project integration, scope, schedule, cost, quality, resource, communications, risk, procurement, and stakeholder management. You'll learn key project management methodologies, tools, techniques, and best practices through comprehensive lectures, practical examples, and exam-style questions. The course includes practice exams, memory aids, and study strategies to maximize your chances of success. Whether you're an experienced project manager or looking to advance your career, this course provides the knowledge and confidence to earn your PMP certification.",
+        "category": "Business",
+        "sub_category": "Project Management",
+        "level": "Intermediate to Advanced",
+        "price": 99.99,
+        "discount_price": 54.99,
+        "thumbnail": "https://templates.simplified.co/usetldr/1022255/thumb/5a108056-a070-44ee-a123-1afd489077e0.jpg",
+        "created_at": "2025-01-20",
+        "updated_at": "2025-06-25",
+        "language": "English",
+        "instructor": {
+          "name": "Rachel Turner",
+          "bio": "PMP certified Project Management Consultant with 15+ years experience. Trained over 10,000 PMP candidates.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/22.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 2453,
+        "total_students": 28765,
+        "duration": "35 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Project Management Framework",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Project Management",
+                "duration": "24:45",
+                "video_url": "https://www.youtube.com/watch?v=9VlvbpXwLJs",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Project Integration Management",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Developing Project Charter",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=9VlvbpXwLJs",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Eligibility for PMP exam (varies based on education and experience)",
+          "Project management experience (recommended)",
+          "Commitment to study and practice"
+        ],
+        "what_you_will_learn": [
+          "Master all PMBOK knowledge areas",
+          "Apply project management methodologies and tools",
+          "Practice with exam-style questions",
+          "Develop strategies to pass the PMP exam"
+        ]
+      },
+      {
+        "id": 23,
+        "title": "iOS App Development with Swift",
+        "slug": "ios-app-development-swift",
+        "description": "Learn to build iOS applications using Swift and Xcode. Create engaging, functional apps for iPhone and iPad with modern Swift programming.",
+        "long_description": "This comprehensive iOS development course teaches you how to build professional-quality applications for iPhone and iPad using Swift and Xcode. You'll learn Swift programming fundamentals, iOS app architecture, and how to work with essential iOS frameworks including UIKit, SwiftUI, Core Data, and Foundation. The course covers UI design, navigation patterns, data persistence, networking, authentication, and app submission to the App Store. Through hands-on projects, you'll build a variety of iOS applications including a to-do app, weather app, social media client, and e-commerce application. By the end, you'll have the skills to design, develop, and publish your own iOS applications.",
+        "category": "Programming",
+        "sub_category": "Mobile Development",
+        "level": "Beginner to Intermediate",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://static.vecteezy.com/system/resources/thumbnails/004/977/751/small_2x/it-course-banner-business-card-template-software-development-company-contact-with-phone-email-linear-icons-programming-coding-presentation-web-page-idea-corporate-print-design-layout-vector.jpg",
+        "created_at": "2025-02-10",
+        "updated_at": "2025-07-05",
+        "language": "English",
+        "instructor": {
+          "name": "Michelle Chen",
+          "bio": "iOS Developer with 8+ years experience. Previously Senior Developer at Apple and Uber.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/23.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1654,
+        "total_students": 19876,
+        "duration": "38 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Swift Programming Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Swift",
+                "duration": "28:15",
+                "video_url": "https://www.youtube.com/watch?v=comQ1-x2a1Q",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "iOS App Architecture",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Building Your First iOS App",
+                "duration": "36:45",
+                "video_url": "https://www.youtube.com/watch?v=comQ1-x2a1Q",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Mac computer with latest macOS",
+          "Xcode (free from Mac App Store)",
+          "Basic programming knowledge (any language)",
+          "No prior iOS development experience required"
+        ],
+        "what_you_will_learn": [
+          "Master Swift programming language",
+          "Build native iOS applications for iPhone and iPad",
+          "Implement essential iOS frameworks and APIs",
+          "Publish applications to the App Store"
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Content Marketing Mastery",
+        "slug": "content-marketing-mastery",
+        "description": "Learn how to create and implement effective content marketing strategies. Develop valuable content, build audience engagement, and drive conversions through strategic content.",
+        "long_description": "This comprehensive content marketing course teaches you how to plan, create, distribute, and measure content that attracts and engages your target audience. You'll learn how to develop a content marketing strategy, create various content types, optimize content for SEO, distribute content across channels, and measure content performance. The course covers blogging, video content, podcasting, email newsletters, social media content, and lead magnets. Through practical exercises, you'll develop your content creation skills and build a complete content marketing plan. Whether you're a business owner, marketer, or content creator, this course provides the strategies and tools to build an effective content marketing system that drives business results.",
+        "category": "Business",
+        "sub_category": "Content Marketing",
+        "level": "All Levels",
+        "price": 84.99,
+        "discount_price": 42.99,
+        "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/12/top11.png",
+        "created_at": "2025-03-15",
+        "updated_at": "2025-07-10",
+        "language": "English",
+        "instructor": {
+          "name": "Brian Foster",
+          "bio": "Content Marketing Strategist with 10+ years experience. Previously Head of Content at HubSpot.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/24.jpg"
+        },
+        "rating": 4.7,
+        "total_reviews": 1543,
+        "total_students": 18765,
+        "duration": "28 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Content Marketing Strategy",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Foundations of Content Marketing",
+                "duration": "24:15",
+                "video_url": "https://www.youtube.com/watch?v=IjS9eTpmhgk",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Content Creation",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Creating Engaging Blog Content",
+                "duration": "32:45",
+                "video_url": "https://www.youtube.com/watch?v=IjS9eTpmhgk",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic marketing knowledge",
+          "No prior content marketing experience required",
+          "Willingness to create content consistently"
+        ],
+        "what_you_will_learn": [
+          "Develop comprehensive content marketing strategies",
+          "Create engaging content across multiple formats",
+          "Optimize content for search engines and conversions",
+          "Measure and improve content marketing performance"
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Blockchain Development and Smart Contracts",
+        "slug": "blockchain-development-smart-contracts",
+        "description": "Learn blockchain technology, Ethereum development, and smart contract programming. Build decentralized applications (dApps) using Solidity and web3.",
+        "long_description": "This comprehensive blockchain development course teaches you how to build decentralized applications (dApps) on Ethereum and other blockchain platforms. You'll learn blockchain fundamentals, Ethereum architecture, and smart contract programming with Solidity. The course covers web3 integration, decentralized finance (DeFi) concepts, token standards (ERC-20, ERC-721), and security best practices. Through hands-on projects, you'll build various blockchain applications including a cryptocurrency token, NFT marketplace, decentralized exchange, and voting system. By the end, you'll have the skills to develop, test, and deploy secure blockchain applications and smart contracts.",
+        "category": "Programming",
+        "sub_category": "Blockchain",
+        "level": "Intermediate",
+        "price": 99.99,
+        "discount_price": 54.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2023/05/1-How-to-Create-an-Online-Course-Thumbnail.jpg",
+        "created_at": "2025-01-25",
+        "updated_at": "2025-06-30",
+        "language": "English",
+        "instructor": {
+          "name": "Samuel Wright",
+          "bio": "Blockchain Developer and Consultant. Previously CTO at blockchain startup and Smart Contract Auditor.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/25.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 986,
+        "total_students": 12543,
+        "duration": "40 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Blockchain Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Blockchain Technology",
+                "duration": "32:15",
+                "video_url": "https://www.youtube.com/watch?v=SSo_EIwHSd4",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Smart Contract Development",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Solidity Programming Basics",
+                "duration": "38:45",
+                "video_url": "https://www.youtube.com/watch?v=SSo_EIwHSd4",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic programming knowledge",
+          "Understanding of JavaScript",
+          "No prior blockchain experience required",
+          "Computer with modern web browser"
+        ],
+        "what_you_will_learn": [
+          "Master blockchain concepts and architecture",
+          "Develop smart contracts with Solidity",
+          "Build decentralized applications (dApps)",
+          "Implement security best practices for blockchain applications"
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Cloud Computing with AWS",
+        "slug": "cloud-computing-aws",
+        "description": "Master Amazon Web Services (AWS) and cloud computing. Learn to architect, deploy, and manage applications on the world's leading cloud platform.",
+        "long_description": "This comprehensive AWS course teaches you how to design, deploy, and manage applications on Amazon Web Services. You'll learn core AWS services and infrastructure components including EC2, S3, RDS, Lambda, VPC, IAM, CloudFormation, and more. The course covers essential cloud concepts such as high availability, fault tolerance, scalability, security, and cost optimization. Through hands-on labs and projects, you'll build various cloud architectures including web applications, serverless applications, and microservices. The course also prepares you for AWS certification exams by covering exam topics and best practices. By the end, you'll have the skills to design and implement secure, reliable, and cost-effective AWS cloud solutions.",
+        "category": "IT & Software",
+        "sub_category": "Cloud Computing",
+        "level": "Intermediate",
+        "price": 94.99,
+        "discount_price": 49.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-20-at-2.49.33-PM.png",
+        "created_at": "2025-02-20",
+        "updated_at": "2025-07-15",
+        "language": "English",
+        "instructor": {
+          "name": "Jessica Taylor",
+          "bio": "AWS Certified Solutions Architect and DevOps Engineer with 10+ years cloud experience.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/26.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1765,
+        "total_students": 21543,
+        "duration": "36 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "AWS Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to AWS Cloud",
+                "duration": "28:45",
+                "video_url": "https://www.youtube.com/watch?v=MmsoIcYrXJU",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Compute Services",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "EC2 Instances and AMIs",
+                "duration": "34:15",
+                "video_url": "https://www.youtube.com/watch?v=MmsoIcYrXJU",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic IT knowledge and system administration concepts",
+          "Familiarity with command line interface",
+          "AWS Free Tier account (instructions provided)",
+          "No prior cloud experience required"
+        ],
+        "what_you_will_learn": [
+          "Design and implement AWS cloud architectures",
+          "Deploy applications using various AWS services",
+          "Implement security and compliance best practices",
+          "Optimize AWS solutions for performance and cost"
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Video Editing with Adobe Premiere Pro",
+        "slug": "video-editing-adobe-premiere-pro",
+        "description": "Learn professional video editing techniques using Adobe Premiere Pro. Master editing, color grading, audio mixing, visual effects, and video production workflows.",
+        "long_description": "This comprehensive video editing course teaches you how to create professional videos using Adobe Premiere Pro. Starting with fundamentals, you'll progress to advanced editing techniques used by industry professionals. You'll learn video editing principles, timeline operations, transitions, effects, color grading, audio mixing, motion graphics integration, and multi-camera editing. The course covers essential workflows including project organization, proxy editing, color management, and delivery for various platforms. Through hands-on projects, you'll edit different video types including narrative films, documentaries, interviews, music videos, and social media content. By the end, you'll have the skills to edit professional-quality videos and a portfolio of work to showcase your abilities.",
+        "category": "Design",
+        "sub_category": "Video Editing",
+        "level": "All Levels",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/368625350/original/d60d50b6c1a019f047caa2aaf12fffbab3729317/design-thumbnails-for-coding-tutorial-for-youtube-or-online-courses.png",
+        "created_at": "2025-03-10",
+        "updated_at": "2025-07-20",
+        "language": "English",
+        "instructor": {
+          "name": "Mark Wilson",
+          "bio": "Professional Video Editor with 12+ years experience in film and television production.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/27.jpg"
+        },
+        "rating": 4.8,
+        "total_reviews": 1876,
+        "total_students": 22543,
+        "duration": "32 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Premiere Pro Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Premiere Pro Interface",
+                "duration": "24:15",
+                "video_url": "https://www.youtube.com/watch?v=Hls3Tp7JS8E",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Advanced Editing Techniques",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Professional Editing Workflows",
+                "duration": "36:45",
+                "video_url": "https://www.youtube.com/watch?v=Hls3Tp7JS8E",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Computer meeting Adobe Premiere Pro system requirements",
+          "Adobe Premiere Pro (subscription or trial)",
+          "No prior video editing experience required"
+        ],
+        "what_you_will_learn": [
+          "Edit professional-quality videos with Adobe Premiere Pro",
+          "Master color grading and audio mixing techniques",
+          "Create visual effects and motion graphics",
+          "Develop efficient video editing workflows"
+        ]
+      },
+      {
+        "id": 28,
+        "title": "SEO Masterclass: Complete Search Engine Optimization",
+        "slug": "seo-masterclass-search-engine-optimization",
+        "description": "Learn complete search engine optimization (SEO) strategies to increase website traffic. Master on-page, off-page, and technical SEO techniques.",
+        "long_description": "This comprehensive SEO course teaches you how to improve your website's visibility in search engines and drive organic traffic. You'll learn proven strategies for on-page SEO, off-page SEO, and technical SEO that align with Google's latest algorithms. The course covers keyword research, content optimization, link building, site structure, mobile optimization, site speed improvements, and local SEO. You'll also learn how to use essential SEO tools, perform website audits, track rankings, and analyze SEO data to continuously improve your results. Whether you're optimizing your own website or pursuing a career in SEO, this course provides the knowledge and practical skills to achieve top rankings in search engines.",
+        "category": "Business",
+        "sub_category": "SEO",
+        "level": "All Levels",
+        "price": 89.99,
+        "discount_price": 44.99,
+        "thumbnail": "https://instructor-academy.onlinecoursehost.com/content/images/2020/10/Screen-Shot-2020-10-27-at-11.06.10-AM.png",
+        "created_at": "2025-02-05",
+        "updated_at": "2025-07-01",
+        "language": "English",
+        "instructor": {
+          "name": "David Miller",
+          "bio": "SEO Expert and Digital Marketing Consultant with 15+ years experience working with major brands.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/28.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 2145,
+        "total_students": 25432,
+        "duration": "28 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "SEO Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Understanding Search Engines",
+                "duration": "26:15",
+                "video_url": "https://www.youtube.com/watch?v=IjS9eTpmhgk",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "On-Page SEO",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Content Optimization Techniques",
+                "duration": "34:45",
+                "video_url": "https://www.youtube.com/watch?v=IjS9eTpmhgk",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Basic understanding of websites and internet",
+          "Access to a website (own or client's)",
+          "No prior SEO knowledge required"
+        ],
+        "what_you_will_learn": [
+          "Implement effective on-page and off-page SEO strategies",
+          "Conduct keyword research and content optimization",
+          "Fix technical SEO issues affecting website performance",
+          "Track, measure, and improve SEO results"
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Digital Art and Illustration with Procreate",
+        "slug": "digital-art-illustration-procreate",
+        "description": "Learn digital drawing, painting, and illustration using Procreate on iPad. Master brushes, techniques, and workflows for creating professional digital art.",
+        "long_description": "This comprehensive Procreate course teaches you how to create stunning digital art using the popular iPad app. You'll learn digital drawing and painting techniques from fundamentals to advanced concepts. The course covers Procreate's interface, brushes, layers, selections, transformations, and animation features. You'll master various artistic styles including sketching, line art, character design, landscape painting, portrait illustration, and concept art. Through step-by-step projects, you'll develop the skills to create professional illustrations for personal projects, client work, or online platforms. Whether you're a beginner or experienced artist transitioning to digital, this course provides the techniques and workflows to excel in digital art creation.",
+        "category": "Design",
+        "sub_category": "Digital Art",
+        "level": "All Levels",
+        "price": 84.99,
+        "discount_price": 42.99,
+        "thumbnail": "https://templates.simplified.co/usetldr/1022255/thumb/5a108056-a070-44ee-a123-1afd489077e0.jpg",
+        "created_at": "2025-01-30",
+        "updated_at": "2025-06-25",
+        "language": "English",
+        "instructor": {
+          "name": "Emma Thompson",
+          "bio": "Professional Illustrator and Digital Artist with 10+ years experience working with major clients.",
+          "profile_picture": "https://randomuser.me/api/portraits/women/29.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 1856,
+        "total_students": 21543,
+        "duration": "26 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Procreate Fundamentals",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Introduction to Procreate",
+                "duration": "22:15",
+                "video_url": "https://www.youtube.com/watch?v=xLALIdC4L74",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Digital Drawing Techniques",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Sketching and Line Art",
+                "duration": "32:45",
+                "video_url": "https://www.youtube.com/watch?v=xLALIdC4L74",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "iPad with Procreate app installed",
+          "Apple Pencil or compatible stylus (recommended)",
+          "No prior drawing experience required"
+        ],
+        "what_you_will_learn": [
+          "Master digital drawing and painting techniques in Procreate",
+          "Create professional illustrations in various artistic styles",
+          "Develop efficient workflows for digital art creation",
+          "Build a portfolio of digital artwork"
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Microsoft Excel: Advanced Excel Formulas & Functions",
+        "slug": "advanced-excel-formulas-functions",
+        "description": "Master advanced Excel formulas, functions, and data analysis techniques. Become an Excel power user and improve your productivity and analytical skills.",
+        "long_description": "This comprehensive Excel course takes your spreadsheet skills to an advanced level by focusing on powerful formulas and functions. You'll learn how to use advanced functions including VLOOKUP, INDEX-MATCH, SUMIFS, COUNTIFS, IF with multiple conditions, nested functions, and array formulas. The course covers data analysis techniques, pivot tables, data tables, what-if analysis, solver, macros, and VBA basics. Through practical examples and exercises, you'll learn how to solve complex business problems, automate tasks, and create dynamic reports and dashboards. Whether you use Excel for business, data analysis, or personal projects, this course will significantly enhance your productivity and analytical capabilities.",
+        "category": "Office Productivity",
+        "sub_category": "Excel",
+        "level": "Intermediate to Advanced",
+        "price": 79.99,
+        "discount_price": 39.99,
+        "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/12/top11.png",
+        "created_at": "2025-03-01",
+        "updated_at": "2025-07-05",
+        "language": "English",
+        "instructor": {
+          "name": "Michael Johnson",
+          "bio": "Microsoft Excel MVP and Data Analyst with 12+ years experience training corporate clients.",
+          "profile_picture": "https://randomuser.me/api/portraits/men/30.jpg"
+        },
+        "rating": 4.9,
+        "total_reviews": 2453,
+        "total_students": 28765,
+        "duration": "24 hours",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Advanced Excel Functions",
+            "lectures": [
+              {
+                "id": 1,
+                "title": "Lookup and Reference Functions",
+                "duration": "28:15",
+                "video_url": "https://www.youtube.com/watch?v=Vl0H-qTclOg",
+                "is_preview": true
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Data Analysis Techniques",
+            "lectures": [
+              {
+                "id": 2,
+                "title": "Advanced Pivot Tables",
+                "duration": "34:45",
+                "video_url": "https://www.youtube.com/watch?v=Vl0H-qTclOg",
+                "is_preview": false
+              }
+            ]
+          }
+        ],
+        "requirements": [
+          "Microsoft Excel (2016 or later) installed",
+          "Basic Excel knowledge (formulas, basic functions)",
+          "Windows or Mac computer"
+        ],
+        "what_you_will_learn": [
+          "Master advanced Excel functions and formulas",
+          "Create sophisticated data analysis models",
+          "Build dynamic reports and dashboards",
+          "Automate repetitive tasks with macros"
+        ]
+      }
+    ]
+  }
+  

@@ -77,8 +77,8 @@ function SignInContent() {
         <div>
           <div className="mx-auto w-auto text-center">
             <Image 
-              src="/sabil.png" 
-              alt="SABIL" 
+              src="/logowhite.png" 
+              alt="neom hydrogen" 
               width={120}
               height={64}
               className="h-16 w-auto mx-auto"
@@ -180,8 +180,8 @@ function SignInContent() {
 
             <div className="mt-4 space-y-2">
               <div className="text-xs text-white/70 text-center">
-                <div>Admin: admin@sabil.com / Admin@123123</div>
-                <div>Student: Create your own account</div>
+                <div>Admin: admin@neongreenhydrogen.com / Admin@123123</div>
+                <div>Student: ahmad@neongreenhydrogen.com / Ahmad@123123</div>
               </div>
             </div>
           </div>
