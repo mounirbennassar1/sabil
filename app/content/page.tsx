@@ -12,7 +12,6 @@ import {
   HeartIcon,
   StarIcon,
   AcademicCapIcon,
-  ChevronRightIcon,
   SparklesIcon,
   CpuChipIcon,
   PlusIcon,

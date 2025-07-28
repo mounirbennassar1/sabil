@@ -12,7 +12,6 @@ import {
   HeartIcon,
   StarIcon,
   AcademicCapIcon,
-  ChevronRightIcon,
   SparklesIcon,
   CpuChipIcon,
   ClockIcon,
@@ -24,23 +23,6 @@ import {
   EyeIcon
 } from '@heroicons/react/24/outline'
 import coursesData from '@/scripts/couses_seed.json'
-
-interface Course {
-  id: string
-  title: string
-  description: string
-  thumbnail: string
-  duration: string
-  level: string
-  rating: number
-  students: number
-  category: string
-  price?: number
-  instructor?: {
-    name: string
-    avatar?: string
-  }
-}
 
 export default function LibraryPage() {
   const { data: session } = useSession()
