@@ -45,8 +45,8 @@ export default function LandingPage() {
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center transform transition-transform duration-300 hover:scale-105">
                 <Image 
-                  src="/sabil.png" 
-                  alt="SABIL" 
+                  src="/logo.png" 
+                  alt="neom hydrogen" 
                   width={120}
                   height={32}
                   className="h-8 w-auto"
@@ -88,7 +88,7 @@ export default function LandingPage() {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-500 translate-y-0 opacity-100">
-              Empower your workforce with SABIL&apos;s cutting-edge Learning Management System. 
+              Empower your workforce with neom hydrogen&apos;s cutting-edge Learning Management System. 
               Create engaging training programs, track progress in real-time, and certify achievements.
             </p>
             
@@ -244,7 +244,7 @@ export default function LandingPage() {
 
             <div className="grid md:grid-cols-4 gap-8 text-center">
               {[
-                { number: "500+", label: "Companies Trust SABIL", icon: UserGroupIcon },
+                { number: "500+", label: "Companies Trust neom hydrogen", icon: UserGroupIcon },
                 { number: "50K+", label: "Employees Trained", icon: AcademicCapIcon },
                 { number: "98%", label: "Completion Rate", icon: CheckCircleIcon },
                 { number: "24/7", label: "Support Available", icon: StarIcon }
@@ -284,7 +284,7 @@ export default function LandingPage() {
                   <span className="block text-green-200">Learning Culture?</span>
                 </h2>
                 <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-                  Join the revolution in employee development. Start your free trial today and see the difference SABIL can make.
+                  Join the revolution in employee development. Start your free trial today and see the difference neom hydrogen can make.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -310,8 +310,8 @@ export default function LandingPage() {
             <div className="text-center">
               <div className="hover:scale-105 transition-transform duration-300 inline-block">
                 <Image 
-                  src="/sabil.png" 
-                  alt="SABIL" 
+                  src="/logo.png" 
+                  alt="neom hydrogen" 
                   width={200}
                   height={60}
                   className="h-16 w-auto mx-auto mb-6"
@@ -323,7 +323,7 @@ export default function LandingPage() {
               
               <div className="border-t border-white/20 pt-8">
                 <div className="text-white/60 text-sm">
-                  © 2024 SABIL Learning Management System. All rights reserved.
+                  © 2025 neom hydrogen Learning Management System. All rights reserved.
                 </div>
               </div>
             </div>
