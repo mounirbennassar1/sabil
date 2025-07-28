@@ -13,7 +13,9 @@ import {
   StarIcon,
   AcademicCapIcon,
   ChevronLeftIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  SparklesIcon,
+  CpuChipIcon
 } from "@heroicons/react/24/outline"
 import coursesData from "@/scripts/couses_seed.json"
 
@@ -204,21 +206,21 @@ export default function StudentDashboard() {
               Home
             </Link>
             <Link
-              href="/dashboard?tab=my-learning"
+              href="/career"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <BookOpenIcon className="h-5 w-5 mr-3" />
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
               My Career Journey
             </Link>
             <Link
-              href="/dashboard?tab=my-learning"
+              href="/learn"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              <BookOpenIcon className="h-5 w-5 mr-3" />
               Learn
             </Link>
             <Link
-              href="/dashboard?tab=my-courses"
+              href="/library"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
               <HeartIcon className="h-5 w-5 mr-3" />
@@ -228,21 +230,21 @@ export default function StudentDashboard() {
               href="/content"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              <StarIcon className="h-5 w-5 mr-3" />
               Content
             </Link>
             <Link
               href="/ai"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <ChevronRightIcon className="h-5 w-5 mr-3" />
+              <SparklesIcon className="h-5 w-5 mr-3" />
               Apply AI
             </Link>
             <Link
               href="/coding"
               className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
             >
-              <ChevronRightIcon className="h-5 w-5 mr-3" />
+              <CpuChipIcon className="h-5 w-5 mr-3" />
               Coding Practice
             </Link>
             <Link
