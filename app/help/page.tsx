@@ -12,9 +12,7 @@ import {
   HeartIcon,
   StarIcon,
   AcademicCapIcon,
-  ChevronRightIcon,
   SparklesIcon,
-  UserIcon,
   CpuChipIcon,
   QuestionMarkCircleIcon,
   ChatBubbleLeftRightIcon,
@@ -271,7 +269,7 @@ export default function HelpPage() {
                 <div className="bg-white rounded-lg shadow p-6 text-center">
                   <EnvelopeIcon className="h-12 w-12 text-[#23544e] mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-gray-900 mb-2">Email Support</h3>
-                  <p className="text-gray-600 text-sm mb-4">Send us an email and we'll respond within 24 hours</p>
+                                     <p className="text-gray-600 text-sm mb-4">Send us an email and we&apos;ll respond within 24 hours</p>
                   <button className="bg-[#23544e] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1d453f] transition-colors">
                     Send Email
                   </button>
