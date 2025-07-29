@@ -96,7 +96,7 @@ export default function ContentPage() {
       status: 'Published',
       views: 1247,
       lastEdited: '2 days ago',
-      thumbnail: 'https://img-c.udemycdn.com/course/750x422/1565838_e54e_16.jpg'
+      thumbnail: '/logo.png'
     },
     {
       id: 2,

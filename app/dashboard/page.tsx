@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import {
+import { 
   HomeIcon,
   BriefcaseIcon,
-  BookOpenIcon,
+  BookOpenIcon, 
   HeartIcon,
   StarIcon,
   AcademicCapIcon,
@@ -159,17 +159,17 @@ export default function StudentDashboard() {
                 <ChevronLeftIcon className="h-6 w-6" />
               </button>
               <Link href="/dashboard" className="flex items-center space-x-3">
-                            <Image 
-              src="/logo.png" 
+              <Image 
+                src="/logo.png" 
               alt="Neon Green Hydrogen Logo" 
               width={32}
-              height={32}
+                height={32}
               className="rounded-lg"
-            />
+              />
             <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
               </Link>
             </div>
-
+            
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-3">
                 <Image
@@ -284,7 +284,7 @@ export default function StudentDashboard() {
           </div>
         </div>
 
-        {/* Main Content */}
+      {/* Main Content */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-6">
             {/* Welcome Section */}
@@ -338,8 +338,8 @@ export default function StudentDashboard() {
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
                           {course.level}
                         </span>
-                      </div>
-                    </div>
+                  </div>
+                </div>
                     <div className="p-4 h-32 flex flex-col justify-between">
                       <div>
                         <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
@@ -347,8 +347,8 @@ export default function StudentDashboard() {
                         </h3>
                         <p className="text-xs text-gray-600 mb-2">
                           {course.instructor.name}
-                        </p>
-                      </div>
+                    </p>
+                  </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-1">
                           <div className="flex">
@@ -373,10 +373,10 @@ export default function StudentDashboard() {
                           </div>
                           <div className="text-xs text-gray-500 line-through">
                             ${course.price}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                </div>
+              </div>
+                  </div>
+                </div>
                   </Link>
                 ))}
               </div>
@@ -411,28 +411,28 @@ export default function StudentDashboard() {
                     href={`/course/${course.id}`}
                     className="flex-none w-80 h-80 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
                   >
-                    <div className="relative h-48">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
+                  <div className="relative h-48">
+                    <Image
+                      src={course.thumbnail}
+                      alt={course.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                    />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                       <div className="absolute top-2 right-2">
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
-                          {course.level}
-                        </span>
-                      </div>
+                        {course.level}
+                      </span>
+                    </div>
                     </div>
                     <div className="p-4 h-32 flex flex-col justify-between">
                       <div>
                         <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
-                          {course.title}
-                        </h3>
+                      {course.title}
+                    </h3>
                         <p className="text-xs text-gray-600 mb-2">
                           {course.instructor.name}
-                        </p>
+                    </p>
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-1">
@@ -462,9 +462,9 @@ export default function StudentDashboard() {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                    </Link>
                 ))}
-              </div>
+                </div>
             </div>
 
             {/* Skills Development Section */}
@@ -496,20 +496,20 @@ export default function StudentDashboard() {
                     href={`/course/${course.id}`}
                     className="flex-none w-80 h-80 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200 overflow-hidden group"
                   >
-                    <div className="relative h-48">
-                      <Image
-                        src={course.thumbnail}
-                        alt={course.title}
+                      <div className="relative h-48">
+                        <Image
+                          src={course.thumbnail}
+                          alt={course.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
+                        />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                       <div className="absolute top-2 right-2">
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#23544e] text-white">
-                          {course.level}
-                        </span>
+                            {course.level}
+                          </span>
                       </div>
-                    </div>
+                        </div>
                     <div className="p-4 h-32 flex flex-col justify-between">
                       <div>
                         <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 mb-2">
@@ -535,7 +535,7 @@ export default function StudentDashboard() {
                           </div>
                           <span className="text-xs text-gray-600">
                             {course.rating} ({course.total_reviews.toLocaleString()})
-                          </span>
+                            </span>
                         </div>
                         <div className="text-right">
                           <div className="text-sm font-bold text-gray-900">
@@ -549,9 +549,9 @@ export default function StudentDashboard() {
                     </div>
                   </Link>
                 ))}
-              </div>
-            </div>
-
+                      </div>
+                    </div>
+                    
             {/* Categories Section */}
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore categories</h2>
@@ -572,7 +572,7 @@ export default function StudentDashboard() {
                       <div className="flex-1">
                         <h3 className="font-semibold text-gray-900 group-hover:text-[#23544e] transition-colors">
                           {category.name}
-                        </h3>
+                      </h3>
                         <p className="text-sm text-gray-600 mt-1">
                           {category.description}
                         </p>

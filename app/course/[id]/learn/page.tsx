@@ -70,6 +70,28 @@ interface CourseData {
   what_you_will_learn?: string[]
 }
 
+// Helper function to convert YouTube watch URL to embed URL
+const convertToEmbedUrl = (url: string): string => {
+  if (!url) return ''
+  
+  // Extract video ID from various YouTube URL formats
+  let videoId = ''
+  
+  if (url.includes('youtube.com/watch?v=')) {
+    videoId = url.split('v=')[1]?.split('&')[0]
+  } else if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1]?.split('?')[0]
+  } else if (url.includes('youtube.com/embed/')) {
+    return url // Already an embed URL
+  }
+  
+  if (videoId) {
+    return `https://www.youtube.com/embed/${videoId}`
+  }
+  
+  return url // Return original URL if conversion fails
+}
+
 // Transform course data to chapters format
 const transformCourseToChapters = (courseData: CourseData): CourseChapter[] => {
   return courseData.sections?.map((section: { title: string; lectures: Array<{ title: string; duration: string; video_url?: string; is_preview?: boolean }> }, sectionIndex: number) => ({
@@ -83,7 +105,7 @@ const transformCourseToChapters = (courseData: CourseData): CourseChapter[] => {
       type: 'video' as const,
       isCompleted: sectionIndex === 0 && lectureIndex === 0, // First lesson completed
       isLocked: !(sectionIndex === 0 && lectureIndex <= 1), // First two lessons unlocked
-      videoUrl: lecture.video_url,
+      videoUrl: convertToEmbedUrl(lecture.video_url || ''),
       isPreview: lecture.is_preview
     })) || []
   })) || []
@@ -394,7 +416,7 @@ export default function LearnPage() {
                   <div className="space-y-6">
                     <div className="flex items-start space-x-3">
                       <Image
-                        src="https://randomuser.me/api/portraits/women/32.jpg"
+                        src="/placeholder-avatar.svg"
                         alt="Student"
                         width={40}
                         height={40}
@@ -415,7 +437,7 @@ export default function LearnPage() {
 
                     <div className="flex items-start space-x-3">
                       <Image
-                        src="https://randomuser.me/api/portraits/men/44.jpg"
+                        src="/placeholder-avatar.svg"
                         alt="Student"
                         width={40}
                         height={40}
@@ -437,7 +459,7 @@ export default function LearnPage() {
 
                     <div className="flex items-start space-x-3">
                       <Image
-                        src="https://randomuser.me/api/portraits/women/68.jpg"
+                        src="/placeholder-avatar.svg"
                         alt="Student"
                         width={40}
                         height={40}

@@ -43,17 +43,14 @@ export default function AIChatPage() {
 
   const sidebarItems = [
     { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/dashboard?tab=career', icon: BriefcaseIcon, current: false },
-    { name: 'Learn', href: '/dashboard?tab=learn', icon: BookOpenIcon, current: false, isSection: true },
-    { name: 'My Library', href: '/dashboard?tab=library', icon: HeartIcon, current: false },
-    { name: 'Content', href: '/dashboard?tab=content', icon: StarIcon, current: false },
+    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
+    { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: false, isSection: true },
+    { name: 'My Library', href: '/library', icon: HeartIcon, current: false },
+    { name: 'Content', href: '/content', icon: StarIcon, current: false },
     { name: 'Apply AI', href: '/ai', icon: SparklesIcon, current: true, isSection: true },
     { name: 'Coding Practice', href: '/coding', icon: CpuChipIcon, current: false },
     { name: 'Certifications', href: '/certificates', icon: AcademicCapIcon, current: false },
-    { name: 'Trending topics', href: '#', icon: StarIcon, current: false, isSection: true },
-    { name: 'Leadership and Management', href: '#', icon: BriefcaseIcon, current: false },
-    { name: 'Artificial Intelligence', href: '/ai', icon: SparklesIcon, current: false },
-    { name: 'Cybersecurity', href: '#', icon: ChevronRightIcon, current: false },
+    { name: 'Help & Support', href: '/help', icon: ChevronRightIcon, current: false },
   ]
 
   useEffect(() => {
