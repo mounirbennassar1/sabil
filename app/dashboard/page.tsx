@@ -261,7 +261,7 @@ export default function StudentDashboard() {
               Trending topics
             </h3>
             <div className="space-y-1">
-              <Link href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
+              <Link href="https://alison.com/lms/login" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
                 Leadership and Management
               </Link>
               <Link href="#" className="block px-3 py-2 text-sm text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors">
