@@ -106,8 +106,28 @@ export default function CourseCategoriesPage() {
 
   // Filter and management state
   const [searchTerm, setSearchTerm] = useState('')
-  const [categories, setCategories] = useState<any[]>([])
-  const [courses, setCourses] = useState<any[]>([])
+  interface Category {
+    id: string
+    name: string
+    description: string
+    icon: string
+    image: string
+    color: string
+    courseCount: number
+    totalStudents: number
+    avgCompletionTime: string
+    popularCourses: string[]
+    status: string
+  }
+
+  interface Course {
+    id: string
+    title: string
+    categoryId: string
+    _count: { enrollments: number }
+  }
+
+  const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
 
   // Fetch categories and courses data
@@ -123,22 +143,21 @@ export default function CourseCategoriesPage() {
         const coursesData = await coursesRes.json()
         
         // Process categories with course counts and stats
-        const processedCategories = categoriesData.map((category: any) => {
-          const categoryCourses = coursesData.filter((course: any) => course.categoryId === category.id)
-          const totalStudents = categoryCourses.reduce((sum: number, course: any) => sum + course._count.enrollments, 0)
+        const processedCategories = categoriesData.map((category: Category) => {
+          const categoryCourses = coursesData.filter((course: Course) => course.categoryId === category.id)
+          const totalStudents = categoryCourses.reduce((sum: number, course: Course) => sum + course._count.enrollments, 0)
           
           return {
             ...category,
             courseCount: categoryCourses.length,
             totalStudents,
             avgCompletionTime: '3.5 hrs', // Default value
-            popularCourses: categoryCourses.slice(0, 3).map((course: any) => course.title),
+            popularCourses: categoryCourses.slice(0, 3).map((course: Course) => course.title),
             status: 'Active'
           }
         })
         
         setCategories(processedCategories)
-        setCourses(coursesData)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)

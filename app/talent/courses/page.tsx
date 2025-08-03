@@ -105,8 +105,29 @@ export default function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedLevel, setSelectedLevel] = useState('All')
-  const [courses, setCourses] = useState<any[]>([])
-  const [categories, setCategories] = useState<any[]>([])
+  interface Course {
+    id: string
+    title: string
+    description: string
+    thumbnail: string
+    duration: number
+    level: string
+    category: {
+      id: string
+      name: string
+    }
+    _count: {
+      enrollments: number
+    }
+  }
+
+  interface Category {
+    id: string
+    name: string
+  }
+
+  const [courses, setCourses] = useState<Course[]>([])
+  const [categories, setCategories] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
 
   // Fetch courses and categories data
@@ -122,7 +143,7 @@ export default function CoursesPage() {
         const categoriesData = await categoriesRes.json()
         
         setCourses(coursesData)
-        setCategories(['All', ...categoriesData.map((cat: any) => cat.name)])
+        setCategories(['All', ...categoriesData.map((cat: Category) => cat.name)])
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
