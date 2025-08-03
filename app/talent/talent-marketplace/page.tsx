@@ -5,21 +5,16 @@ import Link from 'next/link'
 import {
   ChevronDownIcon,
   ChevronUpIcon,
-  UserGroupIcon,
   ArrowTrendingUpIcon,
   ChartBarIcon,
   MapIcon,
   CogIcon,
   BookOpenIcon,
   HomeIcon,
-  FunnelIcon,
   MapPinIcon,
   ClockIcon,
   CurrencyDollarIcon,
   BriefcaseIcon,
-  AcademicCapIcon,
-  StarIcon,
-  CheckCircleIcon,
   MagnifyingGlassIcon
 } from '@heroicons/react/24/outline'
 

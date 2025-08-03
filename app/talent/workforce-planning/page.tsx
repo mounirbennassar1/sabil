@@ -13,7 +13,7 @@ import {
   BookOpenIcon,
   HomeIcon,
   FunnelIcon,
-  CalendarIcon,
+
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon as TrendingUpIcon,
   ArrowPathIcon

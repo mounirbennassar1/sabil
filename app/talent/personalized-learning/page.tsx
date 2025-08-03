@@ -12,7 +12,7 @@ import {
   CogIcon,
   BookOpenIcon,
   HomeIcon,
-  AcademicCapIcon,
+
   ClockIcon,
   StarIcon,
   CheckCircleIcon,
