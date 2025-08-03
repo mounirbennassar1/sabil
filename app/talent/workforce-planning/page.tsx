@@ -1,19 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import TalentLayout from '../../../components/layout/TalentLayout'
 import {
-  ChevronDownIcon,
-  ChevronUpIcon,
   UserGroupIcon,
-  ArrowTrendingUpIcon,
-  ChartBarIcon,
-  MapIcon,
-  CogIcon,
-  BookOpenIcon,
-  HomeIcon,
   FunnelIcon,
-
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon as TrendingUpIcon,
   ArrowPathIcon
@@ -21,14 +12,6 @@ import {
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts'
 
 export default function WorkforcePlanning() {
-  const [expandedSections, setExpandedSections] = useState({
-    learningCapability: false,
-    talentGrowth: false,
-    talentInsight: false,
-    futureStrategic: true,
-    executionIntegration: false
-  })
-
   const [selectedDepartment, setSelectedDepartment] = useState('all')
   const [selectedLocation, setSelectedLocation] = useState('all')
   const [selectedScenario, setSelectedScenario] = useState('current')

@@ -1,101 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import TalentLayout from '../../../components/layout/TalentLayout'
 import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  ArrowTrendingUpIcon,
-  ChartBarIcon,
-  MapIcon,
-  CogIcon,
-  BookOpenIcon,
-  HomeIcon,
   DocumentArrowDownIcon,
   UsersIcon,
   ClockIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
-  CalendarDaysIcon
+  CalendarDaysIcon,
+  ChartBarIcon
 } from '@heroicons/react/24/outline'
 
 export default function ChangeManagementPlan() {
-  const [expandedSections, setExpandedSections] = useState({
-    learningCapability: false,
-    talentGrowth: false,
-    talentInsight: false,
-    futureStrategic: false,
-    executionIntegration: true
-  })
 
-  const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }))
-  }
 
-  // Sidebar navigation data
-  const sidebarItems = [
-    { name: 'My Career Journey', href: '/career', icon: HomeIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/content', icon: BookOpenIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: ArrowTrendingUpIcon, current: false },
-  ]
-
-  const talentManagementSections = [
-    {
-      id: 'learningCapability',
-      name: 'Learning & Capability',
-      icon: BookOpenIcon,
-      items: [
-        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
-        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
-        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
-        { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' }
-      ]
-    },
-    {
-      id: 'talentGrowth',
-      name: 'Talent Growth',
-      icon: ArrowTrendingUpIcon,
-      items: [
-        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
-        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
-        { name: 'Competency Framework', href: '/talent/competency-framework' }
-      ]
-    },
-    {
-      id: 'talentInsight',
-      name: 'Talent Insight',
-      icon: ChartBarIcon,
-      items: [
-        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/kpis' },
-        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
-      ]
-    },
-    {
-      id: 'futureStrategic',
-      name: 'Future & Strategic',
-      icon: MapIcon,
-      items: [
-        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
-        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
-        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
-      ]
-    },
-    {
-      id: 'executionIntegration',
-      name: 'Execution & Integration',
-      icon: CogIcon,
-      items: [
-        { name: 'Change Management Plan', href: '/talent/change-management' },
-        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
-      ]
-    }
-  ]
 
   // Mock data for change management
   const stakeholders = [
@@ -134,103 +53,9 @@ export default function ChangeManagementPlan() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-[#23544e]">
-          <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4">
-              <h1 className="text-xl font-bold text-white">Talent Hub</h1>
-            </div>
-            <nav className="mt-5 flex-1 px-2 space-y-1">
-              {/* Home */}
-              <Link
-                href="/dashboard"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <HomeIcon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                Home
-              </Link>
-
-              {/* Talent Management Strategy Header */}
-              <div className="pt-4">
-                <h3 className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                  Talent Management Strategy
-                </h3>
-                
-                {/* Strategy Overview */}
-                <Link
-                  href="/dashboard/talent-strategy"
-                  className="mt-2 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <MapIcon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                  Strategy Overview
-                </Link>
-
-                {/* Expandable Sections */}
-                <div className="mt-2 space-y-1">
-                  {talentManagementSections.map((section) => (
-                    <div key={section.id}>
-                      <button
-                        onClick={() => toggleSection(section.id as keyof typeof expandedSections)}
-                        className="w-full text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                      >
-                        <section.icon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                        <span className="flex-1 text-left">{section.name}</span>
-                        {expandedSections[section.id as keyof typeof expandedSections] ? (
-                          <ChevronUpIcon className="ml-2 h-4 w-4 text-gray-400" />
-                        ) : (
-                          <ChevronDownIcon className="ml-2 h-4 w-4 text-gray-400" />
-                        )}
-                      </button>
-                      
-                      {expandedSections[section.id as keyof typeof expandedSections] && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          {section.items.map((item) => (
-                            <Link
-                              key={item.name}
-                              href={item.href}
-                              className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-                                item.name === 'Change Management Plan'
-                                  ? 'bg-gray-800 text-white'
-                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                              }`}
-                            >
-                              <span className="truncate">{item.name}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Original sidebar items */}
-              <div className="pt-4 mt-4 border-t border-gray-700">
-                {sidebarItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-                      item.current ? 'bg-gray-900 text-white' : ''
-                    }`}
-                  >
-                    <item.icon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="md:pl-64 flex flex-col flex-1">
-        <main className="flex-1">
-          <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <TalentLayout>
+      <div className="py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               {/* Header */}
               <div className="mb-8">
                 <div className="flex items-center justify-between">
@@ -458,10 +283,8 @@ export default function ChangeManagementPlan() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </main>
+        </div>
       </div>
-    </div>
+    </TalentLayout>
   )
 }
