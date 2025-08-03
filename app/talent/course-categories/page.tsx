@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -106,80 +106,48 @@ export default function CourseCategoriesPage() {
 
   // Filter and management state
   const [searchTerm, setSearchTerm] = useState('')
+  const [categories, setCategories] = useState<any[]>([])
+  const [courses, setCourses] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  // Updated categories data with images
-  const categories = [
-    {
-      id: 1,
-      name: 'Leadership & Management',
-      description: 'Develop leadership skills and management capabilities',
-      icon: '👑',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      color: '#23544e',
-      courseCount: 10,
-      totalStudents: 8500,
-      avgCompletionTime: '5.2 hrs',
-      popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
-      createdAt: '2024-01-15',
-      status: 'Active'
-    },
-    {
-      id: 2,
-      name: 'Technical Skills',
-      description: 'Enhance your technical expertise and knowledge',
-      icon: '💻',
-      image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      color: '#0b867a',
-      courseCount: 8,
-      totalStudents: 6200,
-      avgCompletionTime: '4.1 hrs',
-      popularCourses: ['JavaScript ES6+', 'React Development', 'Python Mastery'],
-      createdAt: '2024-01-10',
-      status: 'Active'
-    },
-    {
-      id: 3,
-      name: 'Communication',
-      description: 'Improve communication and interpersonal skills',
-      icon: '💬',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      color: '#4a90e2',
-      courseCount: 6,
-      totalStudents: 4800,
-      avgCompletionTime: '3.5 hrs',
-      popularCourses: ['Effective Communication', 'Public Speaking', 'Active Listening'],
-      createdAt: '2024-01-20',
-      status: 'Active'
-    },
-    {
-      id: 4,
-      name: 'Professional Development',
-      description: 'Advance your career with professional development courses',
-      icon: '📈',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      color: '#e74c3c',
-      courseCount: 4,
-      totalStudents: 3600,
-      avgCompletionTime: '4.8 hrs',
-      popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
-      createdAt: '2024-01-25',
-      status: 'Active'
-    },
-    {
-      id: 5,
-      name: 'Compliance & Safety',
-      description: 'Stay updated with compliance requirements and safety protocols',
-      icon: '🛡️',
-      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      color: '#f39c12',
-      courseCount: 2,
-      totalStudents: 2100,
-      avgCompletionTime: '2.5 hrs',
-      popularCourses: ['Workplace Safety', 'Risk Assessment', 'Emergency Procedures'],
-      createdAt: '2024-02-01',
-      status: 'Active'
+  // Fetch categories and courses data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [categoriesRes, coursesRes] = await Promise.all([
+          fetch('/api/categories'),
+          fetch('/api/courses')
+        ])
+        
+        const categoriesData = await categoriesRes.json()
+        const coursesData = await coursesRes.json()
+        
+        // Process categories with course counts and stats
+        const processedCategories = categoriesData.map((category: any) => {
+          const categoryCourses = coursesData.filter((course: any) => course.categoryId === category.id)
+          const totalStudents = categoryCourses.reduce((sum: number, course: any) => sum + course._count.enrollments, 0)
+          
+          return {
+            ...category,
+            courseCount: categoryCourses.length,
+            totalStudents,
+            avgCompletionTime: '3.5 hrs', // Default value
+            popularCourses: categoryCourses.slice(0, 3).map((course: any) => course.title),
+            status: 'Active'
+          }
+        })
+        
+        setCategories(processedCategories)
+        setCourses(coursesData)
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+        setLoading(false)
+      }
     }
-  ]
+    
+    fetchData()
+  }, [])
 
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -326,6 +294,33 @@ export default function CourseCategoriesPage() {
     </div>
   )
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="flex h-screen">
+          {renderSidebar()}
+          <div className="flex-1 overflow-auto bg-gray-50">
+            <div className="p-8">
+              <div className="animate-pulse">
+                <div className="h-32 bg-gray-300 rounded-lg mb-8"></div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="h-24 bg-gray-300 rounded-lg"></div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-96 bg-gray-300 rounded-lg"></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen">
@@ -456,7 +451,7 @@ export default function CourseCategoriesPage() {
                     <div className="mb-4">
                       <p className="text-sm font-medium text-gray-900 mb-2">Popular Courses:</p>
                       <div className="flex flex-wrap gap-1">
-                        {category.popularCourses.slice(0, 2).map((course, index) => (
+                        {category.popularCourses.slice(0, 2).map((course: string, index: number) => (
                           <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
                             {course}
                           </span>

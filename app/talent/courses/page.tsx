@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -105,130 +105,40 @@ export default function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedLevel, setSelectedLevel] = useState('All')
+  const [courses, setCourses] = useState<any[]>([])
+  const [categories, setCategories] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
 
-  // Updated courses data matching the seed data
-  const courses = [
-    {
-      id: 1,
-      title: 'Mastering Supervision: Skills and Strategies for Effective Leadership',
-      description: 'Develop leadership, manage teams effectively, and enhance organisational performance with this comprehensive free online course.',
-      thumbnail: 'https://i.ytimg.com/vi_webp/exDHuEr_low/mqdefault.webp',
-      duration: 360, // 6 hours
-      level: 'Advanced',
-      category: 'Leadership & Management',
-      instructor: 'Prof. Sarah Johnson',
-      rating: 4.8,
-      students: 1200,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 2,
-      title: 'Leadership Skills & Remote Team Management',
-      description: 'Amp up your ability to manage and lead remote teams by enrolling for this comprehensive free online skills course.',
-      thumbnail: 'https://cdn01.alison-static.net/courses/6694/alison_courseware_intro_6694.jpg',
-      duration: 240, // 4 hours
-      level: 'Advanced',
-      category: 'Leadership & Management',
-      instructor: 'Dr. Michael Chen',
-      rating: 4.7,
-      students: 980,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 3,
-      title: 'Transformational Leadership',
-      description: 'Discover cutting-edge tools and strategies that will improve your ability to lead others with this free online course.',
-      thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/8847cbfd-260a-4bba-86fc-aa99911f9e09_wm',
-      duration: 360, // 6 hours
-      level: 'Beginner',
-      category: 'Leadership & Management',
-      instructor: 'Prof. Paul Cline',
-      rating: 4.9,
-      students: 1500,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 4,
-      title: 'Diploma in Leadership and Management Styles',
-      description: 'Study management and leadership principles and how to apply them in business management with this comprehensive diploma course.',
-      thumbnail: 'https://i.ytimg.com/vi_webp/c62zJnD_Jr8/mqdefault.webp',
-      duration: 720, // 12 hours
-      level: 'Advanced',
-      category: 'Leadership & Management',
-      instructor: 'Dr. Amanda Roberts',
-      rating: 4.6,
-      students: 750,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 5,
-      title: 'Leadership Skills Training - Become a Successful Leader',
-      description: 'Explore leadership, the value of training, and the essential skills that define great leaders in this free online course.',
-      thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/b9e1fc41-b347-4bdd-8942-193781c13da7_wm',
-      duration: 300, // 5 hours
-      level: 'Beginner',
-      category: 'Leadership & Management',
-      instructor: 'James Wilson',
-      rating: 4.5,
-      students: 2100,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 6,
-      title: 'Digital Marketing Strategy',
-      description: 'Master modern digital marketing techniques and build comprehensive marketing campaigns.',
-      thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/099f64ae-53e4-4627-ae3a-5dad8f18e394_wm',
-      duration: 360, // 6 hours
-      level: 'Intermediate',
-      category: 'Professional Development',
-      instructor: 'Lisa Anderson',
-      rating: 4.7,
-      students: 890,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 7,
-      title: 'Brand Management & Strategy',
-      description: 'Develop comprehensive brand strategies and learn to manage brand identity effectively.',
-      thumbnail: 'https://cdn01.alison-static.net/courses/6160/alison_courseware_intro_6160.jpg',
-      duration: 240, // 4 hours
-      level: 'Beginner',
-      category: 'Professional Development',
-      instructor: 'Mark Thompson',
-      rating: 4.4,
-      students: 560,
-      price: 'Free',
-      status: 'Published'
-    },
-    {
-      id: 8,
-      title: 'Content Marketing Mastery',
-      description: 'Create compelling content strategies that engage audiences and drive conversions.',
-      thumbnail: 'https://i.ytimg.com/vi_webp/c85Ypp_d6Vc/mqdefault.webp',
-      duration: 280, // 4.7 hours
-      level: 'Beginner',
-      category: 'Professional Development',
-      instructor: 'Rachel Green',
-      rating: 4.6,
-      students: 720,
-      price: 'Free',
-      status: 'Published'
+  // Fetch courses and categories data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [coursesRes, categoriesRes] = await Promise.all([
+          fetch('/api/courses'),
+          fetch('/api/categories')
+        ])
+        
+        const coursesData = await coursesRes.json()
+        const categoriesData = await categoriesRes.json()
+        
+        setCourses(coursesData)
+        setCategories(['All', ...categoriesData.map((cat: any) => cat.name)])
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+        setLoading(false)
+      }
     }
-  ]
+    
+    fetchData()
+  }, [])
 
-  const categories = ['All', 'Leadership & Management', 'Professional Development', 'Technical Skills', 'Communication']
-  const levels = ['All', 'Beginner', 'Intermediate', 'Advanced']
+  const levels = ['All', 'BEGINNER', 'INTERMEDIATE', 'ADVANCED']
 
   const filteredCourses = courses.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory
+    const matchesCategory = selectedCategory === 'All' || course.category?.name === selectedCategory
     const matchesLevel = selectedLevel === 'All' || course.level === selectedLevel
     
     return matchesSearch && matchesCategory && matchesLevel
@@ -379,6 +289,29 @@ export default function CoursesPage() {
     </div>
   )
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="flex h-screen">
+          {renderSidebar()}
+          <div className="flex-1 overflow-auto bg-gray-50">
+            <div className="p-8">
+              <div className="animate-pulse">
+                <div className="h-32 bg-gray-300 rounded-lg mb-8"></div>
+                <div className="h-24 bg-gray-300 rounded-lg mb-8"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-96 bg-gray-300 rounded-lg"></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen">
@@ -451,8 +384,8 @@ export default function CoursesPage() {
                     />
                     <div className="absolute top-4 left-4">
                       <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                        course.level === 'Beginner' ? 'bg-green-100 text-green-800' :
-                        course.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                        course.level === 'BEGINNER' ? 'bg-green-100 text-green-800' :
+                        course.level === 'INTERMEDIATE' ? 'bg-yellow-100 text-yellow-800' :
                         'bg-red-100 text-red-800'
                       }`}>
                         {course.level}
@@ -460,7 +393,7 @@ export default function CoursesPage() {
                     </div>
                     <div className="absolute top-4 right-4">
                       <span className="px-2 py-1 bg-[#23544e] text-white text-xs font-medium rounded-full">
-                        {course.price}
+                        Free
                       </span>
                     </div>
                   </div>
@@ -469,11 +402,11 @@ export default function CoursesPage() {
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-2">
                       <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                        {course.category}
+                        {course.category?.name}
                       </span>
                       <div className="flex items-center">
                         <StarIcon className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-600 ml-1">{course.rating}</span>
+                        <span className="text-sm text-gray-600 ml-1">4.5</span>
                       </div>
                     </div>
 
@@ -483,15 +416,15 @@ export default function CoursesPage() {
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                       <div className="flex items-center">
                         <ClockIcon className="h-4 w-4 mr-1" />
-                        {formatDuration(course.duration)}
+                        {formatDuration(course.duration || 0)}
                       </div>
                       <div className="flex items-center">
                         <UsersIcon className="h-4 w-4 mr-1" />
-                        {course.students.toLocaleString()}
+                        {course._count?.enrollments || 0}
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-4">By {course.instructor}</p>
+                    <p className="text-sm text-gray-600 mb-4">Free Course</p>
 
                     {/* Actions */}
                     <div className="flex space-x-2">
