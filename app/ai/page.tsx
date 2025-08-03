@@ -106,11 +106,10 @@ export default function AIChatPage() {
     },
     {
       id: 'executionIntegration',
-      name: 'Execution & Integration',
+      name: 'Integration Placeholders',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/talent/integration-placeholders' },
         { name: 'Change Management Plan', href: '/talent/change-management' },
         { name: 'ROI Tracking', href: '/talent/roi-tracking' }
       ]
