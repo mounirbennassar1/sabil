@@ -29,6 +29,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 export default function CourseCategoriesPage() {
+  // Fixed: Restored sidebar and header layout
   // Sidebar state - same as dashboard
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: true, // Expanded by default since we're on course categories
