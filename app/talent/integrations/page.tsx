@@ -19,26 +19,24 @@ import {
   SparklesIcon,
   CpuChipIcon,
   AcademicCapIcon,
-  MagnifyingGlassIcon,
-  PlusIcon,
-  PencilIcon,
-  TrashIcon,
-  EyeIcon,
-  FolderIcon,
-  UsersIcon
+  LinkIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  ExclamationTriangleIcon,
+  PlayIcon,
+  PauseIcon,
+  ArrowPathIcon
 } from '@heroicons/react/24/outline'
 
-export default function CourseCategoriesPage() {
+export default function IntegrationsPage() {
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    learningCapability: true,
+    learningCapability: false,
     talentGrowth: false,
     talentInsight: false,
     futureStrategic: false,
-    executionIntegration: false
+    executionIntegration: true // Expanded since we're in this section
   })
-
-  const [searchTerm, setSearchTerm] = useState('')
 
   const talentManagementSections = [
     {
@@ -107,83 +105,134 @@ export default function CourseCategoriesPage() {
     }))
   }
 
-  // Categories data with simple working images
-  const categories = [
+  // Integration systems data
+  const integrations = [
     {
-      id: 'fallback-1',
-      name: 'Leadership & Management',
-      description: 'Develop leadership skills and management capabilities',
-      icon: '👑',
-      image: 'https://picsum.photos/800/600?random=1',
-      color: '#23544e',
-      courseCount: 17,
-      totalStudents: 8500,
-      avgCompletionTime: '5.2 hrs',
-      popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
-      status: 'Active'
+      id: 'sap',
+      name: 'SAP SuccessFactors',
+      description: 'HR and talent management integration',
+      logo: 'https://logos-world.net/wp-content/uploads/2020/09/SAP-Logo.png',
+      status: 'Connected',
+      lastSync: '2 hours ago',
+      category: 'HR Systems',
+      features: ['Employee Data', 'Performance Reviews', 'Learning Records'],
+      color: '#0073e6'
     },
     {
-      id: 'fallback-2',
-      name: 'Professional Development',
-      description: 'Advance your career with professional development courses',
-      icon: '📈',
-      image: 'https://picsum.photos/800/600?random=2',
-      color: '#e74c3c',
-      courseCount: 12,
-      totalStudents: 3600,
-      avgCompletionTime: '4.8 hrs',
-      popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
-      status: 'Active'
+      id: 'salesforce',
+      name: 'Salesforce',
+      description: 'CRM and customer relationship management',
+      logo: 'https://logoeps.com/wp-content/uploads/2013/03/salesforce-vector-logo.png',
+      status: 'Connected',
+      lastSync: '1 hour ago',
+      category: 'CRM',
+      features: ['Customer Data', 'Sales Training', 'Lead Management'],
+      color: '#00a1e0'
     },
     {
-      id: 'fallback-3',
-      name: 'Technical Skills',
-      description: 'Enhance your technical expertise and knowledge',
-      icon: '💻',
-      image: 'https://picsum.photos/800/600?random=3',
-      color: '#0b867a',
-      courseCount: 8,
-      totalStudents: 2400,
-      avgCompletionTime: '6.2 hrs',
-      popularCourses: ['React Development', 'JavaScript ES6+', 'Python Programming'],
-      status: 'Active'
+      id: 'hubspot',
+      name: 'HubSpot',
+      description: 'Marketing automation and CRM platform',
+      logo: 'https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png',
+      status: 'Connected',
+      lastSync: '30 minutes ago',
+      category: 'Marketing',
+      features: ['Marketing Analytics', 'Customer Journey', 'Sales Enablement'],
+      color: '#ff7a59'
     },
     {
-      id: 'fallback-4',
-      name: 'Communication',
-      description: 'Improve communication and interpersonal skills',
-      icon: '💬',
-      image: 'https://picsum.photos/800/600?random=4',
-      color: '#4a90e2',
-      courseCount: 8,
-      totalStudents: 1800,
-      avgCompletionTime: '4.0 hrs',
-      popularCourses: ['Public Speaking', 'Effective Communication', 'Presentation Skills'],
-      status: 'Active'
+      id: 'workday',
+      name: 'Workday',
+      description: 'Enterprise cloud applications for finance and HR',
+      logo: 'https://logos-world.net/wp-content/uploads/2021/02/Workday-Logo.png',
+      status: 'Pending',
+      lastSync: 'Not synced',
+      category: 'HR Systems',
+      features: ['Payroll Integration', 'Workforce Analytics', 'Benefits Management'],
+      color: '#e74c3c'
     },
     {
-      id: 'fallback-5',
-      name: 'Compliance & Safety',
-      description: 'Stay updated with compliance requirements and safety protocols',
-      icon: '🛡️',
-      image: 'https://picsum.photos/800/600?random=5',
-      color: '#f39c12',
-      courseCount: 4,
-      totalStudents: 950,
-      avgCompletionTime: '2.8 hrs',
-      popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
-      status: 'Active'
+      id: 'slack',
+      name: 'Slack',
+      description: 'Team collaboration and communication platform',
+      logo: 'https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png',
+      status: 'Connected',
+      lastSync: '5 minutes ago',
+      category: 'Communication',
+      features: ['Notifications', 'Learning Reminders', 'Team Updates'],
+      color: '#4a154b'
+    },
+    {
+      id: 'teams',
+      name: 'Microsoft Teams',
+      description: 'Collaboration platform for modern workplace',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg',
+      status: 'Connected',
+      lastSync: '15 minutes ago',
+      category: 'Communication',
+      features: ['Video Learning', 'Team Collaboration', 'Document Sharing'],
+      color: '#6264a7'
+    },
+    {
+      id: 'tableau',
+      name: 'Tableau',
+      description: 'Business intelligence and analytics platform',
+      logo: 'https://logos-world.net/wp-content/uploads/2021/10/Tableau-Logo.png',
+      status: 'Connected',
+      lastSync: '1 hour ago',
+      category: 'Analytics',
+      features: ['Data Visualization', 'Learning Analytics', 'Performance Dashboards'],
+      color: '#e97627'
+    },
+    {
+      id: 'zoom',
+      name: 'Zoom',
+      description: 'Video conferencing and webinar platform',
+      logo: 'https://st1.zoom.us/zoom.ico',
+      status: 'Connected',
+      lastSync: '45 minutes ago',
+      category: 'Communication',
+      features: ['Virtual Classrooms', 'Webinars', 'Meeting Integration'],
+      color: '#2d8cff'
+    },
+    {
+      id: 'jira',
+      name: 'Jira',
+      description: 'Project management and issue tracking',
+      logo: 'https://wac-cdn.atlassian.com/dam/jcr:8f27f43f-b2d0-4f0b-8c6e-4b8e3b7d7b1b/jira-icon-blue.svg',
+      status: 'Pending',
+      lastSync: 'Not synced',
+      category: 'Project Management',
+      features: ['Project Tracking', 'Skill Development', 'Task Management'],
+      color: '#0052cc'
     }
   ]
 
-  const filteredCategories = categories.filter(category =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    category.description.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'Connected':
+        return <CheckCircleIcon className="h-5 w-5 text-green-500" />
+      case 'Pending':
+        return <ClockIcon className="h-5 w-5 text-yellow-500" />
+      case 'Error':
+        return <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
+      default:
+        return <ClockIcon className="h-5 w-5 text-gray-400" />
+    }
+  }
 
-  const totalCourses = categories.reduce((sum, cat) => sum + cat.courseCount, 0)
-  const totalStudents = categories.reduce((sum, cat) => sum + cat.totalStudents, 0)
-  const activeCategories = categories.filter(cat => cat.status === 'Active').length
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Connected':
+        return 'bg-green-100 text-green-800'
+      case 'Pending':
+        return 'bg-yellow-100 text-yellow-800'
+      case 'Error':
+        return 'bg-red-100 text-red-800'
+      default:
+        return 'bg-gray-100 text-gray-800'
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -249,13 +298,13 @@ export default function CourseCategoriesPage() {
                         key={subItem.name}
                         href={subItem.href}
                         className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
-                          subItem.name === 'Course Categories'
+                          subItem.name === 'Integration'
                             ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
                             : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
                         }`}
                       >
                         <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
-                          subItem.name === 'Course Categories'
+                          subItem.name === 'Integration'
                             ? 'bg-[#23544e]'
                             : 'bg-gray-300 group-hover:bg-[#23544e]'
                         }`}></div>
@@ -328,9 +377,8 @@ export default function CourseCategoriesPage() {
           <div className="p-8">
             {/* Header */}
             <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
-              <h1 className="text-2xl font-bold mb-2">Course Categories</h1>
-              <p className="text-green-100">Manage and organize your learning content by categories</p>
-              {/* Build: {new Date().toISOString()} */}
+              <h1 className="text-2xl font-bold mb-2">System Integrations</h1>
+              <p className="text-green-100">Connect and sync with your existing business applications</p>
             </div>
 
             {/* Stats Cards */}
@@ -338,164 +386,139 @@ export default function CourseCategoriesPage() {
               <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
                   <div className="p-2 bg-[#23544e] rounded-lg">
-                    <FolderIcon className="h-6 w-6 text-white" />
+                    <LinkIcon className="h-6 w-6 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Total Categories</p>
-                    <p className="text-2xl font-bold text-gray-900">{activeCategories}</p>
+                    <p className="text-sm font-medium text-gray-600">Total Integrations</p>
+                    <p className="text-2xl font-bold text-gray-900">{integrations.length}</p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
-                  <div className="p-2 bg-[#23544e] rounded-lg">
-                    <BookOpenIcon className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-green-500 rounded-lg">
+                    <CheckCircleIcon className="h-6 w-6 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                    <p className="text-2xl font-bold text-gray-900">{totalCourses}</p>
+                    <p className="text-sm font-medium text-gray-600">Connected</p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      {integrations.filter(i => i.status === 'Connected').length}
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
-                  <div className="p-2 bg-[#23544e] rounded-lg">
-                    <UsersIcon className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-yellow-500 rounded-lg">
+                    <ClockIcon className="h-6 w-6 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Total Students</p>
-                    <p className="text-2xl font-bold text-gray-900">{totalStudents.toLocaleString()}</p>
+                    <p className="text-sm font-medium text-gray-600">Pending</p>
+                    <p className="text-2xl font-bold text-gray-900">
+                      {integrations.filter(i => i.status === 'Pending').length}
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
-                  <div className="p-2 bg-[#23544e] rounded-lg">
-                    <AcademicCapIcon className="h-6 w-6 text-white" />
+                  <div className="p-2 bg-blue-500 rounded-lg">
+                    <ArrowPathIcon className="h-6 w-6 text-white" />
                   </div>
                   <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600">Avg Completion</p>
-                    <p className="text-2xl font-bold text-gray-900">3.8 hrs</p>
+                    <p className="text-sm font-medium text-gray-600">Last Sync</p>
+                    <p className="text-lg font-bold text-gray-900">5 min ago</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Search and Actions */}
-            <div className="bg-white rounded-lg shadow p-6 mb-8">
-              <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-                <div className="relative flex-1 max-w-md">
-                  <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search categories..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
-                  />
-                </div>
-                <div className="flex items-center space-x-3">
-                  <button className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Add Category
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Categories Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCategories.map((category) => (
-                <div key={category.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-                  {/* Category Image */}
-                  <div className="relative h-48 rounded-t-lg overflow-hidden">
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                    <div className="absolute top-4 left-4">
-                      <span className="text-2xl">{category.icon}</span>
+            {/* Integration Cards - 3 per line */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {integrations.map((integration) => (
+                <div key={integration.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                  {/* Card Header */}
+                  <div className="p-6 border-b border-gray-200">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                          {/* Logo placeholder - using colored background */}
+                          <div 
+                            className="w-8 h-8 rounded"
+                            style={{ backgroundColor: integration.color }}
+                          ></div>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">{integration.name}</h3>
+                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(integration.status)}`}>
+                            {getStatusIcon(integration.status)}
+                            <span className="ml-1">{integration.status}</span>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="px-2 py-1 bg-green-500 text-white text-xs rounded-full">
-                        {category.status}
-                      </span>
+                    
+                    <p className="text-gray-600 text-sm mb-3">{integration.description}</p>
+                    
+                    <div className="text-xs text-gray-500">
+                      <span className="font-medium">Category:</span> {integration.category}
                     </div>
                   </div>
 
-                  {/* Category Content */}
+                  {/* Card Body */}
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h3>
-                    <p className="text-gray-600 mb-4">{category.description}</p>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-[#23544e]">{category.courseCount}</p>
-                        <p className="text-sm text-gray-600">Courses</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-2xl font-bold text-[#23544e]">{category.totalStudents.toLocaleString()}</p>
-                        <p className="text-sm text-gray-600">Students</p>
-                      </div>
-                    </div>
-
-                    {/* Popular Courses */}
+                    {/* Features */}
                     <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-900 mb-2">Popular Courses:</p>
+                      <h4 className="text-sm font-medium text-gray-900 mb-2">Features:</h4>
                       <div className="flex flex-wrap gap-1">
-                        {category.popularCourses.slice(0, 2).map((course, index) => (
+                        {integration.features.map((feature, index) => (
                           <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                            {course}
+                            {feature}
                           </span>
                         ))}
-                        {category.popularCourses.length > 2 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
-                            +{category.popularCourses.length - 2} more
-                          </span>
-                        )}
+                      </div>
+                    </div>
+
+                    {/* Last Sync */}
+                    <div className="mb-4">
+                      <div className="flex items-center text-xs text-gray-500">
+                        <ClockIcon className="h-4 w-4 mr-1" />
+                        Last sync: {integration.lastSync}
                       </div>
                     </div>
 
                     {/* Actions */}
-                    <div className="flex justify-between items-center">
-                      <div className="flex space-x-2">
-                        <button className="p-2 text-gray-400 hover:text-[#23544e] transition-colors">
-                          <EyeIcon className="h-4 w-4" />
+                    <div className="flex space-x-2">
+                      {integration.status === 'Connected' ? (
+                        <>
+                          <button className="flex-1 px-3 py-2 bg-[#23544e] text-white text-sm rounded hover:bg-[#1a3f3a] transition-colors">
+                            Configure
+                          </button>
+                          <button className="px-3 py-2 border border-gray-300 text-gray-700 text-sm rounded hover:bg-gray-50 transition-colors">
+                            <ArrowPathIcon className="h-4 w-4" />
+                          </button>
+                        </>
+                      ) : (
+                        <button className="flex-1 px-3 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors">
+                          Connect
                         </button>
-                        <button className="p-2 text-gray-400 hover:text-[#23544e] transition-colors">
-                          <PencilIcon className="h-4 w-4" />
-                        </button>
-                        <button className="p-2 text-gray-400 hover:text-red-600 transition-colors">
-                          <TrashIcon className="h-4 w-4" />
-                        </button>
-                      </div>
-                      <Link
-                        href="/talent/courses"
-                        className="px-3 py-1 bg-[#23544e] text-white text-sm rounded hover:bg-[#1a3f3a] transition-colors"
-                      >
-                        View Courses
-                      </Link>
+                      )}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Empty State */}
-            {filteredCategories.length === 0 && (
-              <div className="text-center py-12">
-                <FolderIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No categories found</h3>
-                <p className="text-gray-600">Try adjusting your search criteria or add a new category.</p>
-              </div>
-            )}
+            {/* Add Integration Button */}
+            <div className="mt-8 text-center">
+              <button className="px-6 py-3 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                <LinkIcon className="h-5 w-5 inline mr-2" />
+                Add New Integration
+              </button>
+            </div>
           </div>
         </div>
       </div>
