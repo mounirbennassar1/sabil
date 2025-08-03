@@ -8,6 +8,7 @@ import {
   BookOpenIcon,
   UserGroupIcon,
   ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ChartBarIcon,
   MapIcon,
   CogIcon,
@@ -23,9 +24,7 @@ import {
   ChartPieIcon,
   ClockIcon,
   LightBulbIcon,
-  TargetIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  CurrencyDollarIcon,
   BuildingOfficeIcon,
   UsersIcon
 } from '@heroicons/react/24/outline'
@@ -518,11 +517,11 @@ export default function GapAnalysisView() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="flex items-center">
-                        <TrendingUpIcon className="w-4 h-4 text-green-600 mr-1" />
+                        <ArrowTrendingUpIcon className="w-4 h-4 text-green-600 mr-1" />
                         <span className="text-xs text-green-600">{quarter.improved}</span>
                       </div>
                       <div className="flex items-center">
-                        <TrendingDownIcon className="w-4 h-4 text-red-600 mr-1" />
+                        <ArrowTrendingDownIcon className="w-4 h-4 text-red-600 mr-1" />
                         <span className="text-xs text-red-600">{quarter.deteriorated}</span>
                       </div>
                     </div>
@@ -532,7 +531,7 @@ export default function GapAnalysisView() {
 
               <div className="bg-green-50 rounded-lg p-4">
                 <div className="flex items-center">
-                  <TrendingUpIcon className="w-5 h-5 text-green-600 mr-2" />
+                  <ArrowTrendingUpIcon className="w-5 h-5 text-green-600 mr-2" />
                   <span className="text-sm font-medium text-green-800">
                     39% improvement over the year
                   </span>
@@ -583,7 +582,7 @@ export default function GapAnalysisView() {
                       </div>
                     </div>
                     <div className="flex items-center">
-                      <TargetIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <CurrencyDollarIcon className="w-4 h-4 text-gray-400 mr-2" />
                       <div>
                         <div className="text-sm font-medium text-gray-900">${rec.cost.toLocaleString()}</div>
                         <div className="text-xs text-gray-600">Investment</div>
@@ -608,8 +607,8 @@ export default function GapAnalysisView() {
                         {skill.priority}
                       </span>
                       {/* Trend indicator */}
-                      {skill.trend === 'up' && <TrendingUpIcon className="w-4 h-4 text-green-600" />}
-                      {skill.trend === 'down' && <TrendingDownIcon className="w-4 h-4 text-red-600" />}
+                      {skill.trend === 'up' && <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />}
+                      {skill.trend === 'down' && <ArrowTrendingDownIcon className="w-4 h-4 text-red-600" />}
                       {skill.trend === 'stable' && <div className="w-4 h-4 bg-gray-400 rounded-full"></div>}
                     </div>
                     <div className="text-sm text-gray-600">
@@ -678,8 +677,8 @@ export default function GapAnalysisView() {
                         {competency.priority}
                       </span>
                       {/* Trend indicator */}
-                      {competency.trend === 'up' && <TrendingUpIcon className="w-4 h-4 text-green-600" />}
-                      {competency.trend === 'down' && <TrendingDownIcon className="w-4 h-4 text-red-600" />}
+                      {competency.trend === 'up' && <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />}
+                      {competency.trend === 'down' && <ArrowTrendingDownIcon className="w-4 h-4 text-red-600" />}
                       {competency.trend === 'stable' && <div className="w-4 h-4 bg-gray-400 rounded-full"></div>}
                     </div>
                     <div className="text-sm text-gray-600">
@@ -846,7 +845,7 @@ export default function GapAnalysisView() {
               {/* Long-term Strategy */}
               <div className="space-y-4">
                 <h4 className="font-medium text-gray-900 flex items-center">
-                  <TargetIcon className="w-4 h-4 text-blue-600 mr-2" />
+                  <MapIcon className="w-4 h-4 text-blue-600 mr-2" />
                   Long-term Strategy (90+ days)
                 </h4>
                 <div className="space-y-3">
