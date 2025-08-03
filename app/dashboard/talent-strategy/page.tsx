@@ -88,9 +88,9 @@ export default function TalentStrategyPage() {
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
-        { name: 'Workforce Planning', href: '/dashboard/talent/workforce-planning' },
-        { name: 'Personalized Learning', href: '/dashboard/talent/personalized-learning' },
-        { name: 'Internal Talent Marketplace', href: '/dashboard/talent/talent-marketplace' }
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
       ]
     },
     {
