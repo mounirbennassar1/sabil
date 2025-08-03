@@ -133,6 +133,77 @@ export default function CourseCategoriesPage() {
   // Fetch categories and courses data
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
+      
+      // Always use fallback data first to ensure something displays
+      const fallbackCategories = [
+        {
+          id: 'fallback-1',
+          name: 'Leadership & Management',
+          description: 'Develop leadership skills and management capabilities',
+          icon: '👑',
+          image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          color: '#23544e',
+          courseCount: 17,
+          totalStudents: 8500,
+          avgCompletionTime: '5.2 hrs',
+          popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
+          status: 'Active'
+        },
+        {
+          id: 'fallback-2',
+          name: 'Professional Development',
+          description: 'Advance your career with professional development courses',
+          icon: '📈',
+          image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          color: '#e74c3c',
+          courseCount: 12,
+          totalStudents: 3600,
+          avgCompletionTime: '4.8 hrs',
+          popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
+          status: 'Active'
+        },
+        {
+          id: 'fallback-3',
+          name: 'Technical Skills',
+          description: 'Enhance your technical expertise and knowledge',
+          icon: '💻',
+          image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          color: '#0b867a',
+          courseCount: 8,
+          totalStudents: 2400,
+          avgCompletionTime: '6.2 hrs',
+          popularCourses: ['React Development', 'JavaScript ES6+', 'Python Programming'],
+          status: 'Active'
+        },
+        {
+          id: 'fallback-4',
+          name: 'Communication',
+          description: 'Improve communication and interpersonal skills',
+          icon: '💬',
+          image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          color: '#4a90e2',
+          courseCount: 8,
+          totalStudents: 1800,
+          avgCompletionTime: '4.0 hrs',
+          popularCourses: ['Public Speaking', 'Effective Communication', 'Presentation Skills'],
+          status: 'Active'
+        },
+        {
+          id: 'fallback-5',
+          name: 'Compliance & Safety',
+          description: 'Stay updated with compliance requirements and safety protocols',
+          icon: '🛡️',
+          image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          color: '#f39c12',
+          courseCount: 4,
+          totalStudents: 950,
+          avgCompletionTime: '2.8 hrs',
+          popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
+          status: 'Active'
+        }
+      ]
+      
       try {
         console.log('Fetching categories and courses data...')
         
@@ -147,122 +218,42 @@ export default function CourseCategoriesPage() {
         })
         
         // Check if responses are ok
-        if (!categoriesRes.ok) {
-          throw new Error(`Categories API error: ${categoriesRes.status}`)
-        }
-        if (!coursesRes.ok) {
-          throw new Error(`Courses API error: ${coursesRes.status}`)
-        }
-        
-        const categoriesData = await categoriesRes.json()
-        const coursesData = await coursesRes.json()
-        
-        console.log('API data:', { 
-          categoriesCount: categoriesData?.length, 
-          coursesCount: coursesData?.length,
-          categories: categoriesData
-        })
-        
-        // Validate that we got arrays
-        if (!Array.isArray(categoriesData)) {
-          console.error('Categories data is not an array:', categoriesData)
-          throw new Error('Invalid categories data format')
-        }
-        if (!Array.isArray(coursesData)) {
-          console.error('Courses data is not an array:', coursesData)
-          throw new Error('Invalid courses data format')
-        }
-        
-        // Process categories with course counts and stats
-        const processedCategories = categoriesData.map((category: Category) => {
-          const categoryCourses = coursesData.filter((course: Course) => course.categoryId === category.id)
-          const totalStudents = categoryCourses.reduce((sum: number, course: Course) => sum + (course._count?.enrollments || 0), 0)
+        if (categoriesRes.ok && coursesRes.ok) {
+          const categoriesData = await categoriesRes.json()
+          const coursesData = await coursesRes.json()
           
-          return {
-            ...category,
-            courseCount: categoryCourses.length,
-            totalStudents,
-            avgCompletionTime: '3.5 hrs', // Default value
-            popularCourses: categoryCourses.slice(0, 3).map((course: Course) => course.title),
-            status: 'Active'
+          console.log('API data:', { 
+            categoriesCount: categoriesData?.length, 
+            coursesCount: coursesData?.length
+          })
+          
+          // Validate that we got arrays
+          if (Array.isArray(categoriesData) && Array.isArray(coursesData)) {
+            // Process categories with course counts and stats
+            const processedCategories = categoriesData.map((category: Category) => {
+              const categoryCourses = coursesData.filter((course: Course) => course.categoryId === category.id)
+              const totalStudents = categoryCourses.reduce((sum: number, course: Course) => sum + (course._count?.enrollments || 0), 0)
+              
+              return {
+                ...category,
+                courseCount: categoryCourses.length,
+                totalStudents,
+                avgCompletionTime: '3.5 hrs', // Default value
+                popularCourses: categoryCourses.slice(0, 3).map((course: Course) => course.title),
+                status: 'Active'
+              }
+            })
+            
+            console.log('Processed categories:', processedCategories)
+            setCategories(processedCategories)
+            setLoading(false)
+            return
           }
-        })
+        }
         
-        console.log('Processed categories:', processedCategories)
-        setCategories(processedCategories)
-        setLoading(false)
+        throw new Error('Failed to load data from API')
       } catch (error) {
-        console.error('Error fetching data:', error)
-        // Always set fallback data to ensure something displays
-        const fallbackCategories = [
-          {
-            id: 'fallback-1',
-            name: 'Leadership & Management',
-            description: 'Develop leadership skills and management capabilities',
-            icon: '👑',
-            image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            color: '#23544e',
-            courseCount: 17,
-            totalStudents: 8500,
-            avgCompletionTime: '5.2 hrs',
-            popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
-            status: 'Active'
-          },
-          {
-            id: 'fallback-2',
-            name: 'Professional Development',
-            description: 'Advance your career with professional development courses',
-            icon: '📈',
-            image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            color: '#e74c3c',
-            courseCount: 12,
-            totalStudents: 3600,
-            avgCompletionTime: '4.8 hrs',
-            popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
-            status: 'Active'
-          },
-          {
-            id: 'fallback-3',
-            name: 'Technical Skills',
-            description: 'Enhance your technical expertise and knowledge',
-            icon: '💻',
-            image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            color: '#0b867a',
-            courseCount: 8,
-            totalStudents: 2400,
-            avgCompletionTime: '6.2 hrs',
-            popularCourses: ['React Development', 'JavaScript ES6+', 'Python Programming'],
-            status: 'Active'
-          },
-          {
-            id: 'fallback-4',
-            name: 'Communication',
-            description: 'Improve communication and interpersonal skills',
-            icon: '💬',
-            image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            color: '#4a90e2',
-            courseCount: 8,
-            totalStudents: 1800,
-            avgCompletionTime: '4.0 hrs',
-            popularCourses: ['Public Speaking', 'Effective Communication', 'Presentation Skills'],
-            status: 'Active'
-          },
-          {
-            id: 'fallback-5',
-            name: 'Compliance & Safety',
-            description: 'Stay updated with compliance requirements and safety protocols',
-            icon: '🛡️',
-            image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            color: '#f39c12',
-            courseCount: 4,
-            totalStudents: 950,
-            avgCompletionTime: '2.8 hrs',
-            popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
-            status: 'Active'
-          }
-        ]
-        
-        console.log('Using fallback categories:', fallbackCategories)
+        console.error('Error fetching data, using fallback:', error)
         setCategories(fallbackCategories)
         setLoading(false)
       }
