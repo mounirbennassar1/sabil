@@ -167,9 +167,152 @@ export default function CoursesPage() {
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
-        // Set empty arrays on error to prevent crashes
-        setCourses([])
-        setCategories(['All'])
+        // Set fallback data with your seed courses instead of empty arrays
+        const fallbackCourses = [
+          {
+            id: 'fallback-1',
+            title: 'Mastering Supervision: Skills and Strategies for Effective Leadership',
+            description: 'Develop leadership, manage teams effectively, and enhance organisational performance with this comprehensive free online course.',
+            thumbnail: 'https://i.ytimg.com/vi_webp/exDHuEr_low/mqdefault.webp',
+            duration: 360,
+            level: 'ADVANCED',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-2',
+            title: 'Leadership Skills & Remote Team Management',
+            description: 'Amp up your ability to manage and lead remote teams by enrolling for this comprehensive free online skills course.',
+            thumbnail: 'https://cdn01.alison-static.net/courses/6694/alison_courseware_intro_6694.jpg',
+            duration: 240,
+            level: 'ADVANCED',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-3',
+            title: 'Transformational Leadership',
+            description: 'Discover cutting-edge tools and strategies that will improve your ability to lead others with this free online course.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/8847cbfd-260a-4bba-86fc-aa99911f9e09_wm',
+            duration: 360,
+            level: 'BEGINNER',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-4',
+            title: 'Diploma in Leadership and Management Styles',
+            description: 'Study management and leadership principles and how to apply them in business management with this comprehensive diploma course.',
+            thumbnail: 'https://i.ytimg.com/vi_webp/c62zJnD_Jr8/mqdefault.webp',
+            duration: 720,
+            level: 'ADVANCED',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-5',
+            title: 'Leadership Skills Training - Become a Successful Leader',
+            description: 'Explore leadership, the value of training, and the essential skills that define great leaders in this free online course.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/b9e1fc41-b347-4bdd-8942-193781c13da7_wm',
+            duration: 300,
+            level: 'BEGINNER',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-6',
+            title: 'Classical Leadership and Decision-Making',
+            description: 'Learn the crucial fundamentals of great, effective leadership and decision-making techniques.',
+            thumbnail: 'https://i.ytimg.com/vi_webp/otvPd_Djb5U/mqdefault.webp',
+            duration: 240,
+            level: 'INTERMEDIATE',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-7',
+            title: 'Becoming a Team Leader',
+            description: 'Learn transformational leadership skills used to build high-performing teams in today\'s global economy.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/c3139e33-dd99-4732-803f-b92e24a88c63_wm',
+            duration: 300,
+            level: 'INTERMEDIATE',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-8',
+            title: 'Business Management Fundamentals',
+            description: 'Master essential business management principles and practices for organizational success.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/5e43d288-d371-4241-a12e-a8ea68884846_wm',
+            duration: 420,
+            level: 'INTERMEDIATE',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-9',
+            title: 'Strategic Business Planning',
+            description: 'Develop comprehensive business strategies and learn advanced planning methodologies.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/d963d041-335c-4788-b019-cc6933676db3_wm',
+            duration: 480,
+            level: 'ADVANCED',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-10',
+            title: 'Executive Leadership Excellence',
+            description: 'Advanced leadership training for senior executives and C-level professionals.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/d1e330e3-618b-4582-a8ab-960a872f5777_wm',
+            duration: 600,
+            level: 'ADVANCED',
+            category: { id: '1', name: 'Leadership & Management' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-11',
+            title: 'Digital Marketing Strategy',
+            description: 'Master modern digital marketing techniques and build comprehensive marketing campaigns.',
+            thumbnail: 'https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/099f64ae-53e4-4627-ae3a-5dad8f18e394_wm',
+            duration: 360,
+            level: 'INTERMEDIATE',
+            category: { id: '2', name: 'Professional Development' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-12',
+            title: 'Marketing Analytics & Performance',
+            description: 'Learn to measure, analyze, and optimize marketing performance using data-driven approaches.',
+            thumbnail: 'https://i.ytimg.com/vi_webp/dg5k6ITNlXk/mqdefault.webp',
+            duration: 300,
+            level: 'INTERMEDIATE',
+            category: { id: '2', name: 'Professional Development' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-13',
+            title: 'Brand Management & Strategy',
+            description: 'Develop comprehensive brand strategies and learn to manage brand identity effectively.',
+            thumbnail: 'https://cdn01.alison-static.net/courses/6160/alison_courseware_intro_6160.jpg',
+            duration: 240,
+            level: 'BEGINNER',
+            category: { id: '2', name: 'Professional Development' },
+            _count: { enrollments: 0 }
+          },
+          {
+            id: 'fallback-14',
+            title: 'Content Marketing Mastery',
+            description: 'Create compelling content strategies that engage audiences and drive conversions.',
+            thumbnail: 'https://i.ytimg.com/vi_webp/c85Ypp_d6Vc/mqdefault.webp',
+            duration: 280,
+            level: 'BEGINNER',
+            category: { id: '2', name: 'Professional Development' },
+            _count: { enrollments: 0 }
+          }
+        ]
+        
+        setCourses(fallbackCourses)
+        setCategories(['All', 'Leadership & Management', 'Professional Development'])
         setLoading(false)
       }
     }
