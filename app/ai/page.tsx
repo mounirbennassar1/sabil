@@ -66,7 +66,7 @@ export default function AIChatPage() {
       subItems: [
         { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
         { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
-        { name: 'Gap Analysis View', href: '/talent/gap-analysis' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
         { name: 'Courses', href: '/talent/courses' },
         { name: 'Course Categories', href: '/talent/course-categories' }
       ]
