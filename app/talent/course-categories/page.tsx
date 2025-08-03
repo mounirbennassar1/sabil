@@ -106,14 +106,14 @@ export default function CourseCategoriesPage() {
     }))
   }
 
-  // Categories data with images
+  // Categories data with simple working images
   const categories = [
     {
       id: 'fallback-1',
       name: 'Leadership & Management',
       description: 'Develop leadership skills and management capabilities',
       icon: '👑',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://picsum.photos/800/600?random=1',
       color: '#23544e',
       courseCount: 17,
       totalStudents: 8500,
@@ -126,7 +126,7 @@ export default function CourseCategoriesPage() {
       name: 'Professional Development',
       description: 'Advance your career with professional development courses',
       icon: '📈',
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://picsum.photos/800/600?random=2',
       color: '#e74c3c',
       courseCount: 12,
       totalStudents: 3600,
@@ -139,7 +139,7 @@ export default function CourseCategoriesPage() {
       name: 'Technical Skills',
       description: 'Enhance your technical expertise and knowledge',
       icon: '💻',
-      image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://picsum.photos/800/600?random=3',
       color: '#0b867a',
       courseCount: 8,
       totalStudents: 2400,
@@ -152,7 +152,7 @@ export default function CourseCategoriesPage() {
       name: 'Communication',
       description: 'Improve communication and interpersonal skills',
       icon: '💬',
-      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://picsum.photos/800/600?random=4',
       color: '#4a90e2',
       courseCount: 8,
       totalStudents: 1800,
@@ -165,7 +165,7 @@ export default function CourseCategoriesPage() {
       name: 'Compliance & Safety',
       description: 'Stay updated with compliance requirements and safety protocols',
       icon: '🛡️',
-      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://picsum.photos/800/600?random=5',
       color: '#f39c12',
       courseCount: 4,
       totalStudents: 950,

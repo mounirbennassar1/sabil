@@ -74,6 +74,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn1.genspark.ai',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
