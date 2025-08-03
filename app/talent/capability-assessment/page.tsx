@@ -11,12 +11,11 @@ import {
   StarIcon,
   DocumentTextIcon,
   AcademicCapIcon,
-  ClockIcon,
   TrophyIcon,
   ChartBarIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline'
-import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell } from 'recharts'
+import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 export default function CapabilityAssessment() {
   // Assessment state - now with 5 steps
@@ -28,9 +27,6 @@ export default function CapabilityAssessment() {
   const [reflectionAnswers, setReflectionAnswers] = useState<{[key: string]: string}>({})
   const [trainingPreferences, setTrainingPreferences] = useState<{[key: string]: boolean | string}>({})
   const [showResults, setShowResults] = useState(false)
-
-  // Colors for charts
-  const brandColors = ['#23544e', '#2563eb', '#059669', '#dc2626', '#7c3aed', '#ea580c']
 
   // Assessment data
   const roles = [
