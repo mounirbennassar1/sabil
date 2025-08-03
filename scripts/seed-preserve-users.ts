@@ -5,12 +5,11 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('Starting database seeding (preserving existing users)...')
 
-  // Delete existing courses and categories (but preserve users)
-  console.log('Cleaning up existing courses and categories...')
-  await prisma.enrollment.deleteMany({})
-  await prisma.certificate.deleteMany({})
-  await prisma.course.deleteMany({})
-  await prisma.category.deleteMany({})
+  // Check existing data (don't delete, just add new ones)
+  console.log('Checking existing data...')
+  const existingCategories = await prisma.category.findMany()
+  const existingCourses = await prisma.course.findMany()
+  console.log(`Found ${existingCategories.length} existing categories and ${existingCourses.length} existing courses`)
 
   // Create sample categories with images
   const categories = [
@@ -55,7 +54,12 @@ async function main() {
   for (const categoryData of categories) {
     const category = await prisma.category.upsert({
       where: { name: categoryData.name },
-      update: {},
+      update: {
+        description: categoryData.description,
+        color: categoryData.color,
+        icon: categoryData.icon,
+        image: categoryData.image
+      },
       create: categoryData
     })
     createdCategories.push(category)
@@ -207,26 +211,47 @@ async function main() {
     }
   ]
 
+  let coursesAdded = 0
   for (const courseData of sampleCourses) {
     const category = createdCategories.find(cat => cat.name === courseData.categoryName)
     if (category) {
-      await prisma.course.create({
-        data: {
-          title: courseData.title,
-          description: courseData.description,
-          content: courseData.content,
-          thumbnail: courseData.thumbnail,
-          duration: courseData.duration,
-          level: courseData.level as any,
-          status: courseData.status as any,
-          categoryId: category.id
-        }
+      // Check if course already exists
+      const existingCourse = await prisma.course.findFirst({
+        where: { title: courseData.title }
       })
+      
+      if (!existingCourse) {
+        await prisma.course.create({
+          data: {
+            title: courseData.title,
+            description: courseData.description,
+            content: courseData.content,
+            thumbnail: courseData.thumbnail,
+            duration: courseData.duration,
+            level: courseData.level as any,
+            status: courseData.status as any,
+            categoryId: category.id
+          }
+        })
+        coursesAdded++
+        console.log(`Added course: "${courseData.title}"`)
+      } else {
+        console.log(`Course "${courseData.title}" already exists, skipping...`)
+      }
     }
   }
 
-  console.log('Sample courses created')
-  console.log('Seeding completed successfully (users preserved)!')
+  // Get final counts
+  const [finalCategoriesCount, finalCoursesCount] = await Promise.all([
+    prisma.category.count(),
+    prisma.course.count()
+  ])
+
+  console.log(`Seeding completed successfully!`)
+  console.log(`- Existing courses: ${existingCourses.length}`)
+  console.log(`- Added new courses: ${coursesAdded}`)
+  console.log(`- Total courses now: ${finalCoursesCount}`)
+  console.log(`- Total categories: ${finalCategoriesCount}`)
 }
 
 main()
