@@ -139,14 +139,37 @@ export default function CoursesPage() {
           fetch('/api/categories')
         ])
         
+        // Check if responses are ok
+        if (!coursesRes.ok) {
+          throw new Error(`Courses API error: ${coursesRes.status}`)
+        }
+        if (!categoriesRes.ok) {
+          throw new Error(`Categories API error: ${categoriesRes.status}`)
+        }
+        
         const coursesData = await coursesRes.json()
         const categoriesData = await categoriesRes.json()
+        
+        // Validate that we got arrays
+        if (!Array.isArray(coursesData)) {
+          console.error('Courses data is not an array:', coursesData)
+          setLoading(false)
+          return
+        }
+        if (!Array.isArray(categoriesData)) {
+          console.error('Categories data is not an array:', categoriesData)
+          setLoading(false)
+          return
+        }
         
         setCourses(coursesData)
         setCategories(['All', ...categoriesData.map((cat: Category) => cat.name)])
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
+        // Set empty arrays on error to prevent crashes
+        setCourses([])
+        setCategories(['All'])
         setLoading(false)
       }
     }

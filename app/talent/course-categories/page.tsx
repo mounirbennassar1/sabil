@@ -139,8 +139,28 @@ export default function CourseCategoriesPage() {
           fetch('/api/courses')
         ])
         
+        // Check if responses are ok
+        if (!categoriesRes.ok) {
+          throw new Error(`Categories API error: ${categoriesRes.status}`)
+        }
+        if (!coursesRes.ok) {
+          throw new Error(`Courses API error: ${coursesRes.status}`)
+        }
+        
         const categoriesData = await categoriesRes.json()
         const coursesData = await coursesRes.json()
+        
+        // Validate that we got arrays
+        if (!Array.isArray(categoriesData)) {
+          console.error('Categories data is not an array:', categoriesData)
+          setLoading(false)
+          return
+        }
+        if (!Array.isArray(coursesData)) {
+          console.error('Courses data is not an array:', coursesData)
+          setLoading(false)
+          return
+        }
         
         // Process categories with course counts and stats
         const processedCategories = categoriesData.map((category: Category) => {
@@ -161,6 +181,8 @@ export default function CourseCategoriesPage() {
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
+        // Set empty arrays on error to prevent crashes
+        setCategories([])
         setLoading(false)
       }
     }

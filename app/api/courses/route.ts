@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET(request: NextRequest) {
   try {
+    // Add connection check
+    await prisma.$connect()
+    
     const { searchParams } = new URL(request.url)
     const search = searchParams.get('search') || ''
     const category = searchParams.get('category') || 'all'
@@ -42,12 +45,21 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    console.log(`Found ${courses.length} courses`)
     return NextResponse.json(courses)
   } catch (error) {
     console.error("Error fetching courses:", error)
+    
+    // Return empty array instead of error object to prevent frontend crashes
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json([])
+    }
+    
     return NextResponse.json(
-      { message: "Internal server error" },
+      { message: "Internal server error", error: error.message },
       { status: 500 }
     )
+  } finally {
+    await prisma.$disconnect()
   }
 } 
