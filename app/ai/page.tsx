@@ -106,7 +106,7 @@ export default function AIChatPage() {
     },
     {
       id: 'executionIntegration',
-      name: 'Integration Placeholders',
+      name: 'Execution & Integration',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [

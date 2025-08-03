@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   ChevronDownIcon,
@@ -12,9 +13,13 @@ import {
   CogIcon,
   BookOpenIcon,
   HomeIcon,
-
-  ClockIcon,
+  BriefcaseIcon,
+  HeartIcon,
   StarIcon,
+  SparklesIcon,
+  CpuChipIcon,
+  AcademicCapIcon,
+  ClockIcon,
   CheckCircleIcon,
   BookmarkIcon,
   PlayIcon,
@@ -23,37 +28,22 @@ import {
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from 'recharts'
 
 export default function PersonalizedLearning() {
-  const [expandedSections, setExpandedSections] = useState({
+  // Sidebar state - same as dashboard
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: false,
     talentGrowth: false,
     talentInsight: false,
-    futureStrategic: true,
+    futureStrategic: true, // Expanded by default since we're on personalized learning
     executionIntegration: false
   })
-
-  const [selectedRole, setSelectedRole] = useState('current')
-
-  const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }))
-  }
-
-  // Sidebar navigation data
-  const sidebarItems = [
-    { name: 'My Career Journey', href: '/career', icon: HomeIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/content', icon: BookOpenIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: ArrowTrendingUpIcon, current: false },
-  ]
 
   const talentManagementSections = [
     {
       id: 'learningCapability',
       name: 'Learning & Capability',
       icon: BookOpenIcon,
-      items: [
+      expanded: expandedSections.learningCapability,
+      subItems: [
         { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
         { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
         { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
@@ -65,7 +55,8 @@ export default function PersonalizedLearning() {
       id: 'talentGrowth',
       name: 'Talent Growth',
       icon: ArrowTrendingUpIcon,
-      items: [
+      expanded: expandedSections.talentGrowth,
+      subItems: [
         { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
         { name: 'Career Pathing Map', href: '/talent/career-pathing' },
         { name: 'Competency Framework', href: '/talent/competency-framework' }
@@ -75,9 +66,10 @@ export default function PersonalizedLearning() {
       id: 'talentInsight',
       name: 'Talent Insight',
       icon: ChartBarIcon,
-      items: [
+      expanded: expandedSections.talentInsight,
+      subItems: [
         { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Talent KPIs', href: '/talent/talent-kpis' },
         { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
       ]
     },
@@ -85,7 +77,8 @@ export default function PersonalizedLearning() {
       id: 'futureStrategic',
       name: 'Future & Strategic',
       icon: MapIcon,
-      items: [
+      expanded: expandedSections.futureStrategic,
+      subItems: [
         { name: 'Workforce Planning', href: '/talent/workforce-planning' },
         { name: 'Personalized Learning', href: '/talent/personalized-learning' },
         { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
@@ -95,473 +88,391 @@ export default function PersonalizedLearning() {
       id: 'executionIntegration',
       name: 'Execution & Integration',
       icon: CogIcon,
-      items: [
-        { name: 'Integration Placeholders', href: '/talent/integrations' },
+      expanded: expandedSections.executionIntegration,
+      subItems: [
         { name: 'Change Management Plan', href: '/talent/change-management' },
         { name: 'ROI Tracking', href: '/talent/roi-tracking' }
       ]
     }
   ]
 
-  // Mock user data
-  const userProfile = {
-    name: 'Sarah Johnson',
-    currentRole: 'Senior Project Manager',
-    department: 'Engineering',
-    experience: '5 years',
-    targetRole: 'Engineering Director'
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
   }
 
-  // Skills radar chart data
-  const skillsData = [
-    { skill: 'Leadership', current: 75, target: 90, fullMark: 100 },
-    { skill: 'Technical', current: 85, target: 95, fullMark: 100 },
-    { skill: 'Communication', current: 80, target: 85, fullMark: 100 },
-    { skill: 'Strategy', current: 60, target: 90, fullMark: 100 },
-    { skill: 'Analytics', current: 70, target: 80, fullMark: 100 },
-    { skill: 'Innovation', current: 65, target: 85, fullMark: 100 }
+  const [selectedRole, setSelectedRole] = useState('current')
+
+  // Mock data for personalized learning
+  const roles = [
+    { id: 'current', name: 'Current Role: Data Analyst' },
+    { id: 'next', name: 'Target Role: Senior Data Scientist' },
+    { id: 'alternative', name: 'Alternative: Product Manager' }
   ]
 
-  // Learning recommendations
-  const recommendedCourses = [
+  const learningPaths = [
     {
       id: 1,
-      title: 'Strategic Leadership Fundamentals',
-      provider: 'NEOM Academy',
+      title: 'Advanced Python for Data Science',
+      provider: 'DataCamp',
       duration: '6 weeks',
-      difficulty: 'Intermediate',
-      rating: 4.8,
-      students: 1247,
-      skills: ['Leadership', 'Strategy'],
-      description: 'Master the fundamentals of strategic thinking and leadership execution.',
-      image: '/placeholder-course.jpg',
-      priority: 'High',
-      matchScore: 95,
-      completed: false,
-      saved: false
+      level: 'Intermediate',
+      progress: 65,
+      status: 'In Progress',
+      skills: ['Python', 'Pandas', 'NumPy'],
+      match: 92,
+      description: 'Master advanced Python techniques for data manipulation and analysis'
     },
     {
       id: 2,
-      title: 'Advanced Data Analytics for Managers',
-      provider: 'Tech Institute',
-      duration: '4 weeks',
-      difficulty: 'Advanced',
-      rating: 4.6,
-      students: 892,
-      skills: ['Analytics', 'Technical'],
-      description: 'Deep dive into data-driven decision making and analytics tools.',
-      image: '/placeholder-course.jpg',
-      priority: 'Medium',
-      matchScore: 88,
-      completed: false,
-      saved: true
+      title: 'Machine Learning Fundamentals',
+      provider: 'Coursera',
+      duration: '8 weeks',
+      level: 'Beginner',
+      progress: 0,
+      status: 'Recommended',
+      skills: ['ML', 'Statistics', 'Algorithms'],
+      match: 88,
+      description: 'Build foundational knowledge in machine learning concepts and applications'
     },
     {
       id: 3,
-      title: 'Innovation Management Workshop',
-      provider: 'Future Skills Hub',
-      duration: '3 weeks',
-      difficulty: 'Intermediate',
-      rating: 4.7,
-      students: 634,
-      skills: ['Innovation', 'Leadership'],
-      description: 'Learn to foster innovation culture and manage creative processes.',
-      image: '/placeholder-course.jpg',
-      priority: 'Medium',
-      matchScore: 82,
-      completed: false,
-      saved: false
+      title: 'Data Visualization with Tableau',
+      provider: 'Udemy',
+      duration: '4 weeks',
+      level: 'Intermediate',
+      progress: 100,
+      status: 'Completed',
+      skills: ['Tableau', 'Visualization', 'Dashboards'],
+      match: 85,
+      description: 'Create compelling data visualizations and interactive dashboards'
     },
     {
       id: 4,
-      title: 'Executive Communication Skills',
-      provider: 'Leadership Academy',
-      duration: '2 weeks',
-      difficulty: 'Advanced',
-      rating: 4.9,
-      students: 456,
-      skills: ['Communication', 'Leadership'],
-      description: 'Enhance your executive presence and communication effectiveness.',
-      image: '/placeholder-course.jpg',
-      priority: 'High',
-      matchScore: 90,
-      completed: true,
-      saved: false
-    },
-    {
-      id: 5,
-      title: 'Project Portfolio Management',
-      provider: 'PMI Institute',
-      duration: '8 weeks',
-      difficulty: 'Advanced',
-      rating: 4.5,
-      students: 1089,
-      skills: ['Technical', 'Strategy'],
-      description: 'Master portfolio management and strategic project alignment.',
-      image: '/placeholder-course.jpg',
-      priority: 'Low',
-      matchScore: 75,
-      completed: false,
-      saved: false
-    },
-    {
-      id: 6,
-      title: 'Design Thinking for Leaders',
-      provider: 'Innovation Lab',
-      duration: '5 weeks',
-      difficulty: 'Intermediate',
-      rating: 4.4,
-      students: 723,
-      skills: ['Innovation', 'Strategy'],
-      description: 'Apply design thinking methodologies to solve complex business challenges.',
-      image: '/placeholder-course.jpg',
-      priority: 'Medium',
-      matchScore: 78,
-      completed: false,
-      saved: false
+      title: 'SQL for Advanced Analytics',
+      provider: 'LinkedIn Learning',
+      duration: '3 weeks',
+      level: 'Advanced',
+      progress: 30,
+      status: 'In Progress',
+      skills: ['SQL', 'Database', 'Analytics'],
+      match: 90,
+      description: 'Master complex SQL queries for advanced data analysis'
     }
   ]
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'High': return 'text-red-600 bg-red-50'
-      case 'Medium': return 'text-yellow-600 bg-yellow-50'
-      case 'Low': return 'text-green-600 bg-green-50'
-      default: return 'text-gray-600 bg-gray-50'
-    }
-  }
+  const skillMastery = [
+    { skill: 'Python', current: 3.5, target: 4.5, fullMark: 5 },
+    { skill: 'SQL', current: 4.0, target: 4.5, fullMark: 5 },
+    { skill: 'Statistics', current: 3.0, target: 4.0, fullMark: 5 },
+    { skill: 'Machine Learning', current: 2.5, target: 4.0, fullMark: 5 },
+    { skill: 'Data Viz', current: 4.5, target: 4.5, fullMark: 5 },
+    { skill: 'Communication', current: 3.5, target: 4.5, fullMark: 5 }
+  ]
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Beginner': return 'text-green-600 bg-green-50'
-      case 'Intermediate': return 'text-yellow-600 bg-yellow-50'
-      case 'Advanced': return 'text-red-600 bg-red-50'
-      default: return 'text-gray-600 bg-gray-50'
-    }
-  }
+  const renderSidebar = () => (
+    <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+      <div className="flex h-16 items-center justify-center border-b border-gray-200">
+        <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+        <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
+      </div>
 
-  const toggleSaved = (courseId: number) => {
-    // Mock function to toggle saved state
-    console.log(`Toggling saved state for course ${courseId}`)
-  }
+      <nav className="px-3 py-4 space-y-1">
+        {/* Home */}
+        <Link
+          href="/dashboard"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <HomeIcon className="h-5 w-5 mr-3" />
+          Home
+        </Link>
 
-  const markCompleted = (courseId: number) => {
-    // Mock function to mark as completed
-    console.log(`Marking course ${courseId} as completed`)
-  }
+        {/* Talent Management Strategy Header */}
+        <div className="pt-4 pb-2">
+          <div className="flex items-center px-3">
+            <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+            <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+              Talent Management Strategy
+            </h3>
+          </div>
+        </div>
 
-  return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-[#23544e]">
-          <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4">
-              <h1 className="text-xl font-bold text-white">Talent Hub</h1>
-            </div>
-            <nav className="mt-5 flex-1 px-2 space-y-1">
-              {/* Home */}
-              <Link
-                href="/dashboard"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              >
-                <HomeIcon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                Home
-              </Link>
+        {/* Strategy Overview Link */}
+        <Link
+          href="/dashboard/talent-strategy"
+          className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+        >
+          <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+          Strategy Overview
+        </Link>
 
-              {/* Talent Management Strategy Header */}
-              <div className="pt-4">
-                <h3 className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                  Talent Management Strategy
-                </h3>
-                
-                {/* Strategy Overview */}
-                <Link
-                  href="/dashboard/talent-strategy"
-                  className="mt-2 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                >
-                  <MapIcon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                  Strategy Overview
-                </Link>
-
-                {/* Expandable Sections */}
-                <div className="mt-2 space-y-1">
-                  {talentManagementSections.map((section) => (
-                    <div key={section.id}>
-                      <button
-                        onClick={() => toggleSection(section.id as keyof typeof expandedSections)}
-                        className="w-full text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                      >
-                        <section.icon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                        <span className="flex-1 text-left">{section.name}</span>
-                        {expandedSections[section.id as keyof typeof expandedSections] ? (
-                          <ChevronUpIcon className="ml-2 h-4 w-4 text-gray-400" />
-                        ) : (
-                          <ChevronDownIcon className="ml-2 h-4 w-4 text-gray-400" />
-                        )}
-                      </button>
-                      
-                      {expandedSections[section.id as keyof typeof expandedSections] && (
-                        <div className="ml-6 mt-1 space-y-1">
-                          {section.items.map((item) => (
-                            <Link
-                              key={item.name}
-                              href={item.href}
-                              className={`group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-                                item.name === 'Personalized Learning'
-                                  ? 'bg-gray-800 text-white'
-                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                              }`}
-                            >
-                              <span className="truncate">{item.name}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
+        {/* Talent Management Sections */}
+        {talentManagementSections.map((section) => (
+          <div key={section.id} className="space-y-1">
+            <button
+              onClick={() => toggleSection(section.id)}
+              className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+            >
+              <div className="flex items-center">
+                <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                {section.name}
               </div>
-
-              {/* Original sidebar items */}
-              <div className="pt-4 mt-4 border-t border-gray-700">
-                {sidebarItems.map((item) => (
+              {section.expanded ? (
+                <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+              ) : (
+                <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+              )}
+            </button>
+            
+            {section.expanded && (
+              <div className="ml-6 space-y-1">
+                {section.subItems.map((subItem) => (
                   <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
-                      item.current ? 'bg-gray-900 text-white' : ''
+                    key={subItem.name}
+                    href={subItem.href}
+                    className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
+                      subItem.name === 'Personalized Learning'
+                        ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
+                        : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
                     }`}
                   >
-                    <item.icon className="text-gray-400 mr-3 flex-shrink-0 h-6 w-6" />
-                    {item.name}
+                    <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
+                      subItem.name === 'Personalized Learning'
+                        ? 'bg-[#23544e]'
+                        : 'bg-gray-300 group-hover:bg-[#23544e]'
+                    }`}></div>
+                    {subItem.name}
                   </Link>
                 ))}
               </div>
-            </nav>
+            )}
           </div>
-        </div>
-      </div>
+        ))}
 
-      {/* Main content */}
-      <div className="md:pl-64 flex flex-col flex-1">
-        <main className="flex-1">
-          <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              {/* Header */}
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">Personalized Learning</h1>
-                <p className="mt-2 text-gray-600">AI-powered learning recommendations tailored to your career goals</p>
-              </div>
+        {/* Divider */}
+        <div className="pt-4 border-t border-gray-200"></div>
 
-              {/* User Profile */}
-              <div className="bg-white rounded-lg shadow p-6 mb-8">
-                <div className="flex items-center space-x-4">
-                  <div className="flex-shrink-0">
-                    <UserIcon className="h-16 w-16 text-[#23544e] bg-gray-100 rounded-full p-3" />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-xl font-bold text-gray-900">{userProfile.name}</h2>
-                    <p className="text-gray-600">{userProfile.currentRole} • {userProfile.department}</p>
-                    <p className="text-sm text-gray-500">{userProfile.experience} experience</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-gray-500">Target Role</p>
-                    <p className="font-medium text-gray-900">{userProfile.targetRole}</p>
-                  </div>
-                </div>
-              </div>
+        {/* Rest of navigation items */}
+        <Link
+          href="/career"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <BriefcaseIcon className="h-5 w-5 mr-3" />
+          My Career Journey
+        </Link>
+        <Link
+          href="/learn"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <BookOpenIcon className="h-5 w-5 mr-3" />
+          Learn
+        </Link>
+        <Link
+          href="/library"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <HeartIcon className="h-5 w-5 mr-3" />
+          My Library
+        </Link>
+        <Link
+          href="/content"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <StarIcon className="h-5 w-5 mr-3" />
+          Content
+        </Link>
+        <Link
+          href="/ai"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <SparklesIcon className="h-5 w-5 mr-3" />
+          Apply AI
+        </Link>
+        <Link
+          href="/coding"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <CpuChipIcon className="h-5 w-5 mr-3" />
+          Coding Practice
+        </Link>
+        <Link
+          href="/certificates"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <AcademicCapIcon className="h-5 w-5 mr-3" />
+          Certifications
+        </Link>
+      </nav>
+    </div>
+  )
 
-              {/* Skills Progress */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                {/* Skills Radar Chart */}
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Skills Mastery Progress</h3>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <RadarChart data={skillsData}>
-                      <PolarGrid />
-                      <PolarAngleAxis dataKey="skill" />
-                      <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                      <Radar
-                        name="Current Level"
-                        dataKey="current"
-                        stroke="#23544e"
-                        fill="#23544e"
-                        fillOpacity={0.3}
-                        strokeWidth={2}
-                      />
-                      <Radar
-                        name="Target Level"
-                        dataKey="target"
-                        stroke="#419681"
-                        fill="#419681"
-                        fillOpacity={0.1}
-                        strokeWidth={2}
-                        strokeDasharray="5 5"
-                      />
-                    </RadarChart>
-                  </ResponsiveContainer>
-                  <div className="mt-4 flex justify-center space-x-6">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-[#23544e] rounded-full mr-2"></div>
-                      <span className="text-sm text-gray-600">Current Level</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 border-2 border-[#419681] rounded-full mr-2"></div>
-                      <span className="text-sm text-gray-600">Target Level</span>
-                    </div>
-                  </div>
-                </div>
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {renderSidebar()}
+        {/* Main content */}
+        <div className="flex-1 overflow-auto bg-gray-50">
+          <div className="p-8">
+            {/* Header */}
+            <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
+              <h1 className="text-2xl font-bold mb-2">Personalized Learning</h1>
+              <p className="text-green-100">AI-powered learning recommendations tailored to your career goals</p>
+            </div>
 
-                {/* Learning Stats */}
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Learning Overview</h3>
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">Courses Completed</span>
-                      <span className="text-2xl font-bold text-[#23544e]">12</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">Learning Hours</span>
-                      <span className="text-2xl font-bold text-[#23544e]">84</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">Certificates Earned</span>
-                      <span className="text-2xl font-bold text-[#23544e]">7</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">Skill Growth</span>
-                      <span className="text-2xl font-bold text-green-600">+15%</span>
-                    </div>
-                    <div className="pt-4">
-                      <div className="flex justify-between text-sm text-gray-600 mb-1">
-                        <span>Learning Goal Progress</span>
-                        <span>72%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#23544e] h-2 rounded-full" style={{ width: '72%' }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Recommended Courses */}
-              <div className="bg-white rounded-lg shadow p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-medium text-gray-900">Recommended Courses</h3>
-                  <select
-                    value={selectedRole}
-                    onChange={(e) => setSelectedRole(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#23544e]"
+            {/* Role Selection */}
+            <div className="mb-8 bg-white rounded-lg shadow p-6">
+              <h2 className="text-lg font-semibold mb-4">Learning Path For:</h2>
+              <div className="flex space-x-4">
+                {roles.map((role) => (
+                  <button
+                    key={role.id}
+                    onClick={() => setSelectedRole(role.id)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      selectedRole === role.id
+                        ? 'bg-[#23544e] text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                   >
-                    <option value="current">Current Role</option>
-                    <option value="target">Target Role</option>
-                    <option value="all">All Recommendations</option>
-                  </select>
+                    {role.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Skill Gap Analysis */}
+            <div className="mb-8 bg-white rounded-lg shadow p-6">
+              <h2 className="text-lg font-semibold mb-4">Your Learning Progress</h2>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={skillMastery}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="skill" tick={{ fill: '#4B5563', fontSize: 12 }} />
+                    <PolarRadiusAxis domain={[0, 5]} tick={false} />
+                    <Radar
+                      name="Current Level"
+                      dataKey="current"
+                      stroke="#23544e"
+                      fill="#23544e"
+                      fillOpacity={0.3}
+                      strokeWidth={2}
+                    />
+                    <Radar
+                      name="Target Level"
+                      dataKey="target"
+                      stroke="#059669"
+                      fill="transparent"
+                      strokeWidth={2}
+                      strokeDasharray="5 5"
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex items-center justify-center space-x-6 mt-4">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-[#23544e] rounded-full mr-2"></div>
+                  <span className="text-sm text-gray-600">Current Level</span>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {recommendedCourses.map((course) => (
-                    <div key={course.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                      {/* Course Header */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <h4 className="text-lg font-medium text-gray-900 mb-2">{course.title}</h4>
-                          <p className="text-sm text-gray-600 mb-2">{course.provider}</p>
-                        </div>
-                        <button
-                          onClick={() => toggleSaved(course.id)}
-                          className={`ml-2 p-2 rounded-full ${course.saved ? 'text-yellow-500' : 'text-gray-400'} hover:text-yellow-500`}
-                        >
-                          <BookmarkIcon className="h-5 w-5" />
-                        </button>
-                      </div>
-
-                      {/* Course Meta */}
-                      <div className="flex items-center space-x-4 mb-4 text-sm text-gray-600">
-                        <div className="flex items-center">
-                          <ClockIcon className="h-4 w-4 mr-1" />
-                          {course.duration}
-                        </div>
-                        <div className="flex items-center">
-                          <StarIcon className="h-4 w-4 mr-1 text-yellow-400" />
-                          {course.rating}
-                        </div>
-                        <div className="flex items-center">
-                          <UserGroupIcon className="h-4 w-4 mr-1" />
-                          {course.students}
-                        </div>
-                      </div>
-
-                      {/* Priority and Difficulty */}
-                      <div className="flex items-center space-x-2 mb-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(course.priority)}`}>
-                          {course.priority} Priority
-                        </span>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(course.difficulty)}`}>
-                          {course.difficulty}
-                        </span>
-                      </div>
-
-                      {/* Match Score */}
-                      <div className="mb-4">
-                        <div className="flex justify-between text-sm text-gray-600 mb-1">
-                          <span>Match Score</span>
-                          <span>{course.matchScore}%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-[#23544e] h-2 rounded-full" 
-                            style={{ width: `${course.matchScore}%` }}
-                          ></div>
-                        </div>
-                      </div>
-
-                      {/* Skills */}
-                      <div className="mb-4">
-                        <p className="text-sm text-gray-600 mb-2">Skills you&apos;ll develop:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {course.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-sm text-gray-600 mb-4">{course.description}</p>
-
-                      {/* Actions */}
-                      <div className="flex space-x-2">
-                        {course.completed ? (
-                          <div className="flex-1 flex items-center justify-center px-4 py-2 bg-green-100 text-green-700 rounded-md">
-                            <CheckCircleIcon className="h-4 w-4 mr-2" />
-                            Completed
-                          </div>
-                        ) : (
-                          <>
-                            <button
-                              onClick={() => markCompleted(course.id)}
-                              className="flex-1 bg-[#23544e] text-white px-4 py-2 rounded-md hover:bg-[#1a3d37] transition-colors flex items-center justify-center"
-                            >
-                              <PlayIcon className="h-4 w-4 mr-2" />
-                              Start Course
-                            </button>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex items-center">
+                  <div className="w-4 h-4 border-2 border-green-600 border-dashed rounded-full mr-2"></div>
+                  <span className="text-sm text-gray-600">Target Level</span>
                 </div>
               </div>
             </div>
+
+            {/* Learning Recommendations */}
+            <div className="bg-white rounded-lg shadow p-6">
+              <h2 className="text-lg font-semibold mb-6">Recommended Learning Paths</h2>
+              <div className="space-y-6">
+                {learningPaths.map((course) => (
+                  <div key={course.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-2">
+                          <h3 className="text-lg font-medium text-gray-900">{course.title}</h3>
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                            course.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                            course.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
+                            'bg-yellow-100 text-yellow-800'
+                          }`}>
+                            {course.status}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 mb-3">{course.description}</p>
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          <span className="flex items-center">
+                            <UserIcon className="w-4 h-4 mr-1" />
+                            {course.provider}
+                          </span>
+                          <span className="flex items-center">
+                            <ClockIcon className="w-4 h-4 mr-1" />
+                            {course.duration}
+                          </span>
+                          <span className="flex items-center">
+                            <StarIcon className="w-4 h-4 mr-1" />
+                            {course.level}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right ml-4">
+                        <div className="text-lg font-bold text-[#23544e] mb-1">{course.match}%</div>
+                        <div className="text-sm text-gray-500">Match</div>
+                      </div>
+                    </div>
+
+                    {/* Skills Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {course.skills.map((skill) => (
+                        <span key={skill} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
+                        <span>Progress</span>
+                        <span>{course.progress}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-[#23544e] h-2 rounded-full transition-all"
+                          style={{ width: `${course.progress}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-3">
+                      {course.status === 'Completed' ? (
+                        <button className="flex items-center px-4 py-2 bg-green-50 text-green-700 rounded-lg">
+                          <CheckCircleIcon className="w-4 h-4 mr-2" />
+                          Completed
+                        </button>
+                      ) : course.status === 'In Progress' ? (
+                        <button className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                          <PlayIcon className="w-4 h-4 mr-2" />
+                          Continue Learning
+                        </button>
+                      ) : (
+                        <button className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                          <PlayIcon className="w-4 h-4 mr-2" />
+                          Start Learning
+                        </button>
+                      )}
+                      <button className="flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        <BookmarkIcon className="w-4 h-4 mr-2" />
+                        Save for Later
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   )
