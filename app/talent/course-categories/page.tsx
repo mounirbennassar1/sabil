@@ -195,7 +195,12 @@ export default function CourseCategoriesPage() {
       status: 'Active'
     }
   ])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  // Set loading to false immediately after mount
+  useEffect(() => {
+    setLoading(false)
+  }, [])
 
   // Fetch categories and courses data (optional - fallback already in state)
   useEffect(() => {
