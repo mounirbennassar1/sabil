@@ -24,14 +24,14 @@ interface SidebarProps {
 interface SidebarItem {
   name: string
   href: string
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<React.ComponentProps<'svg'>>
   current?: boolean
 }
 
 interface TalentSection {
   id: string
   name: string
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<React.ComponentProps<'svg'>>
   items: Array<{ name: string; href: string }>
 }
 
