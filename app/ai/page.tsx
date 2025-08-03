@@ -60,7 +60,7 @@ export default function AIChatPage() {
   const talentManagementSections = [
     {
       id: 'learningCapability',
-      name: '1️⃣ Learning & Capability',
+      name: 'Learning & Capability',
       icon: BookOpenIcon,
       expanded: expandedSections.learningCapability,
       subItems: [
@@ -73,7 +73,7 @@ export default function AIChatPage() {
     },
     {
       id: 'talentGrowth',
-      name: '2️⃣ Talent Growth',
+      name: 'Talent Growth',
       icon: ArrowTrendingUpIcon,
       expanded: expandedSections.talentGrowth,
       subItems: [
@@ -84,7 +84,7 @@ export default function AIChatPage() {
     },
     {
       id: 'talentInsight',
-      name: '3️⃣ Talent Insight',
+      name: 'Talent Insight',
       icon: ChartBarIcon,
       expanded: expandedSections.talentInsight,
       subItems: [
@@ -95,7 +95,7 @@ export default function AIChatPage() {
     },
     {
       id: 'futureStrategic',
-      name: '4️⃣ Future & Strategic Layer',
+      name: 'Future & Strategic Layer',
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
@@ -106,7 +106,7 @@ export default function AIChatPage() {
     },
     {
       id: 'executionIntegration',
-      name: '5️⃣ Execution & Integration Layer',
+      name: 'Execution & Integration Layer',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
