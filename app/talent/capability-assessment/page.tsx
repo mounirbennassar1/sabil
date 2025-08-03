@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   HomeIcon,
   BookOpenIcon,
@@ -19,14 +18,10 @@ import {
   ArrowLeftIcon,
   DocumentChartBarIcon,
   UserIcon,
-  AcademicCapIcon,
-  BriefcaseIcon,
-  ClipboardDocumentCheckIcon
+  BriefcaseIcon
 } from '@heroicons/react/24/outline'
 
 export default function CapabilityAssessment() {
-  const { data: session } = useSession()
-  const router = useRouter()
 
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
@@ -216,7 +211,7 @@ export default function CapabilityAssessment() {
           <div className="flex h-full flex-col">
             {/* Logo */}
             <div className="flex h-16 items-center justify-center border-b border-gray-200">
-              <img className="h-8 w-auto" src="/logo.png" alt="Sabil" />
+              <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
             </div>
 
             {/* Navigation */}
@@ -482,7 +477,7 @@ export default function CapabilityAssessment() {
         <div className="flex h-full flex-col">
           {/* Logo */}
           <div className="flex h-16 items-center justify-center border-b border-gray-200">
-            <img className="h-8 w-auto" src="/logo.png" alt="Sabil" />
+            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
           </div>
 
           {/* Navigation */}
