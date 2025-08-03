@@ -22,7 +22,6 @@ import {
   MagnifyingGlassIcon,
   ClockIcon,
   UsersIcon,
-  CheckBadgeIcon,
   PlayIcon
 } from '@heroicons/react/24/outline'
 

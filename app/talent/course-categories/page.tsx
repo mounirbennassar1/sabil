@@ -106,7 +106,6 @@ export default function CourseCategoriesPage() {
 
   // Filter and management state
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedView, setSelectedView] = useState<'grid' | 'list'>('grid')
 
   // Updated categories data with images
   const categories = [
