@@ -57,7 +57,7 @@ export default function TalentStrategyPage() {
         { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
         { name: 'Gap Analysis View', href: '/talent/gap-analysis' },
         { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/dashboard/talent/course-categories' }
+        { name: 'Course Categories', href: '/talent/course-categories' }
       ]
     },
     {
