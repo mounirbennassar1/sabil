@@ -55,8 +55,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json([])
     }
     
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     return NextResponse.json(
-      { message: "Internal server error", error: error.message },
+      { message: "Internal server error", error: errorMessage },
       { status: 500 }
     )
   } finally {
