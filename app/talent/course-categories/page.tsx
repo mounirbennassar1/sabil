@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   HomeIcon,
   BookOpenIcon,
@@ -13,20 +13,23 @@ import {
   CogIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  DocumentChartBarIcon,
   BriefcaseIcon,
+  HeartIcon,
+  StarIcon,
+  SparklesIcon,
+  CpuChipIcon,
+  AcademicCapIcon,
   MagnifyingGlassIcon,
   PlusIcon,
   PencilIcon,
   TrashIcon,
   EyeIcon,
   FolderIcon,
-  AcademicCapIcon,
   UsersIcon
 } from '@heroicons/react/24/outline'
 
 export default function CourseCategoriesPage() {
-  // Sidebar state
+  // Sidebar state - same as dashboard
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: true, // Expanded by default since we're on course categories
     talentGrowth: false,
@@ -34,19 +37,6 @@ export default function CourseCategoriesPage() {
     futureStrategic: false,
     executionIntegration: false
   })
-
-  // Filter and management state
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedView, setSelectedView] = useState<'grid' | 'list'>('grid')
-
-  // Sidebar configuration
-  const sidebarItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
-  ]
 
   const talentManagementSections = [
     {
@@ -86,7 +76,7 @@ export default function CourseCategoriesPage() {
     },
     {
       id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
+      name: 'Future & Strategic',
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
@@ -97,11 +87,10 @@ export default function CourseCategoriesPage() {
     },
     {
       id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
+      name: 'Execution & Integration',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/talent/integration' },
         { name: 'Change Management Plan', href: '/talent/change-management' },
         { name: 'ROI Tracking', href: '/talent/roi-tracking' }
       ]
@@ -115,474 +104,406 @@ export default function CourseCategoriesPage() {
     }))
   }
 
-  // Sample categories data
+  // Filter and management state
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedView, setSelectedView] = useState<'grid' | 'list'>('grid')
+
+  // Updated categories data with images
   const categories = [
     {
       id: 1,
-      name: 'Health & Safety',
-      description: 'Workplace safety, occupational health, and safety management systems',
-      icon: '🛡️',
-      color: 'bg-red-500',
-      courseCount: 45,
-      totalStudents: 12500,
-      avgCompletionTime: '2.5 hrs',
-      popularCourses: ['Manual Handling', 'Hazard Recognition', 'Risk Assessment'],
+      name: 'Leadership & Management',
+      description: 'Develop leadership skills and management capabilities',
+      icon: '👑',
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      color: '#23544e',
+      courseCount: 10,
+      totalStudents: 8500,
+      avgCompletionTime: '5.2 hrs',
+      popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
       createdAt: '2024-01-15',
       status: 'Active'
     },
     {
       id: 2,
-      name: 'Management Systems',
-      description: 'ISO standards, quality management, and business process optimization',
-      icon: '⚙️',
-      color: 'bg-blue-500',
-      courseCount: 32,
-      totalStudents: 8900,
-      avgCompletionTime: '3.2 hrs',
-      popularCourses: ['ISO 9001:2015', 'ISO 45001:2018', 'ISO 14001:2015'],
+      name: 'Technical Skills',
+      description: 'Enhance your technical expertise and knowledge',
+      icon: '💻',
+      image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      color: '#0b867a',
+      courseCount: 8,
+      totalStudents: 6200,
+      avgCompletionTime: '4.1 hrs',
+      popularCourses: ['JavaScript ES6+', 'React Development', 'Python Mastery'],
       createdAt: '2024-01-10',
       status: 'Active'
     },
     {
       id: 3,
-      name: 'Food Safety',
-      description: 'Food handling, hygiene practices, and allergen management',
-      icon: '🍽️',
-      color: 'bg-green-500',
-      courseCount: 18,
-      totalStudents: 5600,
-      avgCompletionTime: '2.1 hrs',
-      popularCourses: ['Food Safety & Hygiene', 'Allergen Awareness', 'HACCP Principles'],
+      name: 'Communication',
+      description: 'Improve communication and interpersonal skills',
+      icon: '💬',
+      image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      color: '#4a90e2',
+      courseCount: 6,
+      totalStudents: 4800,
+      avgCompletionTime: '3.5 hrs',
+      popularCourses: ['Effective Communication', 'Public Speaking', 'Active Listening'],
       createdAt: '2024-01-20',
       status: 'Active'
     },
     {
       id: 4,
-      name: 'Personal Development',
-      description: 'Leadership, communication, diversity, and professional growth',
+      name: 'Professional Development',
+      description: 'Advance your career with professional development courses',
       icon: '📈',
-      color: 'bg-purple-500',
-      courseCount: 28,
-      totalStudents: 7200,
-      avgCompletionTime: '2.8 hrs',
-      popularCourses: ['Conflict Management', 'Diversity & Inclusion', 'Leadership Skills'],
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      color: '#e74c3c',
+      courseCount: 4,
+      totalStudents: 3600,
+      avgCompletionTime: '4.8 hrs',
+      popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
       createdAt: '2024-01-25',
       status: 'Active'
     },
     {
       id: 5,
-      name: 'Technical Skills',
-      description: 'Engineering, equipment handling, and technical competencies',
-      icon: '🔧',
-      color: 'bg-orange-500',
-      courseCount: 22,
-      totalStudents: 4800,
-      avgCompletionTime: '3.5 hrs',
-      popularCourses: ['Rigging Equipment', 'Material Handling', 'Equipment Safety'],
+      name: 'Compliance & Safety',
+      description: 'Stay updated with compliance requirements and safety protocols',
+      icon: '🛡️',
+      image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      color: '#f39c12',
+      courseCount: 2,
+      totalStudents: 2100,
+      avgCompletionTime: '2.5 hrs',
+      popularCourses: ['Workplace Safety', 'Risk Assessment', 'Emergency Procedures'],
       createdAt: '2024-02-01',
       status: 'Active'
-    },
-    {
-      id: 6,
-      name: 'Business & Compliance',
-      description: 'Legal compliance, business practices, and regulatory requirements',
-      icon: '📋',
-      color: 'bg-indigo-500',
-      courseCount: 15,
-      totalStudents: 3200,
-      avgCompletionTime: '2.4 hrs',
-      popularCourses: ['HIPAA Fundamentals', 'Security Management', 'Compliance Training'],
-      createdAt: '2024-02-05',
-      status: 'Active'
-    },
-    {
-      id: 7,
-      name: 'Environmental',
-      description: 'Environmental management, sustainability, and green practices',
-      icon: '🌱',
-      color: 'bg-green-600',
-      courseCount: 12,
-      totalStudents: 2800,
-      avgCompletionTime: '2.9 hrs',
-      popularCourses: ['Environmental Management', 'Sustainability Practices', 'Waste Management'],
-      createdAt: '2024-02-10',
-      status: 'Active'
-    },
-    {
-      id: 8,
-      name: 'Healthcare',
-      description: 'Medical devices, healthcare compliance, and patient safety',
-      icon: '🏥',
-      color: 'bg-teal-500',
-      courseCount: 8,
-      totalStudents: 1900,
-      avgCompletionTime: '3.1 hrs',
-      popularCourses: ['Medical Device QMS', 'Patient Safety', 'Healthcare Compliance'],
-      createdAt: '2024-02-15',
-      status: 'Draft'
     }
   ]
 
-  // Filter categories
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     category.description.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  // Calculate total stats
   const totalCourses = categories.reduce((sum, cat) => sum + cat.courseCount, 0)
   const totalStudents = categories.reduce((sum, cat) => sum + cat.totalStudents, 0)
   const activeCategories = categories.filter(cat => cat.status === 'Active').length
 
-  return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg">
-        <div className="flex h-full flex-col">
-          {/* Logo */}
-          <div className="flex h-16 items-center justify-center border-b border-gray-200">
-            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
-          </div>
-
-          {/* Navigation */}
-          <nav className="mt-5 flex-1 px-2 space-y-1">
-            {/* Home */}
-            <Link href="/dashboard" className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50">
-              <HomeIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-              Home
-            </Link>
-
-            {/* Talent Management Strategy Header */}
-            <div className="pt-4 pb-2">
-              <div className="flex items-center px-3">
-                <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
-                <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">Talent Management Strategy</h3>
-              </div>
-            </div>
-
-            {/* Strategy Overview Link */}
-            <Link href="/dashboard/talent-strategy" className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50">
-              <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-              Strategy Overview
-            </Link>
-
-            {/* Talent Management Sections */}
-            {talentManagementSections.map((section) => (
-              <div key={section.id} className="space-y-1">
-                <button
-                  onClick={() => toggleSection(section.id)}
-                  className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
-                >
-                  <div className="flex items-center">
-                    <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-                    {section.name}
-                  </div>
-                  {section.expanded ? (
-                    <ChevronUpIcon className="ml-2 h-4 w-4" />
-                  ) : (
-                    <ChevronDownIcon className="ml-2 h-4 w-4" />
-                  )}
-                </button>
-                {section.expanded && (
-                  <div className="ml-6 space-y-1">
-                    {section.subItems.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
-                          subItem.name === 'Course Categories'
-                            ? 'text-[#23544e] bg-gray-50 font-medium'
-                            : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
-                        }`}
-                      >
-                        <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
-                          subItem.name === 'Course Categories'
-                            ? 'bg-[#23544e]'
-                            : 'bg-gray-300 group-hover:bg-[#23544e]'
-                        }`}></div>
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Divider */}
-            <div className="pt-4 border-t border-gray-200"></div>
-
-            {/* Rest of sidebar items */}
-            {sidebarItems.slice(1).map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
-              >
-                <item.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
+  const renderSidebar = () => (
+    <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+      <div className="flex h-16 items-center justify-center border-b border-gray-200">
+        <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+        <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
       </div>
 
-      {/* Main content */}
-      <div className="ml-64 flex-1 overflow-auto">
-        <div className="p-8">
-          {/* Header */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Course Categories</h1>
-                <p className="mt-2 text-gray-600">Organize and manage your learning content by categories</p>
-              </div>
-              <button 
-                onClick={() => {/* TODO: Implement create modal */}}
-                className="bg-[#23544e] text-white px-6 py-3 rounded-lg hover:bg-[#1a3f3a] transition-colors flex items-center"
-              >
-                <PlusIcon className="w-5 h-5 mr-2" />
-                Add Category
-              </button>
-            </div>
+      <nav className="px-3 py-4 space-y-1">
+        {/* Home */}
+        <Link
+          href="/dashboard"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <HomeIcon className="h-5 w-5 mr-3" />
+          Home
+        </Link>
+
+        {/* Talent Management Strategy Header */}
+        <div className="pt-4 pb-2">
+          <div className="flex items-center px-3">
+            <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+            <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+              Talent Management Strategy
+            </h3>
           </div>
+        </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+        {/* Strategy Overview Link */}
+        <Link
+          href="/dashboard/talent-strategy"
+          className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+        >
+          <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+          Strategy Overview
+        </Link>
+
+        {/* Talent Management Sections */}
+        {talentManagementSections.map((section) => (
+          <div key={section.id} className="space-y-1">
+            <button
+              onClick={() => toggleSection(section.id)}
+              className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+            >
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <FolderIcon className="w-5 h-5 text-blue-600" />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Categories</p>
-                  <p className="text-2xl font-bold text-gray-900">{categories.length}</p>
-                </div>
+                <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                {section.name}
               </div>
-            </div>
-
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <BookOpenIcon className="w-5 h-5 text-green-600" />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                  <p className="text-2xl font-bold text-gray-900">{totalCourses}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <UsersIcon className="w-5 h-5 text-purple-600" />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total Students</p>
-                  <p className="text-2xl font-bold text-gray-900">{totalStudents.toLocaleString()}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <AcademicCapIcon className="w-5 h-5 text-orange-600" />
-                  </div>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Active Categories</p>
-                  <p className="text-2xl font-bold text-gray-900">{activeCategories}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Filters and Search */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-            <div className="flex items-center justify-between">
-              {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search categories..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
-                />
-              </div>
-
-              {/* View Toggle */}
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600">View:</span>
-                <div className="flex bg-gray-100 rounded-lg p-1">
-                  <button
-                    onClick={() => setSelectedView('grid')}
-                    className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                      selectedView === 'grid'
-                        ? 'bg-white text-[#23544e] shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
+              {section.expanded ? (
+                <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+              ) : (
+                <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+              )}
+            </button>
+            
+            {section.expanded && (
+              <div className="ml-6 space-y-1">
+                {section.subItems.map((subItem) => (
+                  <Link
+                    key={subItem.name}
+                    href={subItem.href}
+                    className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
+                      subItem.name === 'Course Categories'
+                        ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
+                        : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
                     }`}
                   >
-                    Grid
-                  </button>
-                  <button
-                    onClick={() => setSelectedView('list')}
-                    className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                      selectedView === 'list'
-                        ? 'bg-white text-[#23544e] shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
-                  >
-                    List
+                    <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
+                      subItem.name === 'Course Categories'
+                        ? 'bg-[#23544e]'
+                        : 'bg-gray-300 group-hover:bg-[#23544e]'
+                    }`}></div>
+                    {subItem.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Divider */}
+        <div className="pt-4 border-t border-gray-200"></div>
+
+        {/* Rest of navigation items */}
+        <Link
+          href="/career"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <BriefcaseIcon className="h-5 w-5 mr-3" />
+          My Career Journey
+        </Link>
+        <Link
+          href="/learn"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <BookOpenIcon className="h-5 w-5 mr-3" />
+          Learn
+        </Link>
+        <Link
+          href="/library"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <HeartIcon className="h-5 w-5 mr-3" />
+          My Library
+        </Link>
+        <Link
+          href="/content"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <StarIcon className="h-5 w-5 mr-3" />
+          Content
+        </Link>
+        <Link
+          href="/ai"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <SparklesIcon className="h-5 w-5 mr-3" />
+          Apply AI
+        </Link>
+        <Link
+          href="/coding"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <CpuChipIcon className="h-5 w-5 mr-3" />
+          Coding Practice
+        </Link>
+        <Link
+          href="/certificates"
+          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <AcademicCapIcon className="h-5 w-5 mr-3" />
+          Certifications
+        </Link>
+      </nav>
+    </div>
+  )
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {renderSidebar()}
+        {/* Main content */}
+        <div className="flex-1 overflow-auto bg-gray-50">
+          <div className="p-8">
+            {/* Header */}
+            <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
+              <h1 className="text-2xl font-bold mb-2">Course Categories</h1>
+              <p className="text-green-100">Manage and organize your learning content by categories</p>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div className="bg-white rounded-lg shadow p-6">
+                <div className="flex items-center">
+                  <div className="p-2 bg-[#23544e] rounded-lg">
+                    <FolderIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Total Categories</p>
+                    <p className="text-2xl font-bold text-gray-900">{activeCategories}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-6">
+                <div className="flex items-center">
+                  <div className="p-2 bg-[#23544e] rounded-lg">
+                    <BookOpenIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Total Courses</p>
+                    <p className="text-2xl font-bold text-gray-900">{totalCourses}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-6">
+                <div className="flex items-center">
+                  <div className="p-2 bg-[#23544e] rounded-lg">
+                    <UsersIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Total Students</p>
+                    <p className="text-2xl font-bold text-gray-900">{totalStudents.toLocaleString()}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-6">
+                <div className="flex items-center">
+                  <div className="p-2 bg-[#23544e] rounded-lg">
+                    <AcademicCapIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm font-medium text-gray-600">Avg Completion</p>
+                    <p className="text-2xl font-bold text-gray-900">3.8 hrs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Search and Actions */}
+            <div className="bg-white rounded-lg shadow p-6 mb-8">
+              <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+                <div className="relative flex-1 max-w-md">
+                  <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search categories..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
+                  />
+                </div>
+                <div className="flex items-center space-x-3">
+                  <button className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                    <PlusIcon className="h-4 w-4 mr-2" />
+                    Add Category
                   </button>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Categories Grid/List */}
-          {selectedView === 'grid' ? (
+            {/* Categories Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCategories.map((category) => (
-                <div
-                  key={category.id}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 group"
-                >
-                  {/* Category Header */}
-                  <div className={`${category.color} p-6 text-white relative`}>
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <div className="text-3xl mb-2">{category.icon}</div>
-                        <h3 className="text-xl font-semibold">{category.name}</h3>
-                        <p className="text-white/80 text-sm mt-1">{category.description}</p>
-                      </div>
-                      <div className="flex space-x-1">
-                        <button className="p-1 hover:bg-white/20 rounded">
-                          <EyeIcon className="w-4 h-4" />
-                        </button>
-                        <button className="p-1 hover:bg-white/20 rounded">
-                          <PencilIcon className="w-4 h-4" />
-                        </button>
-                      </div>
+                <div key={category.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                  {/* Category Image */}
+                  <div className="relative h-48 rounded-t-lg overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="text-2xl">{category.icon}</span>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="px-2 py-1 bg-green-500 text-white text-xs rounded-full">
+                        {category.status}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Category Stats */}
+                  {/* Category Content */}
                   <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h3>
+                    <p className="text-gray-600 mb-4">{category.description}</p>
+
+                    {/* Stats */}
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">{category.courseCount}</div>
-                        <div className="text-sm text-gray-600">Courses</div>
+                        <p className="text-2xl font-bold text-[#23544e]">{category.courseCount}</p>
+                        <p className="text-sm text-gray-600">Courses</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl font-bold text-gray-900">{category.totalStudents.toLocaleString()}</div>
-                        <div className="text-sm text-gray-600">Students</div>
+                        <p className="text-2xl font-bold text-[#23544e]">{category.totalStudents.toLocaleString()}</p>
+                        <p className="text-sm text-gray-600">Students</p>
                       </div>
                     </div>
 
-                    <div className="border-t border-gray-200 pt-4">
-                      <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
-                        <span>Avg. Completion Time</span>
-                        <span className="font-medium">{category.avgCompletionTime}</span>
+                    {/* Popular Courses */}
+                    <div className="mb-4">
+                      <p className="text-sm font-medium text-gray-900 mb-2">Popular Courses:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {category.popularCourses.slice(0, 2).map((course, index) => (
+                          <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                            {course}
+                          </span>
+                        ))}
+                        {category.popularCourses.length > 2 && (
+                          <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
+                            +{category.popularCourses.length - 2} more
+                          </span>
+                        )}
                       </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          category.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {category.status}
-                        </span>
-                        <Link 
-                          href={`/talent/courses?category=${encodeURIComponent(category.name)}`}
-                          className="text-[#23544e] hover:text-[#1a3f3a] font-medium"
-                        >
-                          View Courses →
-                        </Link>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex justify-between items-center">
+                      <div className="flex space-x-2">
+                        <button className="p-2 text-gray-400 hover:text-[#23544e] transition-colors">
+                          <EyeIcon className="h-4 w-4" />
+                        </button>
+                        <button className="p-2 text-gray-400 hover:text-[#23544e] transition-colors">
+                          <PencilIcon className="h-4 w-4" />
+                        </button>
+                        <button className="p-2 text-gray-400 hover:text-red-600 transition-colors">
+                          <TrashIcon className="h-4 w-4" />
+                        </button>
                       </div>
+                      <Link
+                        href="/talent/courses"
+                        className="px-3 py-1 bg-[#23544e] text-white text-sm rounded hover:bg-[#1a3f3a] transition-colors"
+                      >
+                        View Courses
+                      </Link>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          ) : (
-            /* List View */
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="text-left py-3 px-6 font-medium text-gray-700">Category</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Courses</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Students</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Avg. Time</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
-                      <th className="text-left py-3 px-4 font-medium text-gray-700">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredCategories.map((category, index) => (
-                      <tr key={category.id} className={`border-b border-gray-100 hover:bg-gray-50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
-                        <td className="py-4 px-6">
-                          <div className="flex items-center">
-                            <div className={`w-10 h-10 ${category.color} rounded-lg flex items-center justify-center text-white text-lg mr-3`}>
-                              {category.icon}
-                            </div>
-                            <div>
-                              <div className="font-medium text-gray-900">{category.name}</div>
-                              <div className="text-sm text-gray-600">{category.description}</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-gray-900 font-medium">{category.courseCount}</td>
-                        <td className="py-4 px-4 text-gray-900">{category.totalStudents.toLocaleString()}</td>
-                        <td className="py-4 px-4 text-gray-600">{category.avgCompletionTime}</td>
-                        <td className="py-4 px-4">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            category.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {category.status}
-                          </span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-2">
-                            <Link 
-                              href={`/talent/courses?category=${encodeURIComponent(category.name)}`}
-                              className="p-1 hover:bg-gray-200 rounded"
-                            >
-                              <EyeIcon className="w-4 h-4 text-gray-600" />
-                            </Link>
-                            <button className="p-1 hover:bg-gray-200 rounded">
-                              <PencilIcon className="w-4 h-4 text-gray-600" />
-                            </button>
-                            <button className="p-1 hover:bg-gray-200 rounded">
-                              <TrashIcon className="w-4 h-4 text-red-600" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
 
-          {/* Empty State */}
-          {filteredCategories.length === 0 && (
-            <div className="text-center py-12">
-              <FolderIcon className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No categories found</h3>
-              <p className="mt-1 text-sm text-gray-500">Try adjusting your search or create a new category.</p>
-            </div>
-          )}
+            {/* Empty State */}
+            {filteredCategories.length === 0 && (
+              <div className="text-center py-12">
+                <FolderIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No categories found</h3>
+                <p className="text-gray-600">Try adjusting your search criteria or add a new category.</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
