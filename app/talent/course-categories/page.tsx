@@ -201,7 +201,7 @@ export default function CourseCategoriesPage() {
             name: 'Professional Development',
             description: 'Advance your career with professional development courses',
             icon: '📈',
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             color: '#e74c3c',
             courseCount: 4,
             totalStudents: 3600,
@@ -216,10 +216,10 @@ export default function CourseCategoriesPage() {
             icon: '💻',
             image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             color: '#0b867a',
-            courseCount: 0,
-            totalStudents: 0,
-            avgCompletionTime: '3.5 hrs',
-            popularCourses: [],
+            courseCount: 8,
+            totalStudents: 2400,
+            avgCompletionTime: '6.2 hrs',
+            popularCourses: ['React Development', 'JavaScript ES6+', 'Python Programming'],
             status: 'Active'
           },
           {
@@ -229,10 +229,10 @@ export default function CourseCategoriesPage() {
             icon: '💬',
             image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             color: '#4a90e2',
-            courseCount: 0,
-            totalStudents: 0,
-            avgCompletionTime: '3.5 hrs',
-            popularCourses: [],
+            courseCount: 5,
+            totalStudents: 1800,
+            avgCompletionTime: '4.0 hrs',
+            popularCourses: ['Public Speaking', 'Effective Communication', 'Presentation Skills'],
             status: 'Active'
           },
           {
@@ -242,10 +242,10 @@ export default function CourseCategoriesPage() {
             icon: '🛡️',
             image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
             color: '#f39c12',
-            courseCount: 0,
-            totalStudents: 0,
-            avgCompletionTime: '3.5 hrs',
-            popularCourses: [],
+            courseCount: 3,
+            totalStudents: 950,
+            avgCompletionTime: '2.8 hrs',
+            popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
             status: 'Active'
           }
         ]
