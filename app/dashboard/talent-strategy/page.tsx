@@ -128,42 +128,34 @@ export default function TalentStrategyPage() {
   const strategyComponents = [
     {
       title: "Summary of the Corporate and Business Strategy",
-      color: "bg-blue-50 border-blue-200 text-blue-800",
       icon: BuildingOfficeIcon
     },
     {
       title: "HR Analysis",
-      color: "bg-purple-50 border-purple-200 text-purple-800",
       icon: ChartBarIcon
     },
     {
       title: "HR and Talent Management Capability Maturity Model",
-      color: "bg-green-50 border-green-200 text-green-800",
       icon: AdjustmentsHorizontalIcon
     },
     {
       title: "Current State And Target State",
-      color: "bg-orange-50 border-orange-200 text-orange-800",
       icon: MapIcon
     },
     {
       title: "HR and Talent Management Mission, Vision & Values",
-      color: "bg-red-50 border-red-200 text-red-800",
       icon: LightBulbIcon
     },
     {
       title: "Strategic Objectives & KPIs to Reach Our Vision",
-      color: "bg-teal-50 border-teal-200 text-teal-800",
       icon: TrophyIcon
     },
     {
       title: "HR Team & Budget",
-      color: "bg-indigo-50 border-indigo-200 text-indigo-800",
       icon: UserGroupIcon
     },
     {
       title: "Guiding Principles",
-      color: "bg-pink-50 border-pink-200 text-pink-800",
       icon: HandRaisedIcon
     }
   ]
@@ -174,7 +166,6 @@ export default function TalentStrategyPage() {
       id: 'capability',
       title: 'Capability Management',
       icon: LightBulbIcon,
-      color: 'from-blue-500 to-blue-700',
       items: [
         'The importance of capability management',
         'Desired capabilities',
@@ -186,7 +177,6 @@ export default function TalentStrategyPage() {
       id: 'structure',
       title: 'Structure & Governance',
       icon: BuildingOfficeIcon,
-      color: 'from-purple-500 to-purple-700',
       items: [
         'The importance of structure & governance',
         'Structure',
@@ -200,7 +190,6 @@ export default function TalentStrategyPage() {
       id: 'culture',
       title: 'Culture',
       icon: UserIcon,
-      color: 'from-green-500 to-green-700',
       items: [
         'The importance of organizational culture',
         'Current culture assessment',
@@ -215,7 +204,6 @@ export default function TalentStrategyPage() {
       id: 'competency',
       title: 'Competency Management',
       icon: TrophyIcon,
-      color: 'from-orange-500 to-orange-700',
       items: [
         'The importance of competency management',
         'Competency framework',
@@ -229,7 +217,6 @@ export default function TalentStrategyPage() {
       id: 'recruitment',
       title: 'Recruitment',
       icon: HandRaisedIcon,
-      color: 'from-red-500 to-red-700',
       items: [
         'Employer branding strategy',
         'Recruitment process & strategy',
@@ -245,7 +232,6 @@ export default function TalentStrategyPage() {
       id: 'development',
       title: 'Talent Development',
       icon: ArrowTrendingUpIcon,
-      color: 'from-teal-500 to-teal-700',
       items: [
         'Identifying high-potential talent',
         'Individual development plans',
@@ -259,7 +245,6 @@ export default function TalentStrategyPage() {
       id: 'mentoring',
       title: 'Mentoring',
       icon: UserGroupIcon,
-      color: 'from-indigo-500 to-indigo-700',
       items: [
         'Setting up a mentoring program',
         'Mentor-mentee matching',
@@ -273,7 +258,6 @@ export default function TalentStrategyPage() {
       id: 'performance',
       title: 'Performance Management',
       icon: PresentationChartLineIcon,
-      color: 'from-pink-500 to-pink-700',
       items: [
         'Top 8 models and approaches',
         'Implementing OKR framework',
@@ -286,7 +270,6 @@ export default function TalentStrategyPage() {
       id: 'rewards',
       title: 'Reward and Recognition',
       icon: GiftIcon,
-      color: 'from-yellow-500 to-yellow-700',
       items: [
         'Setting up a reward and recognition program',
         'Transparency and equity in reward systems',
@@ -298,7 +281,6 @@ export default function TalentStrategyPage() {
       id: 'termination',
       title: 'Reassignment & Termination',
       icon: ArrowPathIcon,
-      color: 'from-gray-500 to-gray-700',
       items: [
         'Strategies for employee reassignment',
         'Termination processes and protocols',
@@ -491,21 +473,37 @@ export default function TalentStrategyPage() {
           <div className="flex-1 overflow-y-auto bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               {/* Hero Section */}
-              <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 mb-8 text-white">
-                <div className="max-w-4xl">
-                  <h1 className="text-4xl font-bold mb-4">HR and Talent Management Strategy</h1>
-                  <p className="text-xl opacity-90 mb-6">
-                    Comprehensive framework for building world-class talent capabilities and organizational excellence
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                      <span className="text-sm font-semibold">Strategic Framework</span>
+              <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden mb-12">
+                <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] px-8 py-12">
+                  <div className="max-w-4xl text-white">
+                    <h1 className="text-4xl font-bold mb-4">HR and Talent Management Strategy</h1>
+                    <p className="text-xl opacity-90 mb-6">
+                      Comprehensive framework for building world-class talent capabilities and organizational excellence
+                    </p>
+                  </div>
+                </div>
+                <div className="px-8 py-6 bg-gray-50">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-[#23544e] text-white rounded-xl mb-3">
+                        <MapIcon className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Strategic Framework</h3>
+                      <p className="text-sm text-gray-600">Comprehensive approach to talent management</p>
                     </div>
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                      <span className="text-sm font-semibold">10 Core Pillars</span>
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-[#23544e] text-white rounded-xl mb-3">
+                        <BuildingOfficeIcon className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-1">10 Core Pillars</h3>
+                      <p className="text-sm text-gray-600">Essential components for HR excellence</p>
                     </div>
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
-                      <span className="text-sm font-semibold">Implementation Roadmap</span>
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-12 h-12 bg-[#23544e] text-white rounded-xl mb-3">
+                        <ArrowTrendingUpIcon className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Implementation Roadmap</h3>
+                      <p className="text-sm text-gray-600">Clear path to strategic objectives</p>
                     </div>
                   </div>
                 </div>
@@ -513,18 +511,25 @@ export default function TalentStrategyPage() {
 
               {/* I. HR and Talent Management Strategy Components */}
               <section className="mb-12">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-2">I. HR and Talent Management Strategy</h2>
-                  <p className="text-blue-100">Foundational components that drive our strategic approach</p>
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">I. HR and Talent Management Strategy</h2>
+                  <p className="text-lg text-gray-600">Foundational components that drive our strategic approach</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {strategyComponents.map((component) => (
-                    <div key={component.title} className={`${component.color} border-2 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:scale-105`}>
-                      <div className="flex items-start space-x-3">
-                        <component.icon className="h-8 w-8 mt-1 flex-shrink-0" />
+                  {strategyComponents.map((component, index) => (
+                    <div key={component.title} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 group-hover:bg-[#23544e] text-gray-600 group-hover:text-white rounded-xl transition-colors duration-300">
+                            <component.icon className="h-6 w-6" />
+                          </div>
+                        </div>
                         <div>
-                          <h3 className="font-bold text-lg leading-tight">{component.title}</h3>
+                          <div className="inline-flex items-center justify-center w-8 h-8 bg-[#23544e] text-white rounded-lg text-sm font-bold mb-3">
+                            {index + 1}
+                          </div>
+                          <h3 className="font-semibold text-gray-900 leading-tight">{component.title}</h3>
                         </div>
                       </div>
                     </div>
@@ -534,18 +539,29 @@ export default function TalentStrategyPage() {
 
               {/* II. 10 Pillars */}
               <section className="mb-12">
-                <div className="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-2">II. 10 Pillars to reach our HR and Talent Management Strategic Objectives</h2>
-                  <p className="text-purple-100">Core pillars that form the foundation of our talent strategy</p>
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">II. 10 Pillars to reach our HR and Talent Management Strategic Objectives</h2>
+                  <p className="text-lg text-gray-600">Core pillars that form the foundation of our talent strategy</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {hrPillars.map((pillar) => (
-                    <div key={pillar.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                      <div className={`bg-gradient-to-r ${pillar.color} p-6`}>
-                        <div className="flex items-center space-x-3">
-                          <pillar.icon className="h-8 w-8 text-white" />
-                          <h3 className="text-xl font-bold text-white">{pillar.title}</h3>
+                  {hrPillars.map((pillar, index) => (
+                    <div key={pillar.id} className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                      <div className="p-6 border-b border-gray-100">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 group-hover:bg-[#23544e] text-gray-600 group-hover:text-white rounded-xl transition-colors duration-300">
+                              <pillar.icon className="h-6 w-6" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-3">
+                              <div className="inline-flex items-center justify-center w-8 h-8 bg-[#23544e] text-white rounded-lg text-sm font-bold">
+                                {index + 1}
+                              </div>
+                              <h3 className="text-xl font-semibold text-gray-900">{pillar.title}</h3>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="p-6">
@@ -553,7 +569,7 @@ export default function TalentStrategyPage() {
                           {pillar.items.map((item, itemIndex) => (
                             <li key={itemIndex} className="flex items-start space-x-3">
                               <div className="w-2 h-2 bg-[#23544e] rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-700 leading-relaxed">{item}</span>
+                              <span className="text-gray-700 leading-relaxed text-sm">{item}</span>
                             </li>
                           ))}
                         </ul>
@@ -566,59 +582,79 @@ export default function TalentStrategyPage() {
               {/* Additional Sections */}
               <section className="space-y-8">
                 {/* III. Potential Initiatives */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="bg-gradient-to-r from-green-600 to-green-800 rounded-lg p-4 mb-6">
-                    <h2 className="text-2xl font-bold text-white">III. Potential Initiatives for each Pillar</h2>
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="inline-flex items-center justify-center w-10 h-10 bg-[#23544e] text-white rounded-lg text-lg font-bold">
+                      III
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Potential Initiatives for each Pillar</h2>
                   </div>
-                  <p className="text-gray-600 text-lg">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Detailed implementation initiatives and action plans will be developed for each pillar to ensure successful execution of our talent management strategy.
                   </p>
                 </div>
 
                 {/* IV. Business Cases */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="bg-gradient-to-r from-orange-600 to-orange-800 rounded-lg p-4 mb-6">
-                    <h2 className="text-2xl font-bold text-white">IV. Business cases and financial models to assess potential projects</h2>
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="inline-flex items-center justify-center w-10 h-10 bg-[#23544e] text-white rounded-lg text-lg font-bold">
+                      IV
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Business cases and financial models to assess potential projects</h2>
                   </div>
-                  <p className="text-gray-600 text-lg">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Comprehensive business cases with ROI analysis and financial modeling to prioritize and validate talent management investments.
                   </p>
                 </div>
 
                 {/* V. Project Prioritization */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="bg-gradient-to-r from-teal-600 to-teal-800 rounded-lg p-4 mb-6">
-                    <h2 className="text-2xl font-bold text-white">V. Project Prioritization, Business Roadmap and Implementation</h2>
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="inline-flex items-center justify-center w-10 h-10 bg-[#23544e] text-white rounded-lg text-lg font-bold">
+                      V
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Project Prioritization, Business Roadmap and Implementation</h2>
                   </div>
-                  <p className="text-gray-600 text-lg">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Strategic roadmap with clear timelines, milestones, and implementation phases to achieve our talent management objectives.
                   </p>
                 </div>
 
                 {/* VI. Change Management */}
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-lg p-4 mb-6">
-                    <h2 className="text-2xl font-bold text-white">VI. Change Management, Internal Communication and Stakeholder Engagement</h2>
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="inline-flex items-center justify-center w-10 h-10 bg-[#23544e] text-white rounded-lg text-lg font-bold">
+                      VI
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900">Change Management, Internal Communication and Stakeholder Engagement</h2>
                   </div>
-                  <p className="text-gray-600 text-lg">
+                  <p className="text-gray-600 text-lg leading-relaxed">
                     Comprehensive change management strategy ensuring successful adoption and stakeholder buy-in across the organization.
                   </p>
                 </div>
               </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 mt-12 text-center text-white">
-                <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Talent Strategy?</h2>
-                <p className="text-xl opacity-90 mb-6">
-                  Explore our comprehensive talent management tools and resources
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link href="/dashboard/talent/lms-dashboard" className="bg-white text-[#23544e] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Access LMS Dashboard
-                  </Link>
-                  <Link href="/dashboard/talent/capability-assessment" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#23544e] transition-colors">
-                    Start Assessment
-                  </Link>
+              <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden mt-12">
+                <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] px-8 py-8">
+                  <div className="text-center text-white">
+                    <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Talent Strategy?</h2>
+                    <p className="text-xl opacity-90 mb-6">
+                      Explore our comprehensive talent management tools and resources
+                    </p>
+                  </div>
+                </div>
+                <div className="px-8 py-6 bg-gray-50">
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <Link href="/dashboard/talent/lms-dashboard" className="inline-flex items-center px-6 py-3 bg-[#23544e] text-white rounded-lg font-semibold hover:bg-[#1d453f] transition-colors">
+                      <BookOpenIcon className="h-5 w-5 mr-2" />
+                      Access LMS Dashboard
+                    </Link>
+                    <Link href="/dashboard/talent/capability-assessment" className="inline-flex items-center px-6 py-3 border-2 border-[#23544e] text-[#23544e] rounded-lg font-semibold hover:bg-[#23544e] hover:text-white transition-colors">
+                      <ChartBarIcon className="h-5 w-5 mr-2" />
+                      Start Assessment
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
