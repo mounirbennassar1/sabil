@@ -1,21 +1,109 @@
 'use client'
 
 import { useState } from 'react'
-import TalentLayout from '../../../components/layout/TalentLayout'
+import Image from 'next/image'
+import Link from 'next/link'
 import {
+  HomeIcon,
+  BookOpenIcon,
+  UserGroupIcon,
+  ArrowTrendingUpIcon,
+  ChartBarIcon,
+  MapIcon,
+  CogIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  BriefcaseIcon,
+  HeartIcon,
+  StarIcon,
+  SparklesIcon,
+  CpuChipIcon,
+  AcademicCapIcon,
   CurrencyDollarIcon,
   ClockIcon,
-  ArrowTrendingUpIcon as TrendingUpIcon,
-  FunnelIcon,
-  ChartBarIcon
+  FunnelIcon
 } from '@heroicons/react/24/outline'
 
 export default function ROITracking() {
+  // Sidebar state
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: false,
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: true // Expanded since we're in this section
+  })
+
   const [selectedProgram, setSelectedProgram] = useState('all')
   const [selectedYear, setSelectedYear] = useState('2024')
   const [selectedDepartment, setSelectedDepartment] = useState('all')
 
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: 'Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: 'Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: 'Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: 'Future & Strategic',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: 'Execution & Integration',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration', href: '/talent/integrations' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
+  ]
 
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
 
   // Mock ROI KPI data
   const roiKPIs = [
@@ -51,125 +139,261 @@ export default function ROITracking() {
     },
     {
       id: 4,
-      title: 'Internal Mobility Uplift',
-      value: '34%',
+      title: 'Employee Retention Rate',
+      value: '94%',
+      change: '+3%',
+      trend: 'up',
+      description: 'Percentage of employees retained after participating in development programs',
+      target: '95%',
+      status: 'on-track'
+    },
+    {
+      id: 5,
+      title: 'Revenue per Employee',
+      value: 'SAR 890K',
       change: '+18%',
       trend: 'up',
-      description: 'Percentage increase in internal promotions and lateral moves',
-      target: '40%',
+      description: 'Average revenue generated per employee post-training investment',
+      target: 'SAR 950K',
       status: 'exceeding'
+    },
+    {
+      id: 6,
+      title: 'Training ROI Ratio',
+      value: '4.2:1',
+      change: '+0.8',
+      trend: 'up',
+      description: 'Return on investment ratio for every SAR spent on training',
+      target: '4.5:1',
+      status: 'on-track'
     }
   ]
 
-  const getTrendIcon = (trend: string) => {
-    return trend === 'up' ? (
-      <TrendingUpIcon className="w-4 h-4 text-green-600" />
-    ) : (
-      <TrendingUpIcon className="w-4 h-4 text-red-600 transform rotate-180" />
-    )
-  }
-
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'exceeding': return 'text-green-600 bg-green-50'
-      case 'on-track': return 'text-blue-600 bg-blue-50'
-      case 'needs-attention': return 'text-yellow-600 bg-yellow-50'
-      case 'at-risk': return 'text-red-600 bg-red-50'
-      default: return 'text-gray-600 bg-gray-50'
+      case 'exceeding': return 'bg-green-100 text-green-800'
+      case 'on-track': return 'bg-blue-100 text-blue-800'
+      case 'needs-attention': return 'bg-yellow-100 text-yellow-800'
+      case 'critical': return 'bg-red-100 text-red-800'
+      default: return 'bg-gray-100 text-gray-800'
     }
   }
 
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'exceeding': return 'Exceeding Target'
-      case 'on-track': return 'On Track'
-      case 'needs-attention': return 'Needs Attention'
-      case 'at-risk': return 'At Risk'
-      default: return 'Unknown'
-    }
+  const getTrendIcon = (trend: string) => {
+    return trend === 'up' ? '↗️' : '↘️'
   }
 
   return (
-    <TalentLayout>
-      <div className="py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              {/* Header */}
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900">ROI Tracking</h1>
-                <p className="mt-2 text-gray-600">Return on investment analysis for learning and talent development programs</p>
-              </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <div className="flex h-16 items-center justify-center border-b border-gray-200">
+            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+            <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
+          </div>
 
-              {/* Filters */}
-              <div className="bg-white rounded-lg shadow p-6 mb-8">
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center space-x-2">
-                    <FunnelIcon className="h-5 w-5 text-gray-400" />
-                    <span className="text-sm font-medium text-gray-700">Filters:</span>
+          <nav className="px-3 py-4 space-y-1">
+            {/* Home */}
+            <Link
+              href="/dashboard"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HomeIcon className="h-5 w-5 mr-3" />
+              Home
+            </Link>
+
+            {/* Talent Management Strategy Header */}
+            <div className="pt-4 pb-2">
+              <div className="flex items-center px-3">
+                <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+                <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+                  Talent Management Strategy
+                </h3>
+              </div>
+            </div>
+
+            {/* Strategy Overview Link */}
+            <Link
+              href="/dashboard/talent-strategy"
+              className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+            >
+              <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+              Strategy Overview
+            </Link>
+
+            {/* Talent Management Sections */}
+            {talentManagementSections.map((section) => (
+              <div key={section.id} className="space-y-1">
+                <button
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <div className="flex items-center">
+                    <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                    {section.name}
                   </div>
-                  
-                  <select
+                  {section.expanded ? (
+                    <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+                  )}
+                </button>
+                
+                {section.expanded && (
+                  <div className="ml-6 space-y-1">
+                    {section.subItems.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        href={subItem.href}
+                        className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
+                          subItem.name === 'ROI Tracking'
+                            ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
+                            : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
+                          subItem.name === 'ROI Tracking'
+                            ? 'bg-[#23544e]'
+                            : 'bg-gray-300 group-hover:bg-[#23544e]'
+                        }`}></div>
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Divider */}
+            <div className="pt-4 border-t border-gray-200"></div>
+
+            {/* Rest of navigation items */}
+            <Link
+              href="/career"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              My Career Journey
+            </Link>
+            <Link
+              href="/learn"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BookOpenIcon className="h-5 w-5 mr-3" />
+              Learn
+            </Link>
+            <Link
+              href="/library"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HeartIcon className="h-5 w-5 mr-3" />
+              My Library
+            </Link>
+            <Link
+              href="/content"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <StarIcon className="h-5 w-5 mr-3" />
+              Content
+            </Link>
+            <Link
+              href="/ai"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <SparklesIcon className="h-5 w-5 mr-3" />
+              Apply AI
+            </Link>
+            <Link
+              href="/coding"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <CpuChipIcon className="h-5 w-5 mr-3" />
+              Coding Practice
+            </Link>
+            <Link
+              href="/certificates"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              Certifications
+            </Link>
+          </nav>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 overflow-auto bg-gray-50">
+          <div className="p-8">
+            {/* Header */}
+            <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
+              <h1 className="text-2xl font-bold mb-2">ROI Tracking Dashboard</h1>
+              <p className="text-green-100">Monitor return on investment for talent development programs</p>
+            </div>
+
+            {/* Filters */}
+            <div className="bg-white rounded-lg shadow p-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Program</label>
+                  <select 
                     value={selectedProgram}
                     onChange={(e) => setSelectedProgram(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#23544e]"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
                   >
                     <option value="all">All Programs</option>
                     <option value="leadership">Leadership Development</option>
                     <option value="technical">Technical Training</option>
                     <option value="soft-skills">Soft Skills</option>
-                    <option value="certifications">Certifications</option>
-                    <option value="mentoring">Mentoring Programs</option>
                   </select>
-
-                  <select
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
+                  <select 
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#23544e]"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
                   >
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
-                    <option value="all-time">All Time</option>
                   </select>
-
-                  <select
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                  <select 
                     value={selectedDepartment}
                     onChange={(e) => setSelectedDepartment(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#23544e]"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-[#23544e]"
                   >
                     <option value="all">All Departments</option>
                     <option value="engineering">Engineering</option>
                     <option value="sales">Sales</option>
                     <option value="marketing">Marketing</option>
-                    <option value="operations">Operations</option>
                     <option value="hr">Human Resources</option>
                   </select>
                 </div>
               </div>
+            </div>
 
-              {/* ROI KPI Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                {roiKPIs.map((kpi) => (
-                  <div key={kpi.id} className="bg-white rounded-lg shadow p-6">
+            {/* ROI KPI Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {roiKPIs.map((kpi) => (
+                <div key={kpi.id} className="bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                  <div className="p-6">
+                    {/* Header */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0">
-                          {kpi.id === 1 && <CurrencyDollarIcon className="h-8 w-8 text-[#23544e]" />}
-                          {kpi.id === 2 && <ChartBarIcon className="h-8 w-8 text-[#23544e]" />}
-                          {kpi.id === 3 && <ClockIcon className="h-8 w-8 text-[#23544e]" />}
-                          {kpi.id === 4 && <TrendingUpIcon className="h-8 w-8 text-[#23544e]" />}
-                        </div>
-                      </div>
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(kpi.status)}`}>
-                        {getStatusText(kpi.status)}
+                      <h3 className="text-lg font-semibold text-gray-900">{kpi.title}</h3>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(kpi.status)}`}>
+                        {kpi.status.replace('-', ' ')}
                       </span>
                     </div>
-                    
-                    <div className="mb-2">
-                      <h3 className="text-sm font-medium text-gray-600">{kpi.title}</h3>
-                      <div className="flex items-center justify-between mt-1">
-                        <p className="text-2xl font-bold text-gray-900">{kpi.value}</p>
-                        <div className="flex items-center">
-                          {getTrendIcon(kpi.trend)}
+
+                    {/* Value and Trend */}
+                    <div className="mb-4">
+                      <div className="flex items-center">
+                        <span className="text-3xl font-bold text-gray-900">{kpi.value}</span>
+                        <div className="ml-3 flex items-center">
+                          <span className="text-lg">{getTrendIcon(kpi.trend)}</span>
                           <span className={`ml-1 text-sm font-medium ${
                             kpi.trend === 'up' ? 'text-green-600' : 'text-red-600'
                           }`}>
@@ -178,140 +402,32 @@ export default function ROITracking() {
                         </div>
                       </div>
                     </div>
-                    
-                    <p className="text-xs text-gray-500 mb-3">{kpi.description}</p>
-                    
-                    <div className="border-t border-gray-200 pt-3">
-                      <div className="flex justify-between text-xs text-gray-600">
-                        <span>Target: {kpi.target}</span>
-                        <span>Current Period</span>
-                      </div>
-                      <div className="mt-2 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full ${
-                            kpi.status === 'exceeding' ? 'bg-green-500' :
-                            kpi.status === 'on-track' ? 'bg-blue-500' :
-                            kpi.status === 'needs-attention' ? 'bg-yellow-500' : 'bg-red-500'
-                          }`}
-                          style={{ 
-                            width: kpi.status === 'exceeding' ? '100%' :
-                                   kpi.status === 'on-track' ? '80%' :
-                                   kpi.status === 'needs-attention' ? '60%' : '40%'
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
 
-              {/* Investment Overview */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Investment Breakdown</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Total Annual Investment</span>
-                      <span className="text-lg font-bold text-[#23544e]">SAR 1.2M</span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Leadership Development</span>
-                        <span>SAR 400K (33%)</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#23544e] h-2 rounded-full" style={{ width: '33%' }}></div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Technical Training</span>
-                        <span>SAR 360K (30%)</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#2d6a5f] h-2 rounded-full" style={{ width: '30%' }}></div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Certifications</span>
-                        <span>SAR 240K (20%)</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#378070] h-2 rounded-full" style={{ width: '20%' }}></div>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Soft Skills & Other</span>
-                        <span>SAR 200K (17%)</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#419681] h-2 rounded-full" style={{ width: '17%' }}></div>
+                    {/* Description */}
+                    <p className="text-gray-600 text-sm mb-4">{kpi.description}</p>
+
+                    {/* Target */}
+                    <div className="pt-4 border-t border-gray-200">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Target:</span>
+                        <span className="font-medium text-gray-900">{kpi.target}</span>
                       </div>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
 
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">ROI Summary</h3>
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-[#23544e]">3.2x</div>
-                      <div className="text-sm text-gray-600">Overall ROI Multiplier</div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-center">
-                      <div>
-                        <div className="text-xl font-bold text-gray-900">SAR 3.8M</div>
-                        <div className="text-xs text-gray-600">Total Value Generated</div>
-                      </div>
-                      <div>
-                        <div className="text-xl font-bold text-gray-900">SAR 2.6M</div>
-                        <div className="text-xs text-gray-600">Net Benefit</div>
-                      </div>
-                    </div>
-                    <div className="border-t border-gray-200 pt-4">
-                      <h4 className="text-sm font-medium text-gray-900 mb-2">Key Value Drivers</h4>
-                      <ul className="text-xs text-gray-600 space-y-1">
-                        <li>• Reduced external hiring costs</li>
-                        <li>• Improved employee retention</li>
-                        <li>• Increased productivity and efficiency</li>
-                        <li>• Enhanced innovation and problem-solving</li>
-                        <li>• Faster time-to-market for projects</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Data Visualization Placeholder */}
-              <div className="bg-white rounded-lg shadow p-8">
-                <h3 className="text-lg font-medium text-gray-900 mb-6">ROI Trends & Analytics</h3>
-                <div className="text-center py-16 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                  <ChartBarIcon className="mx-auto h-16 w-16 text-gray-400" />
-                  <h4 className="mt-4 text-lg font-medium text-gray-900">Advanced Analytics Dashboard</h4>
-                  <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
-                    Interactive charts, trend analysis, and predictive models will be displayed here to provide 
-                    deep insights into learning ROI, cost optimization opportunities, and investment recommendations.
-                  </p>
-                  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div className="bg-white p-6 rounded-lg border">
-                      <h5 className="font-medium text-gray-900 mb-2">ROI Trend Analysis</h5>
-                      <p className="text-xs text-gray-600">Monthly and quarterly ROI trends with forecasting</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg border">
-                      <h5 className="font-medium text-gray-900 mb-2">Cost-Benefit Breakdown</h5>
-                      <p className="text-xs text-gray-600">Detailed analysis of costs vs. quantified benefits</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg border">
-                      <h5 className="font-medium text-gray-900 mb-2">Predictive Modeling</h5>
-                      <p className="text-xs text-gray-600">AI-powered predictions for future ROI scenarios</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Action Button */}
+            <div className="mt-8 text-center">
+              <button className="px-6 py-3 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                <ChartBarIcon className="h-5 w-5 inline mr-2" />
+                Generate ROI Report
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </TalentLayout>
+    </div>
   )
 }
