@@ -16,7 +16,14 @@ import {
   PaperAirplaneIcon,
   SparklesIcon,
   UserIcon,
-  CpuChipIcon
+  CpuChipIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  UserGroupIcon,
+  ArrowTrendingUpIcon,
+  ChartBarIcon,
+  MapIcon,
+  CogIcon
 } from '@heroicons/react/24/outline'
 
 interface ChatMessage {
@@ -40,6 +47,75 @@ export default function AIChatPage() {
   const [inputMessage, setInputMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  
+  // State for expandable menu sections
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: false,
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: false
+  })
+
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: '1️⃣ Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: '2️⃣ Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: '3️⃣ Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/talent-kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: '4️⃣ Future & Strategic Layer',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: '5️⃣ Execution & Integration Layer',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration Placeholders', href: '/talent/integration-placeholders' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
+  ]
 
   const sidebarItems = [
     { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
@@ -52,6 +128,13 @@ export default function AIChatPage() {
     { name: 'Certifications', href: '/certificates', icon: AcademicCapIcon, current: false },
     { name: 'Help & Support', href: '/help', icon: ChevronRightIcon, current: false },
   ]
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
 
   useEffect(() => {
     if (!session) {
@@ -161,7 +244,65 @@ export default function AIChatPage() {
                 </Link>
               </div>
                             <nav className="mt-5 flex-1 px-2 space-y-1">
-                {sidebarItems.map((item) => (
+                {/* Home */}
+                <Link
+                  href="/dashboard"
+                  className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <HomeIcon className="mr-3 flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                  Home
+                </Link>
+
+                {/* Talent Management Strategy Header */}
+                <div className="pt-4 pb-2">
+                  <div className="flex items-center px-3">
+                    <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+                    <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+                      Talent Management Strategy
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Talent Management Sections */}
+                {talentManagementSections.map((section) => (
+                  <div key={section.id} className="space-y-1">
+                    <button
+                      onClick={() => toggleSection(section.id)}
+                      className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+                    >
+                      <div className="flex items-center">
+                        <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                        {section.name}
+                      </div>
+                      {section.expanded ? (
+                        <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+                      ) : (
+                        <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+                      )}
+                    </button>
+                    
+                    {section.expanded && (
+                      <div className="ml-6 space-y-1">
+                        {section.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="group flex items-center px-3 py-2 text-sm rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+                          >
+                            <div className="mr-3 flex-shrink-0 w-2 h-2 bg-gray-300 rounded-full group-hover:bg-[#23544e]"></div>
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                {/* Divider */}
+                <div className="pt-4 border-t border-gray-200"></div>
+
+                {/* Rest of sidebar items */}
+                {sidebarItems.slice(1).map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
