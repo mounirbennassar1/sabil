@@ -203,13 +203,7 @@ export default function CapabilityAssessment() {
     { id: 'conferences', name: 'Industry conferences and networking events', icon: DocumentTextIcon }
   ]
 
-  const ratingScale = [
-    { value: 1, label: 'Beginner', description: 'No experience or understanding', color: 'bg-red-500' },
-    { value: 2, label: 'Basic', description: 'Basic knowledge, needs support', color: 'bg-orange-500' },
-    { value: 3, label: 'Competent', description: 'Competent, works independently', color: 'bg-yellow-500' },
-    { value: 4, label: 'Advanced', description: 'Advanced, mentors others', color: 'bg-blue-500' },
-    { value: 5, label: 'Expert', description: 'Expert, strategic leader', color: 'bg-green-500' }
-  ]
+
 
   // Handle rating changes
   const handleCoreSkillRating = (skillId: string, rating: number) => {
