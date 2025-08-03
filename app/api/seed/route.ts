@@ -232,8 +232,8 @@ export async function POST() {
               content: courseData.content,
               thumbnail: courseData.thumbnail,
               duration: courseData.duration,
-              level: courseData.level as any,
-              status: courseData.status as any,
+              level: courseData.level as 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED',
+              status: courseData.status as 'DRAFT' | 'PUBLISHED' | 'ARCHIVED',
               categoryId: category.id
             }
           })
