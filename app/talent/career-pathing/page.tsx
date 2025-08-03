@@ -16,11 +16,9 @@ import {
   DocumentChartBarIcon,
   BriefcaseIcon,
   ArrowRightIcon,
-  AcademicCapIcon,
   ClockIcon,
   CurrencyDollarIcon,
-  UsersIcon,
-  FunnelIcon
+  UsersIcon
 } from '@heroicons/react/24/outline'
 
 export default function CareerPathingPage() {

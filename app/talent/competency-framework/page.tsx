@@ -19,7 +19,6 @@ import {
   FunnelIcon,
   StarIcon,
   AcademicCapIcon,
-  CheckBadgeIcon,
   ExclamationTriangleIcon
 } from '@heroicons/react/24/outline'
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid'
