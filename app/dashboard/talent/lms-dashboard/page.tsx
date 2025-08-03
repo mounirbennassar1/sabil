@@ -54,7 +54,7 @@ export default function LMSDashboardPage() {
       expanded: expandedSections.learningCapability,
       subItems: [
         { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
-        { name: 'Capability Assessment Tool', href: '/dashboard/talent/capability-assessment' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
         { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
         { name: 'Courses', href: '/dashboard/talent/courses' },
         { name: 'Course Categories', href: '/dashboard/talent/course-categories' }
