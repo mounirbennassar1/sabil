@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -16,23 +16,18 @@ import {
   ExclamationTriangleIcon,
   CheckCircleIcon,
   ArrowUpIcon,
-  ArrowDownIcon,
   DocumentChartBarIcon,
   BriefcaseIcon,
   FunnelIcon,
-  AdjustmentsHorizontalIcon,
   PresentationChartLineIcon,
   ChartPieIcon,
-  Squares2X2Icon,
   ClockIcon,
   LightBulbIcon,
   TargetIcon,
   TrendingUpIcon,
   TrendingDownIcon,
   BuildingOfficeIcon,
-  UsersIcon,
-  AcademicCapIcon,
-  StarIcon
+  UsersIcon
 } from '@heroicons/react/24/outline'
 
 export default function GapAnalysisView() {
@@ -193,14 +188,6 @@ export default function GapAnalysisView() {
       case 'Low': return 'text-green-600 bg-green-50'
       default: return 'text-gray-600 bg-gray-50'
     }
-  }
-
-  const getGapBarColor = (gap: number) => {
-    const absGap = Math.abs(gap)
-    if (absGap >= 1.5) return 'bg-red-500'
-    if (absGap >= 1.0) return 'bg-orange-500'
-    if (absGap >= 0.5) return 'bg-yellow-500'
-    return 'bg-green-500'
   }
 
   return (
