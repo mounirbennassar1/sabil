@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -29,15 +29,16 @@ import {
 } from '@heroicons/react/24/outline'
 
 export default function CourseCategoriesPage() {
-  // Fixed: Restored sidebar and header layout
-  // Sidebar state - same as dashboard
+  // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    learningCapability: true, // Expanded by default since we're on course categories
+    learningCapability: true,
     talentGrowth: false,
     talentInsight: false,
     futureStrategic: false,
     executionIntegration: false
   })
+
+  const [searchTerm, setSearchTerm] = useState('')
 
   const talentManagementSections = [
     {
@@ -105,31 +106,8 @@ export default function CourseCategoriesPage() {
     }))
   }
 
-  // Filter and management state
-  const [searchTerm, setSearchTerm] = useState('')
-  interface Category {
-    id: string
-    name: string
-    description: string
-    icon: string
-    image: string
-    color: string
-    courseCount: number
-    totalStudents: number
-    avgCompletionTime: string
-    popularCourses: string[]
-    status: string
-  }
-
-  interface Course {
-    id: string
-    title: string
-    categoryId: string
-    _count?: { enrollments: number }
-  }
-
-  // Initialize with fallback data to ensure something always displays
-  const [categories, setCategories] = useState<Category[]>([
+  // Categories data with images
+  const categories = [
     {
       id: 'fallback-1',
       name: 'Leadership & Management',
@@ -195,8 +173,7 @@ export default function CourseCategoriesPage() {
       popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
       status: 'Active'
     }
-  ])
-  const [loading] = useState(false) // Never show loading state
+  ]
 
   const filteredCategories = categories.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -207,173 +184,144 @@ export default function CourseCategoriesPage() {
   const totalStudents = categories.reduce((sum, cat) => sum + cat.totalStudents, 0)
   const activeCategories = categories.filter(cat => cat.status === 'Active').length
 
-  const renderSidebar = () => (
-    <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
-      <div className="flex h-16 items-center justify-center border-b border-gray-200">
-        <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
-        <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
-      </div>
-
-      <nav className="px-3 py-4 space-y-1">
-        {/* Home */}
-        <Link
-          href="/dashboard"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <HomeIcon className="h-5 w-5 mr-3" />
-          Home
-        </Link>
-
-        {/* Talent Management Strategy Header */}
-        <div className="pt-4 pb-2">
-          <div className="flex items-center px-3">
-            <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
-            <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
-              Talent Management Strategy
-            </h3>
-          </div>
-        </div>
-
-        {/* Strategy Overview Link */}
-        <Link
-          href="/dashboard/talent-strategy"
-          className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
-        >
-          <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-          Strategy Overview
-        </Link>
-
-        {/* Talent Management Sections */}
-        {talentManagementSections.map((section) => (
-          <div key={section.id} className="space-y-1">
-            <button
-              onClick={() => toggleSection(section.id)}
-              className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
-            >
-              <div className="flex items-center">
-                <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-                {section.name}
-              </div>
-              {section.expanded ? (
-                <ChevronUpIcon className="h-4 w-4 text-gray-400" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-gray-400" />
-              )}
-            </button>
-            
-            {section.expanded && (
-              <div className="ml-6 space-y-1">
-                {section.subItems.map((subItem) => (
-                  <Link
-                    key={subItem.name}
-                    href={subItem.href}
-                    className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
-                      subItem.name === 'Course Categories'
-                        ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
-                        : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
-                    }`}
-                  >
-                    <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
-                      subItem.name === 'Course Categories'
-                        ? 'bg-[#23544e]'
-                        : 'bg-gray-300 group-hover:bg-[#23544e]'
-                    }`}></div>
-                    {subItem.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-
-        {/* Divider */}
-        <div className="pt-4 border-t border-gray-200"></div>
-
-        {/* Rest of navigation items */}
-        <Link
-          href="/career"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <BriefcaseIcon className="h-5 w-5 mr-3" />
-          My Career Journey
-        </Link>
-        <Link
-          href="/learn"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <BookOpenIcon className="h-5 w-5 mr-3" />
-          Learn
-        </Link>
-        <Link
-          href="/library"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <HeartIcon className="h-5 w-5 mr-3" />
-          My Library
-        </Link>
-        <Link
-          href="/content"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <StarIcon className="h-5 w-5 mr-3" />
-          Content
-        </Link>
-        <Link
-          href="/ai"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <SparklesIcon className="h-5 w-5 mr-3" />
-          Apply AI
-        </Link>
-        <Link
-          href="/coding"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <CpuChipIcon className="h-5 w-5 mr-3" />
-          Coding Practice
-        </Link>
-        <Link
-          href="/certificates"
-          className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
-        >
-          <AcademicCapIcon className="h-5 w-5 mr-3" />
-          Certifications
-        </Link>
-      </nav>
-    </div>
-  )
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex h-screen">
-          {renderSidebar()}
-          <div className="flex-1 overflow-auto bg-gray-50">
-            <div className="p-8">
-              <div className="animate-pulse">
-                <div className="h-32 bg-gray-300 rounded-lg mb-8"></div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                  {[...Array(4)].map((_, i) => (
-                    <div key={i} className="h-24 bg-gray-300 rounded-lg"></div>
-                  ))}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="h-96 bg-gray-300 rounded-lg"></div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen">
-        {renderSidebar()}
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <div className="flex h-16 items-center justify-center border-b border-gray-200">
+            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+            <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
+          </div>
+
+          <nav className="px-3 py-4 space-y-1">
+            {/* Home */}
+            <Link
+              href="/dashboard"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HomeIcon className="h-5 w-5 mr-3" />
+              Home
+            </Link>
+
+            {/* Talent Management Strategy Header */}
+            <div className="pt-4 pb-2">
+              <div className="flex items-center px-3">
+                <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+                <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+                  Talent Management Strategy
+                </h3>
+              </div>
+            </div>
+
+            {/* Strategy Overview Link */}
+            <Link
+              href="/dashboard/talent-strategy"
+              className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+            >
+              <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+              Strategy Overview
+            </Link>
+
+            {/* Talent Management Sections */}
+            {talentManagementSections.map((section) => (
+              <div key={section.id} className="space-y-1">
+                <button
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <div className="flex items-center">
+                    <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                    {section.name}
+                  </div>
+                  {section.expanded ? (
+                    <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+                  )}
+                </button>
+                
+                {section.expanded && (
+                  <div className="ml-6 space-y-1">
+                    {section.subItems.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        href={subItem.href}
+                        className={`group flex items-center px-3 py-2 text-sm rounded-lg transition-colors ${
+                          subItem.name === 'Course Categories'
+                            ? 'text-[#23544e] bg-[#23544e]/10 font-medium'
+                            : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className={`mr-3 flex-shrink-0 w-2 h-2 rounded-full ${
+                          subItem.name === 'Course Categories'
+                            ? 'bg-[#23544e]'
+                            : 'bg-gray-300 group-hover:bg-[#23544e]'
+                        }`}></div>
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Divider */}
+            <div className="pt-4 border-t border-gray-200"></div>
+
+            {/* Rest of navigation items */}
+            <Link
+              href="/career"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              My Career Journey
+            </Link>
+            <Link
+              href="/learn"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BookOpenIcon className="h-5 w-5 mr-3" />
+              Learn
+            </Link>
+            <Link
+              href="/library"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HeartIcon className="h-5 w-5 mr-3" />
+              My Library
+            </Link>
+            <Link
+              href="/content"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <StarIcon className="h-5 w-5 mr-3" />
+              Content
+            </Link>
+            <Link
+              href="/ai"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <SparklesIcon className="h-5 w-5 mr-3" />
+              Apply AI
+            </Link>
+            <Link
+              href="/coding"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <CpuChipIcon className="h-5 w-5 mr-3" />
+              Coding Practice
+            </Link>
+            <Link
+              href="/certificates"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              Certifications
+            </Link>
+          </nav>
+        </div>
+
         {/* Main content */}
         <div className="flex-1 overflow-auto bg-gray-50">
           <div className="p-8">
@@ -500,7 +448,7 @@ export default function CourseCategoriesPage() {
                     <div className="mb-4">
                       <p className="text-sm font-medium text-gray-900 mb-2">Popular Courses:</p>
                       <div className="flex flex-wrap gap-1">
-                        {category.popularCourses.slice(0, 2).map((course: string, index: number) => (
+                        {category.popularCourses.slice(0, 2).map((course, index) => (
                           <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">
                             {course}
                           </span>
