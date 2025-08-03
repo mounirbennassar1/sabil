@@ -22,9 +22,7 @@ import {
   EyeIcon,
   FolderIcon,
   AcademicCapIcon,
-  UsersIcon,
-  ClockIcon,
-  TagIcon
+  UsersIcon
 } from '@heroicons/react/24/outline'
 
 export default function CourseCategoriesPage() {
@@ -40,7 +38,6 @@ export default function CourseCategoriesPage() {
   // Filter and management state
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedView, setSelectedView] = useState<'grid' | 'list'>('grid')
-  const [showCreateModal, setShowCreateModal] = useState(false)
 
   // Sidebar configuration
   const sidebarItems = [
@@ -340,7 +337,7 @@ export default function CourseCategoriesPage() {
                 <p className="mt-2 text-gray-600">Organize and manage your learning content by categories</p>
               </div>
               <button 
-                onClick={() => setShowCreateModal(true)}
+                onClick={() => {/* TODO: Implement create modal */}}
                 className="bg-[#23544e] text-white px-6 py-3 rounded-lg hover:bg-[#1a3f3a] transition-colors flex items-center"
               >
                 <PlusIcon className="w-5 h-5 mr-2" />
