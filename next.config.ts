@@ -56,6 +56,24 @@ const nextConfig: NextConfig = {
         hostname: 'randomuser.me',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn01.alison-static.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn1.genspark.ai',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
