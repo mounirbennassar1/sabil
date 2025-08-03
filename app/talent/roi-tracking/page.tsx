@@ -12,12 +12,9 @@ import {
   BookOpenIcon,
   HomeIcon,
   CurrencyDollarIcon,
-  UserGroupIcon,
   ClockIcon,
   ArrowTrendingUpIcon as TrendingUpIcon,
-  FunnelIcon,
-  CalendarIcon,
-  BuildingOfficeIcon
+  FunnelIcon
 } from '@heroicons/react/24/outline'
 
 export default function ROITracking() {
