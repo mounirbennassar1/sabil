@@ -53,11 +53,11 @@ export default function TalentStrategyPage() {
       icon: BookOpenIcon,
       expanded: expandedSections.learningCapability,
       subItems: [
-        { name: 'LMS Dashboard', href: '/talent/lms-dashboard' },
-        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
-        { name: 'Gap Analysis View', href: '/talent/gap-analysis' },
-        { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' }
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/dashboard/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/dashboard/talent/courses' },
+        { name: 'Course Categories', href: '/dashboard/talent/course-categories' }
       ]
     },
     {
@@ -66,9 +66,9 @@ export default function TalentStrategyPage() {
       icon: ArrowTrendingUpIcon,
       expanded: expandedSections.talentGrowth,
       subItems: [
-        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
-        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
-        { name: 'Competency Framework', href: '/talent/competency-framework' }
+        { name: 'Succession Planning Matrix', href: '/dashboard/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/dashboard/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/dashboard/talent/competency-framework' }
       ]
     },
     {
@@ -77,9 +77,9 @@ export default function TalentStrategyPage() {
       icon: ChartBarIcon,
       expanded: expandedSections.talentInsight,
       subItems: [
-        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/talent-kpis' },
-        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+        { name: 'Performance Analytics', href: '/dashboard/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/dashboard/talent/talent-kpis' },
+        { name: 'Culture & Engagement', href: '/dashboard/talent/culture-engagement' }
       ]
     },
     {
@@ -88,9 +88,9 @@ export default function TalentStrategyPage() {
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
-        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
-        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
-        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+        { name: 'Workforce Planning', href: '/dashboard/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/dashboard/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/dashboard/talent/talent-marketplace' }
       ]
     },
     {
@@ -99,9 +99,9 @@ export default function TalentStrategyPage() {
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/talent/integration-placeholders' },
-        { name: 'Change Management Plan', href: '/talent/change-management' },
-        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+        { name: 'Integration Placeholders', href: '/dashboard/talent/integration-placeholders' },
+        { name: 'Change Management Plan', href: '/dashboard/talent/change-management' },
+        { name: 'ROI Tracking', href: '/dashboard/talent/roi-tracking' }
       ]
     }
   ]
@@ -363,6 +363,15 @@ export default function TalentStrategyPage() {
                   </div>
                 </div>
 
+                {/* Strategy Overview Link */}
+                <Link
+                  href="/dashboard/talent-strategy"
+                  className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors bg-[#23544e] text-white"
+                >
+                  <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-white" />
+                  Strategy Overview
+                </Link>
+
                 {/* Talent Management Sections */}
                 {talentManagementSections.map((section) => (
                   <div key={section.id} className="space-y-1">
@@ -510,8 +519,8 @@ export default function TalentStrategyPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {strategyComponents.map((component, index) => (
-                    <div key={index} className={`${component.color} border-2 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:scale-105`}>
+                  {strategyComponents.map((component) => (
+                    <div key={component.title} className={`${component.color} border-2 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:scale-105`}>
                       <div className="flex items-start space-x-3">
                         <component.icon className="h-8 w-8 mt-1 flex-shrink-0" />
                         <div>
@@ -604,10 +613,10 @@ export default function TalentStrategyPage() {
                   Explore our comprehensive talent management tools and resources
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Link href="/talent/lms-dashboard" className="bg-white text-[#23544e] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <Link href="/dashboard/talent/lms-dashboard" className="bg-white text-[#23544e] px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Access LMS Dashboard
                   </Link>
-                  <Link href="/talent/capability-assessment" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#23544e] transition-colors">
+                  <Link href="/dashboard/talent/capability-assessment" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#23544e] transition-colors">
                     Start Assessment
                   </Link>
                 </div>

@@ -95,7 +95,7 @@ export default function AIChatPage() {
     },
     {
       id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
+      name: 'Future & Strategic',
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
@@ -106,7 +106,7 @@ export default function AIChatPage() {
     },
     {
       id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
+      name: 'Execution & Integration',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
@@ -262,6 +262,15 @@ export default function AIChatPage() {
                     </h3>
                   </div>
                 </div>
+
+                {/* Strategy Overview Link */}
+                <Link
+                  href="/dashboard/talent-strategy"
+                  className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                  Strategy Overview
+                </Link>
 
                 {/* Talent Management Sections */}
                 {talentManagementSections.map((section) => (

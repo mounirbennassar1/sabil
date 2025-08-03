@@ -290,17 +290,26 @@ export default function StudentDashboard() {
               Home
             </Link>
 
-            {/* Talent Management Strategy Header */}
-            <div className="pt-4 pb-2">
-              <div className="flex items-center px-3">
-                <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
-                <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
-                  Talent Management Strategy
-                </h3>
-              </div>
-            </div>
+                            {/* Talent Management Strategy Header */}
+                <div className="pt-4 pb-2">
+                  <div className="flex items-center px-3">
+                    <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+                    <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+                      Talent Management Strategy
+                    </h3>
+                  </div>
+                </div>
 
-            {/* Talent Management Sections */}
+                {/* Strategy Overview Link */}
+                <Link
+                  href="/dashboard/talent-strategy"
+                  className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                  Strategy Overview
+                </Link>
+
+                {/* Talent Management Sections */}
             {talentManagementSections.map((section) => (
               <div key={section.id} className="space-y-1">
                 <button
