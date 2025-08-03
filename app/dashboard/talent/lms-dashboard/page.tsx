@@ -39,7 +39,7 @@ export default function LMSDashboardPage() {
   
   // State for expandable menu sections
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    learningCapability: false,
+    learningCapability: true, // Expanded by default since we're on LMS Dashboard
     talentGrowth: false,
     talentInsight: false,
     futureStrategic: false,
@@ -127,9 +127,8 @@ export default function LMSDashboardPage() {
   // Dashboard tabs
   const dashboardTabs = [
     { id: 'learn', name: 'Learn & Get Certificates', active: activeTab === 'learn' },
-    { id: 'career', name: 'Career Ready Plan', badge: true, active: activeTab === 'career' },
-    { id: 'hired', name: 'Get Hired', badge: true, active: activeTab === 'hired' },
-    { id: 'earnings', name: 'Your Earnings', badge: true, active: activeTab === 'earnings' }
+    { id: 'career', name: 'Career Ready Plan', active: activeTab === 'career' },
+    { id: 'hired', name: 'Get Hired', active: activeTab === 'hired' }
   ]
 
   // Learning stats
@@ -230,15 +229,6 @@ export default function LMSDashboardPage() {
                 >
                   <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
                   Strategy Overview
-                </Link>
-
-                {/* LMS Dashboard Link */}
-                <Link
-                  href="/dashboard/talent/lms-dashboard"
-                  className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors bg-[#23544e] text-white"
-                >
-                  <BookOpenIcon className="mr-3 flex-shrink-0 h-5 w-5 text-white" />
-                  LMS Dashboard
                 </Link>
 
                 {/* Talent Management Sections */}
@@ -395,9 +385,6 @@ export default function LMSDashboardPage() {
                       }`}
                     >
                       {tab.name}
-                      {tab.badge && (
-                        <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-                      )}
                     </button>
                   ))}
                 </nav>
