@@ -77,9 +77,9 @@ export default function LMSDashboardPage() {
       icon: ChartBarIcon,
       expanded: expandedSections.talentInsight,
       subItems: [
-        { name: 'Performance Analytics', href: '/dashboard/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/dashboard/talent/talent-kpis' },
-        { name: 'Culture & Engagement', href: '/dashboard/talent/culture-engagement' }
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
       ]
     },
     {
