@@ -36,7 +36,6 @@ export default function TalentStrategyPage() {
   const { data: session } = useSession()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
-  const [activeSection, setActiveSection] = useState<string | null>(null)
   
   // State for expandable menu sections
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
@@ -532,7 +531,7 @@ export default function TalentStrategyPage() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {hrPillars.map((pillar, index) => (
+                  {hrPillars.map((pillar) => (
                     <div key={pillar.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                       <div className={`bg-gradient-to-r ${pillar.color} p-6`}>
                         <div className="flex items-center space-x-3">
