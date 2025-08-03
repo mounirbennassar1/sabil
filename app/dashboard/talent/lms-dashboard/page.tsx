@@ -26,8 +26,6 @@ import {
   ClockIcon,
   XMarkIcon,
   DevicePhoneMobileIcon,
-  CheckCircleIcon,
-  PlayIcon,
   ChevronRightIcon
 } from '@heroicons/react/24/outline'
 
@@ -364,7 +362,7 @@ export default function LMSDashboardPage() {
               {/* Welcome Header */}
               <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                  {session?.user?.name?.split(' ')[0]}'s Dashboard – let's jump back in.
+                  {session?.user?.name?.split(' ')[0]}&apos;s Dashboard – let&apos;s jump back in.
                 </h1>
                 <div className="flex items-center space-x-6 text-sm text-gray-600">
                   <div className="flex items-center space-x-2">
