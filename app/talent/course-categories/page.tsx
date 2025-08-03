@@ -329,6 +329,7 @@ export default function CourseCategoriesPage() {
             <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
               <h1 className="text-2xl font-bold mb-2">Course Categories</h1>
               <p className="text-green-100">Manage and organize your learning content by categories</p>
+              {/* Build: {new Date().toISOString()} */}
             </div>
 
             {/* Stats Cards */}
