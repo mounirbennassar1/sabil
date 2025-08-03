@@ -26,6 +26,7 @@ import {
   HandThumbDownIcon,
   FaceFrownIcon
 } from '@heroicons/react/24/outline'
+import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
 
 export default function CultureEngagementPage() {
   // Sidebar state
@@ -230,32 +231,58 @@ export default function CultureEngagementPage() {
     }
   ]
 
-  // Donut chart placeholder component
+  // Brand colors
+  const brandColors = {
+    primary: '#23544e',
+    secondary: '#2d6b63',
+    tertiary: '#3a7c75',
+    light: '#e8f4f3',
+    gray: '#6b7280'
+  }
+
+  // Donut chart data for overall engagement
+  const engagementData = [
+    { name: 'Engaged', value: engagementOverview.overallScore, color: brandColors.primary },
+    { name: 'Remaining', value: 10 - engagementOverview.overallScore, color: '#e5e7eb' }
+  ]
+
+  // Custom tooltip
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+          <p className="text-sm font-medium text-gray-900">
+            {payload[0].name}: {payload[0].value.toFixed(1)}
+          </p>
+        </div>
+      )
+    }
+    return null
+  }
+
+  // Donut chart component
   const DonutChart = ({ score }: { score: number }) => (
     <div className="relative flex items-center justify-center">
       <div className="w-32 h-32">
-        <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
-          {/* Background circle */}
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="#e5e7eb"
-            strokeWidth="8"
-            fill="none"
-          />
-          {/* Progress circle */}
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="#3B82F6"
-            strokeWidth="8"
-            fill="none"
-            strokeDasharray={`${(score / 10) * 251.2} 251.2`}
-            strokeLinecap="round"
-          />
-        </svg>
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={engagementData}
+              cx="50%"
+              cy="50%"
+              innerRadius={35}
+              outerRadius={60}
+              startAngle={90}
+              endAngle={450}
+              dataKey="value"
+            >
+              {engagementData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+          </PieChart>
+        </ResponsiveContainer>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900">{score}</div>
@@ -530,19 +557,49 @@ export default function CultureEngagementPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <div className="bg-white rounded-xl border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Team Engagement Scores</h3>
-              <div className="space-y-4">
-                {teamEngagement.map((team) => (
-                  <div key={team.team} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                    <div>
-                      <h4 className="font-medium text-gray-900">{team.team}</h4>
-                      <p className="text-sm text-gray-600">{team.size} members • {team.participation}% participation</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-lg font-semibold text-gray-900">{team.score}</div>
-                      <div className="text-sm text-gray-600">/ 10</div>
-                    </div>
-                  </div>
-                ))}
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={teamEngagement} layout="horizontal">
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis 
+                      type="number" 
+                      domain={[0, 10]}
+                      stroke={brandColors.gray}
+                      fontSize={12}
+                    />
+                    <YAxis 
+                      type="category" 
+                      dataKey="team" 
+                      stroke={brandColors.gray}
+                      fontSize={12}
+                      width={80}
+                    />
+                    <Tooltip 
+                      content={({ active, payload, label }) => {
+                        if (active && payload && payload.length) {
+                          const data = payload[0].payload
+                          return (
+                            <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+                              <p className="text-sm font-medium text-gray-900">{label}</p>
+                              <p className="text-sm" style={{ color: brandColors.primary }}>
+                                Score: {data.score}/10
+                              </p>
+                              <p className="text-sm text-gray-600">
+                                {data.size} members • {data.participation}% participation
+                              </p>
+                            </div>
+                          )
+                        }
+                        return null
+                      }}
+                    />
+                    <Bar 
+                      dataKey="score" 
+                      fill={brandColors.primary}
+                      radius={[0, 4, 4, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 

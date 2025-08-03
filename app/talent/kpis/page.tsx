@@ -114,6 +114,15 @@ export default function TalentKPIsPage() {
     }))
   }
 
+  // Brand colors
+  const brandColors = {
+    primary: '#23544e',
+    secondary: '#2d6b63',
+    tertiary: '#3a7c75',
+    light: '#e8f4f3',
+    gray: '#6b7280'
+  }
+
   // KPI data
   const talentKPIs = [
     {
@@ -439,8 +448,8 @@ export default function TalentKPIsPage() {
                 <div key={kpi.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
                   {/* KPI Header */}
                   <div className="flex items-start justify-between mb-4">
-                    <div className={`w-12 h-12 ${colorClasses.bg} rounded-lg flex items-center justify-center`}>
-                      <IconComponent className={`w-6 h-6 ${colorClasses.icon}`} />
+                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <IconComponent className="w-6 h-6" style={{ color: brandColors.primary }} />
                     </div>
                     <div className={`flex items-center ${getTrendColor(kpi.trend)}`}>
                       {getTrendIcon(kpi.trend)}
@@ -461,17 +470,9 @@ export default function TalentKPIsPage() {
                   <div className="mb-4">
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          kpi.color === 'green' ? 'bg-green-500' :
-                          kpi.color === 'blue' ? 'bg-blue-500' :
-                          kpi.color === 'purple' ? 'bg-purple-500' :
-                          kpi.color === 'orange' ? 'bg-orange-500' :
-                          kpi.color === 'yellow' ? 'bg-yellow-500' :
-                          kpi.color === 'indigo' ? 'bg-indigo-500' :
-                          kpi.color === 'pink' ? 'bg-pink-500' :
-                          'bg-red-500'
-                        }`}
+                        className="h-2 rounded-full transition-all duration-300"
                         style={{ 
+                          backgroundColor: brandColors.primary,
                           width: `${Math.min(
                             kpi.value.includes('%') ? 
                               (parseFloat(kpi.value.replace('%', '')) / parseFloat(kpi.target.replace('%', ''))) * 100 :

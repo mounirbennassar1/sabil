@@ -23,6 +23,7 @@ import {
   ArrowDownIcon,
   MinusIcon
 } from '@heroicons/react/24/outline'
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 export default function PerformanceAnalyticsPage() {
   // Sidebar state
@@ -131,6 +132,22 @@ export default function PerformanceAnalyticsPage() {
     { department: 'Operations', avgRating: 3.6, trend: 'up', employees: 35, change: 0.4 }
   ]
 
+  // Performance trends data for line chart
+  const performanceTrends = [
+    { month: 'Jan', overall: 3.6, engineering: 4.0, marketing: 3.8, sales: 3.5 },
+    { month: 'Feb', overall: 3.7, engineering: 4.1, marketing: 3.9, sales: 3.6 },
+    { month: 'Mar', overall: 3.8, engineering: 4.0, marketing: 3.8, sales: 3.7 },
+    { month: 'Apr', overall: 3.9, engineering: 4.2, marketing: 4.0, sales: 3.8 },
+    { month: 'May', overall: 4.0, engineering: 4.1, marketing: 4.1, sales: 3.9 },
+    { month: 'Jun', overall: 4.1, engineering: 4.3, marketing: 4.0, sales: 3.8 },
+    { month: 'Jul', overall: 4.0, engineering: 4.2, marketing: 4.0, sales: 3.7 },
+    { month: 'Aug', overall: 4.1, engineering: 4.2, marketing: 4.1, sales: 3.8 },
+    { month: 'Sep', overall: 4.0, engineering: 4.1, marketing: 3.9, sales: 3.8 },
+    { month: 'Oct', overall: 4.1, engineering: 4.2, marketing: 4.0, sales: 3.8 },
+    { month: 'Nov', overall: 4.2, engineering: 4.3, marketing: 4.1, sales: 3.9 },
+    { month: 'Dec', overall: 4.1, engineering: 4.2, marketing: 4.0, sales: 3.8 }
+  ]
+
   const topPerformers = [
     { name: 'Sarah Chen', department: 'Engineering', rating: 4.9, role: 'Senior Developer' },
     { name: 'Michael Rodriguez', department: 'Sales', rating: 4.8, role: 'Account Manager' },
@@ -147,41 +164,31 @@ export default function PerformanceAnalyticsPage() {
     { band: 'Poor', count: 2, percentage: 1, color: 'bg-red-500' }
   ]
 
-  // Chart placeholder component
-  const ChartPlaceholder = ({ title, type }: { title: string, type: string }) => (
-    <div className="bg-gray-50 rounded-lg p-8 flex flex-col items-center justify-center min-h-[300px]">
-      <ChartBarIcon className="w-16 h-16 text-gray-400 mb-4" />
-      <h3 className="text-lg font-medium text-gray-700 mb-2">{title}</h3>
-      <p className="text-sm text-gray-500">{type} Chart Visualization</p>
-      <div className="mt-4 space-y-2">
-        {type === 'Bar' && (
-          <div className="flex space-x-2">
-            <div className="w-8 h-16 bg-blue-300 rounded"></div>
-            <div className="w-8 h-12 bg-blue-400 rounded"></div>
-            <div className="w-8 h-20 bg-blue-500 rounded"></div>
-            <div className="w-8 h-14 bg-blue-300 rounded"></div>
-          </div>
-        )}
-        {type === 'Line' && (
-          <div className="w-32 h-16 relative">
-            <svg className="w-full h-full" viewBox="0 0 128 64">
-              <polyline 
-                points="0,50 32,30 64,20 96,35 128,15" 
-                fill="none" 
-                stroke="#3B82F6" 
-                strokeWidth="2"
-              />
-            </svg>
-          </div>
-        )}
-        {type === 'Pie' && (
-          <div className="w-16 h-16 relative">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400"></div>
-          </div>
-        )}
-      </div>
-    </div>
-  )
+  // Brand colors
+  const brandColors = {
+    primary: '#23544e',
+    secondary: '#2d6b63',
+    tertiary: '#3a7c75',
+    light: '#e8f4f3',
+    gray: '#6b7280'
+  }
+
+  // Custom tooltip component
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+          <p className="text-sm font-medium text-gray-900">{label}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={index} className="text-sm" style={{ color: entry.color }}>
+              {entry.name}: {entry.value}
+            </p>
+          ))}
+        </div>
+      )
+    }
+    return null
+  }
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
@@ -370,13 +377,75 @@ export default function PerformanceAnalyticsPage() {
             {/* Performance Trends Chart */}
             <div className="bg-white rounded-xl border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Trends Over Time</h3>
-              <ChartPlaceholder title="Monthly Performance Trends" type="Line" />
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={performanceTrends}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                    <XAxis 
+                      dataKey="month" 
+                      stroke={brandColors.gray}
+                      fontSize={12}
+                    />
+                    <YAxis 
+                      domain={[3, 5]}
+                      stroke={brandColors.gray}
+                      fontSize={12}
+                    />
+                    <Tooltip content={<CustomTooltip />} />
+                    <Legend />
+                    <Line 
+                      type="monotone" 
+                      dataKey="overall" 
+                      stroke={brandColors.primary} 
+                      strokeWidth={3}
+                      name="Overall"
+                      dot={{ fill: brandColors.primary, strokeWidth: 2, r: 4 }}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="engineering" 
+                      stroke={brandColors.secondary} 
+                      strokeWidth={2}
+                      name="Engineering"
+                      dot={{ fill: brandColors.secondary, strokeWidth: 2, r: 3 }}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="marketing" 
+                      stroke={brandColors.tertiary} 
+                      strokeWidth={2}
+                      name="Marketing"
+                      dot={{ fill: brandColors.tertiary, strokeWidth: 2, r: 3 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
             </div>
 
             {/* Performance Distribution */}
             <div className="bg-white rounded-xl border border-gray-200 p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Distribution</h3>
-              <ChartPlaceholder title="Performance Band Distribution" type="Pie" />
+              <div className="h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={performanceDistribution}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      dataKey="count"
+                      label={({ name, percentage }) => `${name}: ${percentage}%`}
+                    >
+                      <Cell fill={brandColors.primary} />
+                      <Cell fill={brandColors.secondary} />
+                      <Cell fill={brandColors.tertiary} />
+                      <Cell fill={brandColors.gray} />
+                      <Cell fill="#d1d5db" />
+                    </Pie>
+                    <Tooltip content={<CustomTooltip />} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
 
