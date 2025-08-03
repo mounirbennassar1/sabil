@@ -66,9 +66,9 @@ export default function TalentStrategyPage() {
       icon: ArrowTrendingUpIcon,
       expanded: expandedSections.talentGrowth,
       subItems: [
-        { name: 'Succession Planning Matrix', href: '/dashboard/talent/succession-planning' },
-        { name: 'Career Pathing Map', href: '/dashboard/talent/career-pathing' },
-        { name: 'Competency Framework', href: '/dashboard/talent/competency-framework' }
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
       ]
     },
     {
