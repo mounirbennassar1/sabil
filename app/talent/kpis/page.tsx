@@ -226,20 +226,7 @@ export default function TalentKPIsPage() {
     }
   ]
 
-  // Get color classes for different metrics
-  const getColorClasses = (color: string) => {
-    const colorMap: {[key: string]: {bg: string, text: string, icon: string}} = {
-      green: { bg: 'bg-green-50', text: 'text-green-700', icon: 'text-green-600' },
-      blue: { bg: 'bg-blue-50', text: 'text-blue-700', icon: 'text-blue-600' },
-      purple: { bg: 'bg-purple-50', text: 'text-purple-700', icon: 'text-purple-600' },
-      orange: { bg: 'bg-orange-50', text: 'text-orange-700', icon: 'text-orange-600' },
-      yellow: { bg: 'bg-yellow-50', text: 'text-yellow-700', icon: 'text-yellow-600' },
-      indigo: { bg: 'bg-indigo-50', text: 'text-indigo-700', icon: 'text-indigo-600' },
-      pink: { bg: 'bg-pink-50', text: 'text-pink-700', icon: 'text-pink-600' },
-      red: { bg: 'bg-red-50', text: 'text-red-700', icon: 'text-red-600' }
-    }
-    return colorMap[color] || colorMap.blue
-  }
+
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
