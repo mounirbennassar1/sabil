@@ -15,12 +15,10 @@ import {
   ChevronUpIcon,
   DocumentChartBarIcon,
   BriefcaseIcon,
-  FunnelIcon,
   MagnifyingGlassIcon,
   ClockIcon,
   StarIcon,
   UsersIcon,
-  TagIcon,
   CheckBadgeIcon,
   AcademicCapIcon
 } from '@heroicons/react/24/outline'
