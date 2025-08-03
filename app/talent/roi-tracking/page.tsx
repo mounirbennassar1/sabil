@@ -18,10 +18,7 @@ import {
   StarIcon,
   SparklesIcon,
   CpuChipIcon,
-  AcademicCapIcon,
-  CurrencyDollarIcon,
-  ClockIcon,
-  FunnelIcon
+  AcademicCapIcon
 } from '@heroicons/react/24/outline'
 
 export default function ROITracking() {

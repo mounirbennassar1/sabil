@@ -23,8 +23,6 @@ import {
   CheckCircleIcon,
   ClockIcon,
   ExclamationTriangleIcon,
-  PlayIcon,
-  PauseIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline'
 
