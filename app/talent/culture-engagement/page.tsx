@@ -231,7 +231,7 @@ export default function CultureEngagementPage() {
   ]
 
   // Donut chart placeholder component
-  const DonutChart = ({ score, title }: { score: number, title: string }) => (
+  const DonutChart = ({ score }: { score: number }) => (
     <div className="relative flex items-center justify-center">
       <div className="w-32 h-32">
         <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
@@ -460,7 +460,7 @@ export default function CultureEngagementPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="col-span-1 flex justify-center">
-                <DonutChart score={engagementOverview.overallScore} title="Overall Score" />
+                <DonutChart score={engagementOverview.overallScore} />
               </div>
               
               <div className="col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">

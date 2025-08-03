@@ -15,12 +15,10 @@ import {
   ChevronUpIcon,
   DocumentChartBarIcon,
   BriefcaseIcon,
-  MagnifyingGlassIcon,
   FunnelIcon,
   CalendarIcon,
   TrophyIcon,
   UserIcon,
-  ChartPieIcon,
   ArrowUpIcon,
   ArrowDownIcon,
   MinusIcon
