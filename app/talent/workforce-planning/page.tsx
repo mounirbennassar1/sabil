@@ -11,16 +11,12 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   AcademicCapIcon,
-  TrendingUpIcon,
   UserPlusIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
   ClockIcon,
   BriefcaseIcon,
   BuildingOfficeIcon,
-  PlusIcon,
-  MagnifyingGlassIcon,
-  FunnelIcon,
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon
 } from '@heroicons/react/24/outline'
@@ -60,7 +56,7 @@ export default function WorkforcePlanningPage() {
     },
     {
       name: 'Talent Growth',
-      icon: TrendingUpIcon,
+      icon: ArrowTrendingUpIcon,
       items: [
         { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
         { name: 'Career Pathing Map', href: '/talent/career-pathing' },
