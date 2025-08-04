@@ -28,7 +28,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
-export default function CultureEngagementPage() {
+export default function CultureEngagementPage(): JSX.Element {
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: false,
@@ -328,7 +328,8 @@ export default function CultureEngagementPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen">
         {/* Sidebar */}
         <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
@@ -654,5 +655,6 @@ export default function CultureEngagementPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
