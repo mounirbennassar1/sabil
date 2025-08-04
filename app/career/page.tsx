@@ -19,24 +19,93 @@ import {
   UserGroupIcon,
   ClockIcon,
   CheckCircleIcon,
-  ArrowTrendingUpIcon
+  ArrowTrendingUpIcon,
+  MapIcon,
+  CogIcon,
+  ChevronDownIcon,
+  ChevronUpIcon
 } from '@heroicons/react/24/outline'
 
 export default function CareerJourneyPage() {
   const { data: session } = useSession()
   const router = useRouter()
   const [loading, setLoading] = useState(true)
+  
+  // Sidebar state
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: false,
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: false
+  })
 
-  const sidebarItems = [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: true, isSection: true },
-    { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: false, isSection: true },
-    { name: 'My Library', href: '/library', icon: HeartIcon, current: false },
-    { name: 'Content', href: '/content', icon: StarIcon, current: false },
-    { name: 'Apply AI', href: '/ai', icon: SparklesIcon, current: false, isSection: true },
-    { name: 'Coding Practice', href: '/coding', icon: CpuChipIcon, current: false },
-    { name: 'Certifications', href: '/certificates', icon: AcademicCapIcon, current: false },
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: 'Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: 'Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: 'Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: 'Future & Strategic',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: 'Execution & Integration',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration', href: '/talent/integrations' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
   ]
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
 
   const careerGoals = [
     {
@@ -115,59 +184,137 @@ export default function CareerJourneyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <div className="hidden lg:flex lg:flex-shrink-0">
-        <div className="flex flex-col w-64">
-          <div className="flex-1 flex flex-col min-h-0 bg-white shadow-lg">
-            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex items-center flex-shrink-0 px-4 mb-8">
-                <Link href="/dashboard" className="flex items-center space-x-3">
-                  <Image 
-                    src="/logo.png" 
-                    alt="Neon Green Hydrogen Logo" 
-                    width={32}
-                    height={32}
-                    className="rounded-lg"
-                  />
-                  <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
-                </Link>
-              </div>
-              <nav className="mt-5 flex-1 px-2 space-y-1">
-                {sidebarItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      item.current
-                        ? 'bg-[#23544e] text-white'
-                        : item.isSection
-                        ? 'text-gray-900 hover:text-[#23544e] hover:bg-gray-50 font-medium'
-                        : 'text-gray-600 hover:text-[#23544e] hover:bg-gray-50'
-                    }`}
-                  >
-                    <item.icon
-                      className={`mr-3 flex-shrink-0 h-5 w-5 ${
-                        item.current 
-                          ? 'text-white' 
-                          : item.isSection 
-                          ? 'text-[#23544e]' 
-                          : 'text-gray-400 group-hover:text-gray-500'
-                      }`}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <div className="flex h-16 items-center justify-center border-b border-gray-200">
+            <Image className="h-8 w-auto" src="/logo.png" alt="Logo" width={32} height={32} />
           </div>
-        </div>
-      </div>
 
-      {/* Main content */}
-      <div className="flex-1 overflow-hidden">
-        <div className="flex flex-col h-screen">
+          <nav className="px-3 py-4 space-y-1">
+            {/* Home */}
+            <Link
+              href="/dashboard"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HomeIcon className="h-5 w-5 mr-3" />
+              Home
+            </Link>
+
+            {/* Talent Management Strategy Header */}
+            <div className="pt-4 pb-2">
+              <div className="flex items-center px-3">
+                <UserGroupIcon className="mr-2 h-5 w-5 text-[#23544e]" />
+                <h3 className="text-sm font-semibold text-[#23544e] uppercase tracking-wider">
+                  Talent Management Strategy
+                </h3>
+              </div>
+            </div>
+
+            {/* Strategy Overview Link */}
+            <Link
+              href="/dashboard/talent-strategy"
+              className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+            >
+              <MapIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+              Strategy Overview
+            </Link>
+
+            {/* Talent Management Sections */}
+            {talentManagementSections.map((section) => (
+              <div key={section.id} className="space-y-1">
+                <button
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-700 hover:text-[#23544e] hover:bg-gray-50"
+                >
+                  <div className="flex items-center">
+                    <section.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
+                    {section.name}
+                  </div>
+                  {section.expanded ? (
+                    <ChevronUpIcon className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+                  )}
+                </button>
+                
+                {section.expanded && (
+                  <div className="ml-6 space-y-1">
+                    {section.subItems.map((subItem) => (
+                      <Link
+                        key={subItem.name}
+                        href={subItem.href}
+                        className="group flex items-center px-3 py-2 text-sm rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
+                      >
+                        <div className="mr-3 flex-shrink-0 w-2 h-2 bg-gray-300 rounded-full group-hover:bg-[#23544e]"></div>
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Divider */}
+            <div className="pt-4 border-t border-gray-200"></div>
+
+            {/* Rest of navigation items */}
+            <Link
+              href="/career"
+              className="flex items-center px-3 py-2 text-sm font-medium text-[#23544e] bg-gray-50 rounded-lg transition-colors"
+            >
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              My Career Journey
+            </Link>
+            <Link
+              href="/learn"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BookOpenIcon className="h-5 w-5 mr-3" />
+              Learn
+            </Link>
+            <Link
+              href="/library"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <HeartIcon className="h-5 w-5 mr-3" />
+              My Library
+            </Link>
+            <Link
+              href="/content"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <StarIcon className="h-5 w-5 mr-3" />
+              Content
+            </Link>
+            <Link
+              href="/ai"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <SparklesIcon className="h-5 w-5 mr-3" />
+              Apply AI
+            </Link>
+            <Link
+              href="/coding"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <CpuChipIcon className="h-5 w-5 mr-3" />
+              Coding Practice
+            </Link>
+            <Link
+              href="/certificates"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <AcademicCapIcon className="h-5 w-5 mr-3" />
+              Certifications
+            </Link>
+          </nav>
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1 overflow-auto">
+          <div className="p-8">
           {/* Top header */}
           <div className="bg-white shadow-sm border-b border-gray-200">
             <div className="px-4 sm:px-6 lg:px-8">
@@ -366,6 +513,7 @@ export default function CareerJourneyPage() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -17,7 +17,14 @@ import {
   CodeBracketIcon,
   PlayIcon,
   ClockIcon,
-  FireIcon
+  FireIcon,
+  UserGroupIcon,
+  ArrowTrendingUpIcon,
+  ChartBarIcon,
+  MapIcon,
+  CogIcon,
+  ChevronDownIcon,
+  ChevronUpIcon
 } from '@heroicons/react/24/outline'
 
 interface CodingChallenge {
@@ -37,17 +44,82 @@ export default function CodingPage() {
   const [challenges, setChallenges] = useState<CodingChallenge[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState('All')
+  
+  // Sidebar state
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: false,
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: false
+  })
 
-  const sidebarItems = [
-    { name: 'Home', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
-    { name: 'Learn', href: '/learn', icon: BookOpenIcon, current: false, isSection: true },
-    { name: 'My Library', href: '/library', icon: HeartIcon, current: false },
-    { name: 'Content', href: '/content', icon: StarIcon, current: false },
-    { name: 'Apply AI', href: '/ai', icon: SparklesIcon, current: false, isSection: true },
-    { name: 'Coding Practice', href: '/coding', icon: CpuChipIcon, current: true },
-    { name: 'Certifications', href: '/certificates', icon: AcademicCapIcon, current: false },
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: 'Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: 'Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: 'Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: 'Future & Strategic',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: 'Execution & Integration',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration', href: '/talent/integrations' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
   ]
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
 
   const categories = ['All', 'Arrays', 'Strings', 'Algorithms', 'Data Structures', 'Dynamic Programming']
 
