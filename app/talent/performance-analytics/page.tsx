@@ -78,7 +78,7 @@ export default function PerformanceAnalyticsPage(): React.JSX.Element {
     },
     {
       id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
+      name: 'Future & Strategic',
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
@@ -89,11 +89,11 @@ export default function PerformanceAnalyticsPage(): React.JSX.Element {
     },
     {
       id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
+      name: 'Execution & Integration',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/talent/integration' },
+        { name: 'Integration', href: '/talent/integrations' },
         { name: 'Change Management Plan', href: '/talent/change-management' },
         { name: 'ROI Tracking', href: '/talent/roi-tracking' }
       ]

@@ -97,7 +97,7 @@ export default function CareerPathingPage() {
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/talent/integration' },
+        { name: 'Integration', href: '/talent/integrations' },
         { name: 'Change Management Plan', href: '/talent/change-management' },
         { name: 'ROI Tracking', href: '/talent/roi-tracking' }
       ]

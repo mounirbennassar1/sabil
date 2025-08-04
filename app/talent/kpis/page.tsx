@@ -85,7 +85,7 @@ export default function TalentKPIsPage() {
     },
     {
       id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
+      name: 'Future & Strategic',
       icon: MapIcon,
       expanded: expandedSections.futureStrategic,
       subItems: [
@@ -96,7 +96,7 @@ export default function TalentKPIsPage() {
     },
     {
       id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
+      name: 'Execution & Integration',
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [

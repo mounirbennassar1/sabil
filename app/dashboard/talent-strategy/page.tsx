@@ -99,7 +99,7 @@ export default function TalentStrategyPage() {
       icon: CogIcon,
       expanded: expandedSections.executionIntegration,
       subItems: [
-        { name: 'Integration Placeholders', href: '/dashboard/talent/integration-placeholders' },
+        { name: 'Integration', href: '/talent/integrations' },
         { name: 'Change Management Plan', href: '/dashboard/talent/change-management' },
         { name: 'ROI Tracking', href: '/dashboard/talent/roi-tracking' }
       ]
