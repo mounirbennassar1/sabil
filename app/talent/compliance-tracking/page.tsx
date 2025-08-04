@@ -25,7 +25,7 @@ import {
   ExclamationTriangleIcon,
   CheckCircleIcon,
   ClockIcon,
-  DocumentTextIcon,
+
   CalendarDaysIcon,
   ArrowPathIcon,
   ChartPieIcon
