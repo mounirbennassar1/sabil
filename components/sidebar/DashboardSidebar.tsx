@@ -49,7 +49,9 @@ export default function DashboardSidebar({ activeItem }: DashboardSidebarProps) 
         { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
         { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
         { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' }
+        { name: 'Course Categories', href: '/talent/course-categories' },
+        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
+        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
       ]
     },
     {

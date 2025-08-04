@@ -46,7 +46,9 @@ export default function TalentMarketplace() {
         { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
         { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
         { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' }
+        { name: 'Course Categories', href: '/talent/course-categories' },
+        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
+        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
       ]
     },
     {
@@ -67,7 +69,7 @@ export default function TalentMarketplace() {
       expanded: expandedSections.talentInsight,
       subItems: [
         { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/talent-kpis' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
         { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
       ]
     },

@@ -138,7 +138,7 @@ export default function StudentDashboard() {
       expanded: expandedSections.talentInsight,
       subItems: [
         { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/talent-kpis' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
         { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
       ]
     },
