@@ -25,7 +25,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-export default function PerformanceAnalyticsPage(): JSX.Element {
+export default function PerformanceAnalyticsPage(): React.JSX.Element {
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: false,
@@ -340,7 +340,7 @@ export default function PerformanceAnalyticsPage(): JSX.Element {
 
         {/* Main content */}
         <div className="flex-1 overflow-auto">
-        <div className="p-8">
+          <div className="p-8">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between">
@@ -552,6 +552,7 @@ export default function PerformanceAnalyticsPage(): JSX.Element {
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </div>
       </div>

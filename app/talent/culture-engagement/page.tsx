@@ -28,7 +28,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
-export default function CultureEngagementPage(): JSX.Element {
+export default function CultureEngagementPage(): React.JSX.Element {
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: false,
@@ -451,7 +451,7 @@ export default function CultureEngagementPage(): JSX.Element {
 
         {/* Main content */}
         <div className="flex-1 overflow-auto">
-        <div className="p-8">
+          <div className="p-8">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between">
@@ -651,6 +651,7 @@ export default function CultureEngagementPage(): JSX.Element {
                 ))}
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
