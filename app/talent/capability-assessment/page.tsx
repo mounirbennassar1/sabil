@@ -303,8 +303,7 @@ export default function CapabilityAssessment() {
   const renderSidebar = () => (
     <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
       <div className="flex h-16 items-center justify-center border-b border-gray-200">
-        <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
-        <span className="ml-2 text-lg font-bold text-[#23544e]">Sabil</span>
+        <Image className="h-8 w-auto" src="/logo.png" alt="Logo" width={32} height={32} />
       </div>
 
       <nav className="px-3 py-4 space-y-1">

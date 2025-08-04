@@ -61,7 +61,7 @@ export async function POST(
     })
 
     // Create certificate with unique number
-    const certificateNumber = `SABIL-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+    const certificateNumber = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
     
     await prisma.certificate.create({
       data: {

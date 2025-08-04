@@ -274,7 +274,7 @@ export default function TalentKPIsPage() {
         <div className="flex h-full flex-col">
           {/* Logo */}
           <div className="flex h-16 items-center justify-center border-b border-gray-200">
-            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+            <Image className="h-8 w-auto" src="/logo.png" alt="Logo" width={32} height={32} />
           </div>
 
           {/* Navigation */}

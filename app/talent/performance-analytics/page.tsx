@@ -217,17 +217,15 @@ export default function PerformanceAnalyticsPage() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg">
-        <div className="flex h-full flex-col">
-          {/* Logo */}
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex h-screen">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
           <div className="flex h-16 items-center justify-center border-b border-gray-200">
-            <Image className="h-8 w-auto" src="/logo.png" alt="Sabil" width={32} height={32} />
+            <Image className="h-8 w-auto" src="/logo.png" alt="Logo" width={32} height={32} />
           </div>
 
-          {/* Navigation */}
-          <nav className="mt-5 flex-1 px-2 space-y-1">
+          <nav className="px-3 py-4 space-y-1">
             {/* Home */}
             <Link href="/dashboard" className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50">
               <HomeIcon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
@@ -293,23 +291,54 @@ export default function PerformanceAnalyticsPage() {
             {/* Divider */}
             <div className="pt-4 border-t border-gray-200"></div>
 
-            {/* Rest of sidebar items */}
-            {sidebarItems.slice(1).map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors text-gray-600 hover:text-[#23544e] hover:bg-gray-50"
-              >
-                <item.icon className="mr-3 flex-shrink-0 h-5 w-5 text-[#23544e]" />
-                {item.name}
-              </Link>
-            ))}
+            {/* Rest of navigation items */}
+            <Link
+              href="/career"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BriefcaseIcon className="h-5 w-5 mr-3" />
+              My Career Journey
+            </Link>
+            <Link
+              href="/learn"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <BookOpenIcon className="h-5 w-5 mr-3" />
+              Learn
+            </Link>
+            <Link
+              href="/library"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <DocumentChartBarIcon className="h-5 w-5 mr-3" />
+              My Library
+            </Link>
+            <Link
+              href="/content"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <DocumentChartBarIcon className="h-5 w-5 mr-3" />
+              Content
+            </Link>
+            <Link
+              href="/ai"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <CogIcon className="h-5 w-5 mr-3" />
+              Apply AI
+            </Link>
+            <Link
+              href="/certificates"
+              className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:text-[#23544e] hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <DocumentChartBarIcon className="h-5 w-5 mr-3" />
+              Certifications
+            </Link>
           </nav>
         </div>
-      </div>
 
-      {/* Main content */}
-      <div className="ml-64 flex-1 overflow-auto">
+        {/* Main content */}
+        <div className="flex-1 overflow-auto">
         <div className="p-8">
           {/* Header */}
           <div className="mb-8">

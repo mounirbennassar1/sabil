@@ -59,7 +59,7 @@ export default function CertificatesPage() {
         id: '1',
         courseName: 'Complete Web Development Bootcamp',
         completedDate: '2024-01-15',
-        certificateNumber: 'SABIL-2024-WEB001',
+        certificateNumber: 'CERT-2024-WEB001',
         instructorName: 'John Smith',
         courseDuration: '32 hours',
         thumbnail: '/logo.png'
@@ -68,7 +68,7 @@ export default function CertificatesPage() {
         id: '2',
         courseName: 'Advanced JavaScript Programming',
         completedDate: '2024-02-20',
-        certificateNumber: 'SABIL-2024-JS002',
+        certificateNumber: 'CERT-2024-JS002',
         instructorName: 'Sarah Johnson',
         courseDuration: '24 hours',
         thumbnail: '/logo.png'
