@@ -40,15 +40,6 @@ export default function PerformanceAnalyticsPage(): React.JSX.Element {
   const [selectedPeriod, setSelectedPeriod] = useState('Last 12 Months')
   const [selectedBand, setSelectedBand] = useState('All')
 
-  // Sidebar configuration
-  const sidebarItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
-  ]
-
   const talentManagementSections = [
     {
       id: 'learningCapability',
