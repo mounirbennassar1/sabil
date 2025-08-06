@@ -382,7 +382,7 @@ export default function LMSDashboardPage() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`relative py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                         tab.active
-                          ? 'border-green-500 text-green-600'
+                          ? 'border-[#23544e] text-[#23544e]'
                           : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -395,26 +395,26 @@ export default function LMSDashboardPage() {
               {/* Tab Content */}
               {activeTab === 'learn' && (
                 <>
-                  {/* Learning Stats */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                    {learningStats.map((stat, index) => (
-                      <div key={index} className="bg-white rounded-xl border border-gray-200 p-6">
-                        <div className="flex items-center space-x-3">
-                          <stat.icon className={`h-6 w-6 ${stat.color}`} />
-                          <div>
-                            <p className="text-sm text-gray-600">{stat.label}</p>
-                            <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                          </div>
-                        </div>
+              {/* Learning Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                {learningStats.map((stat, index) => (
+                  <div key={index} className="bg-white rounded-xl border border-gray-200 p-6">
+                    <div className="flex items-center space-x-3">
+                      <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                      <div>
+                        <p className="text-sm text-gray-600">{stat.label}</p>
+                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
                       </div>
-                    ))}
-                    <div className="md:col-span-4 flex justify-end">
-                      <Link href="/achievements" className="text-sm text-[#23544e] hover:underline flex items-center">
-                        View All Achievements
-                        <ChevronRightIcon className="h-4 w-4 ml-1" />
-                      </Link>
                     </div>
                   </div>
+                ))}
+                <div className="md:col-span-4 flex justify-end">
+                  <Link href="/achievements" className="text-sm text-[#23544e] hover:underline flex items-center">
+                    View All Achievements
+                    <ChevronRightIcon className="h-4 w-4 ml-1" />
+                  </Link>
+                </div>
+              </div>
                 </>
               )}
 
@@ -423,7 +423,7 @@ export default function LMSDashboardPage() {
                   {/* Career Ready Plan Content */}
                   <div className="space-y-8">
                     {/* Career Roadmap Overview */}
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+                    <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 text-white">
                       <div className="max-w-4xl">
                         <h2 className="text-3xl font-bold mb-4">🚀 Your Career Ready Plan</h2>
                         <p className="text-xl opacity-90 mb-6">
@@ -446,8 +446,8 @@ export default function LMSDashboardPage() {
                     {/* Career Assessment */}
                     <div className="bg-white rounded-xl border border-gray-200 p-8">
                       <div className="flex items-center space-x-4 mb-6">
-                        <div className="bg-blue-100 p-3 rounded-full">
-                          <ChartBarIcon className="h-8 w-8 text-blue-600" />
+                        <div className="bg-[#23544e]/10 p-3 rounded-full">
+                          <ChartBarIcon className="h-8 w-8 text-[#23544e]" />
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold text-gray-900">Career Assessment</h3>
@@ -459,7 +459,7 @@ export default function LMSDashboardPage() {
                           <div className="text-3xl mb-3">🎯</div>
                           <h4 className="font-semibold text-gray-900 mb-2">Skills Assessment</h4>
                           <p className="text-sm text-gray-600 mb-4">Evaluate your current skill level</p>
-                          <Link href="/talent/capability-assessment" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                          <Link href="/talent/capability-assessment" className="bg-[#23544e] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             Take Assessment
                           </Link>
                         </div>
@@ -467,7 +467,7 @@ export default function LMSDashboardPage() {
                           <div className="text-3xl mb-3">💡</div>
                           <h4 className="font-semibold text-gray-900 mb-2">Interest Profiler</h4>
                           <p className="text-sm text-gray-600 mb-4">Find careers that match your interests</p>
-                          <button className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+                          <button className="bg-[#23544e] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             Start Profiler
                           </button>
                         </div>
@@ -475,7 +475,7 @@ export default function LMSDashboardPage() {
                           <div className="text-3xl mb-3">📊</div>
                           <h4 className="font-semibold text-gray-900 mb-2">Career Fit Score</h4>
                           <p className="text-sm text-gray-600 mb-4">See how well you match target roles</p>
-                          <button className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+                          <button className="bg-[#23544e] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             View Score
                           </button>
                         </div>
@@ -496,15 +496,15 @@ export default function LMSDashboardPage() {
                           </div>
                           <div className="text-green-600 font-medium">Completed ✓</div>
                         </div>
-                        <div className="flex items-center space-x-4 p-4 border border-blue-200 bg-blue-50 rounded-lg">
-                          <div className="bg-blue-100 p-2 rounded-full">
-                            <span className="text-blue-600 font-bold">2</span>
+                        <div className="flex items-center space-x-4 p-4 border border-[#23544e]/30 bg-[#23544e]/5 rounded-lg">
+                          <div className="bg-[#23544e]/10 p-2 rounded-full">
+                            <span className="text-[#23544e] font-bold">2</span>
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-900">Technical Specialization</h4>
                             <p className="text-sm text-gray-600">Master job-specific technical skills</p>
                           </div>
-                          <div className="text-blue-600 font-medium">In Progress (60%)</div>
+                          <div className="text-[#23544e] font-medium">In Progress (60%)</div>
                         </div>
                         <div className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg opacity-75">
                           <div className="bg-gray-100 p-2 rounded-full">
@@ -568,7 +568,7 @@ export default function LMSDashboardPage() {
                   {/* Get Hired Content */}
                   <div className="space-y-8">
                     {/* Job Search Hero */}
-                    <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-white">
+                    <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 text-white">
                       <div className="max-w-4xl">
                         <h2 className="text-3xl font-bold mb-4">💼 Get Hired - Your Job Search Command Center</h2>
                         <p className="text-xl opacity-90 mb-6">
@@ -616,27 +616,27 @@ export default function LMSDashboardPage() {
                     <div className="bg-white rounded-xl border border-gray-200 p-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-6">🛠️ Job Search Tools</h3>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-blue-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                        <div className="bg-[#23544e]/5 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
                           <div className="text-4xl mb-4">📝</div>
                           <h4 className="font-semibold text-gray-900 mb-2">AI Resume Builder</h4>
                           <p className="text-sm text-gray-600 mb-4">Create ATS-optimized resumes that get noticed</p>
-                          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                          <button className="bg-[#23544e] text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             Build Resume
                           </button>
                         </div>
-                        <div className="bg-green-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                        <div className="bg-[#23544e]/5 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
                           <div className="text-4xl mb-4">🔍</div>
                           <h4 className="font-semibold text-gray-900 mb-2">Smart Job Search</h4>
                           <p className="text-sm text-gray-600 mb-4">Find jobs that match your skills and preferences</p>
-                          <button className="bg-green-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+                          <button className="bg-[#23544e] text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             Search Jobs
                           </button>
                         </div>
-                        <div className="bg-purple-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                        <div className="bg-[#23544e]/5 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
                           <div className="text-4xl mb-4">🎭</div>
                           <h4 className="font-semibold text-gray-900 mb-2">Interview Simulator</h4>
                           <p className="text-sm text-gray-600 mb-4">Practice with AI-powered mock interviews</p>
-                          <button className="bg-purple-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+                          <button className="bg-[#23544e] text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
                             Start Practice
                           </button>
                         </div>
@@ -761,7 +761,7 @@ export default function LMSDashboardPage() {
 
               {activeTab === 'learn' && (
                 <>
-                  {/* Personalized Recommendations */}
+              {/* Personalized Recommendations */}
               <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 mb-8 text-white overflow-hidden relative">
                 <div className="relative z-10">
                   <div className="max-w-4xl">
@@ -769,7 +769,7 @@ export default function LMSDashboardPage() {
                     <p className="text-xl opacity-90 mb-6">
                       Tell us what your learning goals and career objectives are, and we will recommend the best courses for you to enroll in.
                     </p>
-                    <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                    <button className="bg-[#0b867a] hover:bg-[#0a7a6e] text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                       Get Recommendations
                     </button>
                   </div>
