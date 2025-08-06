@@ -22,7 +22,9 @@ import {
   MagnifyingGlassIcon,
   ClockIcon,
   UsersIcon,
-  PlayIcon
+  PlayIcon,
+  PlusIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline'
 
 export default function CoursesPage() {
@@ -104,6 +106,40 @@ export default function CoursesPage() {
     }))
   }
 
+  // Handle creating new course
+  const handleCreateCourse = () => {
+    if (!newCourse.title || !newCourse.description || !newCourse.categoryId) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    const newCourseItem = {
+      id: `course-${Date.now()}`,
+      title: newCourse.title,
+      description: newCourse.description,
+      thumbnail: `https://picsum.photos/400/300?random=${Date.now()}`,
+      duration: newCourse.duration,
+      level: newCourse.level,
+      category: { id: newCourse.categoryId, name: newCourse.categoryId },
+      _count: { enrollments: 0 }
+    }
+
+    setCourses([...courses, newCourseItem])
+    setShowCreateModal(false)
+    resetCourseForm()
+  }
+
+  // Reset form
+  const resetCourseForm = () => {
+    setNewCourse({
+      title: '',
+      description: '',
+      duration: 60,
+      level: 'BEGINNER',
+      categoryId: ''
+    })
+  }
+
   // Filter state
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -132,6 +168,16 @@ export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([])
   const [categories, setCategories] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
+  
+  // Modal and form state
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [newCourse, setNewCourse] = useState({
+    title: '',
+    description: '',
+    duration: 60,
+    level: 'BEGINNER',
+    categoryId: ''
+  })
 
   // Fetch courses and categories data
   useEffect(() => {
@@ -510,8 +556,19 @@ export default function CoursesPage() {
           <div className="p-8">
             {/* Header */}
             <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
-              <h1 className="text-2xl font-bold mb-2">Courses</h1>
-              <p className="text-green-100">Discover our comprehensive course library and enhance your skills</p>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h1 className="text-2xl font-bold mb-2">Courses</h1>
+                  <p className="text-green-100">Discover our comprehensive course library and enhance your skills</p>
+                </div>
+                <button 
+                  onClick={() => setShowCreateModal(true)}
+                  className="flex items-center px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors"
+                >
+                  <PlusIcon className="h-4 w-4 mr-2" />
+                  Add Course
+                </button>
+              </div>
             </div>
 
             {/* Search and Filters */}
@@ -641,6 +698,115 @@ export default function CoursesPage() {
           </div>
         </div>
       </div>
+
+      {/* Create Course Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div className="mt-3">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-gray-900">Create New Course</h3>
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Course Title *
+                  </label>
+                  <input
+                    type="text"
+                    value={newCourse.title}
+                    onChange={(e) => setNewCourse({ ...newCourse, title: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Advanced React Development"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description *
+                  </label>
+                  <textarea
+                    value={newCourse.description}
+                    onChange={(e) => setNewCourse({ ...newCourse, description: e.target.value })}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="Describe what students will learn..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Category *
+                  </label>
+                  <select
+                    value={newCourse.categoryId}
+                    onChange={(e) => setNewCourse({ ...newCourse, categoryId: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value="">Select a category</option>
+                    <option value="Leadership & Management">Leadership & Management</option>
+                    <option value="Technical Skills">Technical Skills</option>
+                    <option value="Professional Development">Professional Development</option>
+                    <option value="Communication">Communication</option>
+                    <option value="Compliance & Safety">Compliance & Safety</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Duration (minutes)
+                  </label>
+                  <input
+                    type="number"
+                    value={newCourse.duration}
+                    onChange={(e) => setNewCourse({ ...newCourse, duration: parseInt(e.target.value) || 60 })}
+                    min="15"
+                    max="1440"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Difficulty Level
+                  </label>
+                  <select
+                    value={newCourse.level}
+                    onChange={(e) => setNewCourse({ ...newCourse, level: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value="BEGINNER">Beginner</option>
+                    <option value="INTERMEDIATE">Intermediate</option>
+                    <option value="ADVANCED">Advanced</option>
+                  </select>
+                </div>
+              </form>
+
+              <div className="flex items-center justify-end space-x-3 mt-6">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleCreateCourse}
+                  className="px-4 py-2 text-sm font-medium text-white bg-[#23544e] border border-transparent rounded-md hover:bg-[#1a3f3a] focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Create Course
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

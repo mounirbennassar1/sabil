@@ -25,10 +25,80 @@ import {
   TrashIcon,
   EyeIcon,
   FolderIcon,
-  UsersIcon
+  UsersIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline'
 
 export default function CourseCategoriesPage() {
+  // Initial categories data
+  const initialCategories = [
+    {
+      id: 'fallback-1',
+      name: 'Leadership & Management',
+      description: 'Develop leadership skills and management capabilities',
+      icon: '👑',
+      image: 'https://picsum.photos/800/600?random=1',
+      color: '#23544e',
+      courseCount: 17,
+      totalStudents: 8500,
+      avgCompletionTime: '5.2 hrs',
+      popularCourses: ['Mastering Supervision', 'Remote Team Management', 'Transformational Leadership'],
+      status: 'Active'
+    },
+    {
+      id: 'fallback-2',
+      name: 'Professional Development',
+      description: 'Advance your career with professional development courses',
+      icon: '📈',
+      image: 'https://picsum.photos/800/600?random=2',
+      color: '#e74c3c',
+      courseCount: 12,
+      totalStudents: 3600,
+      avgCompletionTime: '4.8 hrs',
+      popularCourses: ['Digital Marketing Strategy', 'Brand Management', 'Content Marketing'],
+      status: 'Active'
+    },
+    {
+      id: 'fallback-3',
+      name: 'Technical Skills',
+      description: 'Enhance your technical expertise and knowledge',
+      icon: '💻',
+      image: 'https://picsum.photos/800/600?random=3',
+      color: '#0b867a',
+      courseCount: 8,
+      totalStudents: 2400,
+      avgCompletionTime: '6.2 hrs',
+      popularCourses: ['React Development', 'JavaScript ES6+', 'Python Programming'],
+      status: 'Active'
+    },
+    {
+      id: 'fallback-4',
+      name: 'Communication',
+      description: 'Improve communication and interpersonal skills',
+      icon: '💬',
+      image: 'https://picsum.photos/800/600?random=4',
+      color: '#4a90e2',
+      courseCount: 8,
+      totalStudents: 1800,
+      avgCompletionTime: '4.0 hrs',
+      popularCourses: ['Public Speaking', 'Effective Communication', 'Presentation Skills'],
+      status: 'Active'
+    },
+    {
+      id: 'fallback-5',
+      name: 'Compliance & Safety',
+      description: 'Stay updated with compliance requirements and safety protocols',
+      icon: '🛡️',
+      image: 'https://picsum.photos/800/600?random=5',
+      color: '#f39c12',
+      courseCount: 4,
+      totalStudents: 950,
+      avgCompletionTime: '2.8 hrs',
+      popularCourses: ['Workplace Safety', 'OSHA Standards', 'Emergency Protocols'],
+      status: 'Active'
+    }
+  ]
+
   // Sidebar state
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     learningCapability: true,
@@ -39,6 +109,16 @@ export default function CourseCategoriesPage() {
   })
 
   const [searchTerm, setSearchTerm] = useState('')
+  
+  // Modal and form state
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [categoriesState, setCategoriesState] = useState(initialCategories)
+  const [newCategory, setNewCategory] = useState({
+    name: '',
+    description: '',
+    icon: '📚',
+    color: '#23544e'
+  })
 
   const talentManagementSections = [
     {
@@ -109,8 +189,43 @@ export default function CourseCategoriesPage() {
     }))
   }
 
-  // Categories data with simple working images
-  const categories = [
+  // Handle creating new category
+  const handleCreateCategory = () => {
+    if (!newCategory.name || !newCategory.description) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    const newCategoryItem = {
+      id: `category-${Date.now()}`,
+      name: newCategory.name,
+      description: newCategory.description,
+      icon: newCategory.icon,
+      image: `https://picsum.photos/800/600?random=${Date.now()}`,
+      color: newCategory.color,
+      courseCount: 0,
+      totalStudents: 0,
+      avgCompletionTime: '0 hrs',
+      popularCourses: [],
+      status: 'Active' as const
+    }
+
+    setCategoriesState([...categoriesState, newCategoryItem])
+    setShowCreateModal(false)
+    resetForm()
+  }
+
+  // Reset form
+  const resetForm = () => {
+    setNewCategory({
+      name: '',
+      description: '',
+      icon: '📚',
+      color: '#23544e'
+    })
+  }
+
+
     {
       id: 'fallback-1',
       name: 'Leadership & Management',
@@ -178,14 +293,14 @@ export default function CourseCategoriesPage() {
     }
   ]
 
-  const filteredCategories = categories.filter(category =>
+  const filteredCategories = categoriesState.filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     category.description.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const totalCourses = categories.reduce((sum, cat) => sum + cat.courseCount, 0)
-  const totalStudents = categories.reduce((sum, cat) => sum + cat.totalStudents, 0)
-  const activeCategories = categories.filter(cat => cat.status === 'Active').length
+  const totalCourses = categoriesState.reduce((sum, cat) => sum + cat.courseCount, 0)
+  const totalStudents = categoriesState.reduce((sum, cat) => sum + cat.totalStudents, 0)
+  const activeCategories = categoriesState.filter(cat => cat.status === 'Active').length
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -399,7 +514,10 @@ export default function CourseCategoriesPage() {
                   />
                 </div>
                 <div className="flex items-center space-x-3">
-                  <button className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                  <button 
+                    onClick={() => setShowCreateModal(true)}
+                    className="flex items-center px-4 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors"
+                  >
                     <PlusIcon className="h-4 w-4 mr-2" />
                     Add Category
                   </button>
@@ -500,6 +618,107 @@ export default function CourseCategoriesPage() {
           </div>
         </div>
       </div>
+
+      {/* Create Category Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div className="mt-3">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-gray-900">Create New Category</h3>
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Category Name *
+                  </label>
+                  <input
+                    type="text"
+                    value={newCategory.name}
+                    onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Data Science"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description *
+                  </label>
+                  <textarea
+                    value={newCategory.description}
+                    onChange={(e) => setNewCategory({ ...newCategory, description: e.target.value })}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="Describe what this category covers..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Icon
+                  </label>
+                  <div className="grid grid-cols-6 gap-2">
+                    {['📚', '💻', '🎯', '📈', '🔬', '🎨', '⚖️', '🏥', '🔧', '🌍', '💡', '🎓'].map((emoji) => (
+                      <button
+                        key={emoji}
+                        type="button"
+                        onClick={() => setNewCategory({ ...newCategory, icon: emoji })}
+                        className={`p-2 text-2xl rounded border-2 hover:border-[#23544e] ${
+                          newCategory.icon === emoji ? 'border-[#23544e] bg-[#23544e]/10' : 'border-gray-200'
+                        }`}
+                      >
+                        {emoji}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Color Theme
+                  </label>
+                  <div className="grid grid-cols-6 gap-2">
+                    {['#23544e', '#0b867a', '#1d453f', '#0a7a6e', '#e74c3c', '#4a90e2', '#f39c12', '#9b59b6', '#27ae60', '#e67e22'].map((color) => (
+                      <button
+                        key={color}
+                        type="button"
+                        onClick={() => setNewCategory({ ...newCategory, color })}
+                        className={`w-8 h-8 rounded-full border-2 ${
+                          newCategory.color === color ? 'border-gray-800 scale-110' : 'border-gray-200'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </form>
+
+              <div className="flex items-center justify-end space-x-3 mt-6">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleCreateCategory}
+                  className="px-4 py-2 text-sm font-medium text-white bg-[#23544e] border border-transparent rounded-md hover:bg-[#1a3f3a] focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Create Category
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
