@@ -135,7 +135,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+3%',
       icon: CheckCircleIcon,
-      color: 'green',
+      color: '#23544e',
       description: 'Percentage of critical positions with qualified incumbents'
     },
     {
@@ -146,7 +146,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+8%',
       icon: UsersIcon,
-      color: 'blue',
+      color: '#0b867a',
       description: 'Percentage of critical roles with ready successors'
     },
     {
@@ -157,7 +157,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+2%',
       icon: ArrowTrendingUpIcon,
-      color: 'purple',
+      color: '#1d453f',
       description: 'Percentage of positions filled internally'
     },
     {
@@ -168,7 +168,7 @@ export default function TalentKPIsPage() {
       trend: 'down',
       change: '-0.2',
       icon: ClockIcon,
-      color: 'orange',
+      color: '#0a7a6e',
       description: 'Average tenure in current position'
     },
     {
@@ -179,7 +179,7 @@ export default function TalentKPIsPage() {
       trend: 'stable',
       change: '0%',
       icon: TrophyIcon,
-      color: 'yellow',
+      color: '#23544e',
       description: 'Retention rate of top 20% performers'
     },
     {
@@ -190,7 +190,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+5%',
       icon: BuildingOfficeIcon,
-      color: 'indigo',
+      color: '#0b867a',
       description: 'Percentage of leadership roles with identified successors'
     },
     {
@@ -201,7 +201,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+12%',
       icon: AcademicCapIcon,
-      color: 'pink',
+      color: '#1d453f',
       description: 'Percentage of identified skill gaps being addressed'
     },
     {
@@ -212,7 +212,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+0.3',
       icon: HeartIcon,
-      color: 'red',
+      color: '#0a7a6e',
       description: 'Overall employee engagement score'
     },
     {
@@ -223,7 +223,7 @@ export default function TalentKPIsPage() {
       trend: 'up',
       change: '+40%',
       icon: CurrencyDollarIcon,
-      color: 'green',
+      color: '#23544e',
       description: 'Return on investment for training programs'
     }
   ]

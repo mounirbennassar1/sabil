@@ -19,106 +19,15 @@ import {
   FunnelIcon,
   StarIcon,
   AcademicCapIcon,
-  ExclamationTriangleIcon
+  ExclamationTriangleIcon,
+  XMarkIcon,
+  PlusIcon
 } from '@heroicons/react/24/outline'
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid'
 
 export default function CompetencyFrameworkPage() {
-  // Sidebar state
-  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    learningCapability: false,
-    talentGrowth: true, // Expanded by default since we're on competency framework
-    talentInsight: false,
-    futureStrategic: false,
-    executionIntegration: false
-  })
-
-  // Filter state
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedRole, setSelectedRole] = useState('All')
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [selectedProficiency, setSelectedProficiency] = useState('All')
-
-  // Sidebar configuration
-  const sidebarItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
-  ]
-
-  const talentManagementSections = [
-    {
-      id: 'learningCapability',
-      name: 'Learning & Capability',
-      icon: BookOpenIcon,
-      expanded: expandedSections.learningCapability,
-      subItems: [
-        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
-        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
-        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
-        { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' },
-        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
-        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
-      ]
-    },
-    {
-      id: 'talentGrowth',
-      name: 'Talent Growth',
-      icon: ArrowTrendingUpIcon,
-      expanded: expandedSections.talentGrowth,
-      subItems: [
-        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
-        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
-        { name: 'Competency Framework', href: '/talent/competency-framework' }
-      ]
-    },
-    {
-      id: 'talentInsight',
-      name: 'Talent Insight',
-      icon: ChartBarIcon,
-      expanded: expandedSections.talentInsight,
-      subItems: [
-        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/kpis' },
-        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
-      ]
-    },
-    {
-      id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
-      icon: MapIcon,
-      expanded: expandedSections.futureStrategic,
-      subItems: [
-        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
-        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
-        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
-      ]
-    },
-    {
-      id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
-      icon: CogIcon,
-      expanded: expandedSections.executionIntegration,
-      subItems: [
-        { name: 'Integration', href: '/talent/integrations' },
-        { name: 'Change Management Plan', href: '/talent/change-management' },
-        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
-      ]
-    }
-  ]
-
-  const toggleSection = (sectionId: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }))
-  }
-
-  // Competency framework data
-  const competencyData = [
+  // Initial competency data
+  const initialCompetencyData = [
     // Software Developer
     {
       id: 1,
@@ -220,111 +129,167 @@ export default function CompetencyFrameworkPage() {
       proficiency: 4,
       description: 'Effective negotiation skills to close deals and resolve conflicts',
       importance: 'Critical',
-      assessmentMethod: 'Role Playing & Deal Analysis'
+      assessmentMethod: 'Sales Performance & Role Play'
     },
     {
       id: 11,
       role: 'Sales Representative',
       skill: 'Product Knowledge',
-      category: 'Functional',
-      proficiency: 5,
-      description: 'Deep understanding of products/services and competitive landscape',
-      importance: 'Critical',
-      assessmentMethod: 'Product Certification & Testing'
+      category: 'Technical',
+      proficiency: 4,
+      description: 'Deep understanding of products and services offered',
+      importance: 'High',
+      assessmentMethod: 'Product Knowledge Test'
     },
     {
       id: 12,
       role: 'Sales Representative',
-      skill: 'CRM Software',
-      category: 'Technical',
-      proficiency: 3,
-      description: 'Proficiency in CRM systems and sales tracking tools',
-      importance: 'Medium',
-      assessmentMethod: 'System Usage & Data Quality'
-    },
-    // Project Manager
-    {
-      id: 13,
-      role: 'Project Manager',
-      skill: 'Project Planning',
-      category: 'Functional',
-      proficiency: 5,
-      description: 'Comprehensive project planning and resource allocation',
-      importance: 'Critical',
-      assessmentMethod: 'Project Success Rate & Methodology'
-    },
-    {
-      id: 14,
-      role: 'Project Manager',
-      skill: 'Risk Management',
-      category: 'Functional',
-      proficiency: 4,
-      description: 'Identify, assess, and mitigate project risks',
-      importance: 'High',
-      assessmentMethod: 'Risk Assessment & Mitigation Plans'
-    },
-    {
-      id: 15,
-      role: 'Project Manager',
-      skill: 'Stakeholder Management',
-      category: 'Leadership',
-      proficiency: 4,
-      description: 'Effectively manage stakeholder expectations and communication',
-      importance: 'High',
-      assessmentMethod: 'Stakeholder Feedback & Communication'
-    },
-    {
-      id: 16,
-      role: 'Project Manager',
-      skill: 'Agile Methodologies',
-      category: 'Technical',
-      proficiency: 3,
-      description: 'Understanding and implementation of Agile/Scrum practices',
-      importance: 'Medium',
-      assessmentMethod: 'Certification & Practice Assessment'
-    },
-    // HR Specialist
-    {
-      id: 17,
-      role: 'HR Specialist',
-      skill: 'Employment Law',
-      category: 'Functional',
-      proficiency: 4,
-      description: 'Knowledge of employment laws and regulations',
-      importance: 'Critical',
-      assessmentMethod: 'Legal Knowledge Test & Compliance Review'
-    },
-    {
-      id: 18,
-      role: 'HR Specialist',
-      skill: 'Talent Acquisition',
-      category: 'Functional',
-      proficiency: 4,
-      description: 'Effective recruitment and selection processes',
-      importance: 'High',
-      assessmentMethod: 'Hiring Success Rate & Quality of Hire'
-    },
-    {
-      id: 19,
-      role: 'HR Specialist',
-      skill: 'Employee Relations',
+      skill: 'Time Management',
       category: 'Behavioral',
-      proficiency: 5,
-      description: 'Handle employee relations and conflict resolution',
-      importance: 'Critical',
-      assessmentMethod: 'Employee Feedback & Case Resolution'
-    },
-    {
-      id: 20,
-      role: 'HR Specialist',
-      skill: 'HRIS Systems',
-      category: 'Technical',
       proficiency: 3,
-      description: 'Proficiency in HR information systems and data analysis',
+      description: 'Efficiently manage time and prioritize sales activities',
       importance: 'Medium',
-      assessmentMethod: 'System Proficiency & Data Accuracy'
+      assessmentMethod: 'Performance Tracking'
     }
   ]
+
+  // Sidebar state
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: true, // Expanded by default since we're on competency framework
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: false
+  })
+
+  // Filter state
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedRole, setSelectedRole] = useState('All')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [selectedProficiency, setSelectedProficiency] = useState('All')
+
+  // Modal and form state
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [competencyDataState, setCompetencyDataState] = useState(initialCompetencyData)
+  const [newCompetency, setNewCompetency] = useState({
+    role: '',
+    skill: '',
+    category: 'Technical',
+    proficiency: 1,
+    description: '',
+    importance: 'Medium',
+    assessmentMethod: ''
+  })
+
+  // Sidebar configuration
+  const sidebarItems = [
+    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
+    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
+    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
+    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
+    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
+  ]
+
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: 'Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' },
+        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
+        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: 'Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: 'Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: 'Future & Strategic Layer',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: 'Execution & Integration Layer',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration', href: '/talent/integrations' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
+  ]
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
+
+  // Handle creating new competency
+  const handleCreateCompetency = () => {
+    if (!newCompetency.role || !newCompetency.skill || !newCompetency.description) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    const newCompetencyItem = {
+      id: competencyDataState.length + 1,
+      ...newCompetency
+    }
+
+    setCompetencyDataState([...competencyDataState, newCompetencyItem])
+    setShowCreateModal(false)
+    resetForm()
+  }
+
+  // Reset form
+  const resetForm = () => {
+    setNewCompetency({
+      role: '',
+      skill: '',
+      category: 'Technical',
+      proficiency: 1,
+      description: '',
+      importance: 'Medium',
+      assessmentMethod: ''
+    })
+  }
+
+
 
   // Star rating component
   const StarRating = ({ rating }: { rating: number }) => {
@@ -377,11 +342,11 @@ export default function CompetencyFrameworkPage() {
   }
 
   // Filter data
-  const roles = ['All', ...Array.from(new Set(competencyData.map(item => item.role)))]
+  const roles = ['All', ...Array.from(new Set(competencyDataState.map(item => item.role)))]
   const categories = ['All', 'Technical', 'Behavioral', 'Leadership', 'Functional']
   const proficiencyLevels = ['All', '1', '2', '3', '4', '5']
 
-  const filteredData = competencyData.filter(item => {
+  const filteredData = competencyDataState.filter(item => {
     const matchesSearch = item.skill.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          item.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          item.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -393,9 +358,9 @@ export default function CompetencyFrameworkPage() {
   })
 
   // Calculate summary stats
-  const totalCompetencies = competencyData.length
-  const averageProficiency = (competencyData.reduce((sum, item) => sum + item.proficiency, 0) / totalCompetencies).toFixed(1)
-  const criticalSkills = competencyData.filter(item => item.importance === 'Critical').length
+  const totalCompetencies = competencyDataState.length
+  const averageProficiency = (competencyDataState.reduce((sum, item) => sum + item.proficiency, 0) / totalCompetencies).toFixed(1)
+  const criticalSkills = competencyDataState.filter(item => item.importance === 'Critical').length
   const uniqueRoles = roles.length - 1
 
   return (
@@ -504,7 +469,10 @@ export default function CompetencyFrameworkPage() {
                 <button className="bg-white text-gray-700 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
                   Export Framework
                 </button>
-                <button className="bg-[#23544e] text-white px-6 py-2 rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                <button 
+                  onClick={() => setShowCreateModal(true)}
+                  className="bg-[#23544e] text-white px-6 py-2 rounded-lg hover:bg-[#1a3f3a] transition-colors"
+                >
                   Add Competency
                 </button>
               </div>
@@ -689,6 +657,143 @@ export default function CompetencyFrameworkPage() {
           )}
         </div>
       </div>
+
+      {/* Create Competency Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div className="mt-3">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-medium text-gray-900">Add New Competency</h3>
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Role *
+                  </label>
+                  <input
+                    type="text"
+                    value={newCompetency.role}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, role: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Software Developer"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Skill *
+                  </label>
+                  <input
+                    type="text"
+                    value={newCompetency.skill}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, skill: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Programming Languages"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Category
+                  </label>
+                  <select
+                    value={newCompetency.category}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, category: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value="Technical">Technical</option>
+                    <option value="Behavioral">Behavioral</option>
+                    <option value="Leadership">Leadership</option>
+                    <option value="Functional">Functional</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Proficiency Level
+                  </label>
+                  <select
+                    value={newCompetency.proficiency}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, proficiency: parseInt(e.target.value) })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value={1}>1 - Beginner</option>
+                    <option value={2}>2 - Basic</option>
+                    <option value={3}>3 - Intermediate</option>
+                    <option value={4}>4 - Advanced</option>
+                    <option value={5}>5 - Expert</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Importance
+                  </label>
+                  <select
+                    value={newCompetency.importance}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, importance: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description *
+                  </label>
+                  <textarea
+                    value={newCompetency.description}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, description: e.target.value })}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="Describe the competency requirements..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Assessment Method
+                  </label>
+                  <input
+                    type="text"
+                    value={newCompetency.assessmentMethod}
+                    onChange={(e) => setNewCompetency({ ...newCompetency, assessmentMethod: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Code Review & Technical Interview"
+                  />
+                </div>
+              </form>
+
+              <div className="flex items-center justify-end space-x-3 mt-6">
+                <button
+                  onClick={() => setShowCreateModal(false)}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleCreateCompetency}
+                  className="px-4 py-2 text-sm font-medium text-white bg-[#23544e] border border-transparent rounded-md hover:bg-[#1a3f3a] focus:outline-none focus:ring-2 focus:ring-[#23544e] focus:ring-offset-2"
+                >
+                  Create Competency
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
