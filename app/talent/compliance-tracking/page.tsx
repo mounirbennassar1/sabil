@@ -195,11 +195,11 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
   }
 
   const categoryStats = [
-    { name: 'Safety', completion: 95, total: 3, color: 'bg-green-500' },
-    { name: 'Security', completion: 78, total: 2, color: 'bg-blue-500' },
-    { name: 'HR Compliance', completion: 65, total: 4, color: 'bg-red-500' },
-    { name: 'Finance', completion: 45, total: 2, color: 'bg-yellow-500' },
-    { name: 'Quality', completion: 82, total: 3, color: 'bg-purple-500' }
+    { name: 'Safety', completion: 95, total: 3, color: 'bg-[#23544e]' },
+    { name: 'Security', completion: 78, total: 2, color: 'bg-[#0b867a]' },
+    { name: 'HR Compliance', completion: 65, total: 4, color: 'bg-[#1d453f]' },
+    { name: 'Finance', completion: 45, total: 2, color: 'bg-[#0a7a6e]' },
+    { name: 'Quality', completion: 82, total: 3, color: 'bg-[#2a5f58]' }
   ]
 
   useEffect(() => {
@@ -229,11 +229,11 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircleIcon className="h-5 w-5 text-green-500" />
+        return <CheckCircleIcon className="h-5 w-5 text-[#23544e]" />
       case 'in-progress':
-        return <ClockIcon className="h-5 w-5 text-blue-500" />
+        return <ClockIcon className="h-5 w-5 text-[#0b867a]" />
       case 'overdue':
-        return <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
+        return <ExclamationTriangleIcon className="h-5 w-5 text-[#1d453f]" />
       case 'upcoming':
         return <CalendarDaysIcon className="h-5 w-5 text-gray-500" />
       default:
@@ -244,11 +244,11 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800 border-green-200'
+        return 'bg-[#23544e]/10 text-[#23544e] border-[#23544e]/20'
       case 'in-progress':
-        return 'bg-blue-100 text-blue-800 border-blue-200'
+        return 'bg-[#0b867a]/10 text-[#0b867a] border-[#0b867a]/20'
       case 'overdue':
-        return 'bg-red-100 text-red-800 border-red-200'
+        return 'bg-[#1d453f]/10 text-[#1d453f] border-[#1d453f]/20'
       case 'upcoming':
         return 'bg-gray-100 text-gray-800 border-gray-200'
       default:
@@ -259,11 +259,11 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high':
-        return 'text-red-600 bg-red-50'
+        return 'text-[#1d453f] bg-[#1d453f]/10'
       case 'medium':
-        return 'text-yellow-600 bg-yellow-50'
+        return 'text-[#0a7a6e] bg-[#0a7a6e]/10'
       case 'low':
-        return 'text-green-600 bg-green-50'
+        return 'text-[#23544e] bg-[#23544e]/10'
       default:
         return 'text-gray-600 bg-gray-50'
     }
@@ -468,39 +468,39 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Completed Trainings</p>
-                      <p className="text-3xl font-bold text-green-600 mt-1">{overallStats.completedTrainings}</p>
+                      <p className="text-3xl font-bold text-[#23544e] mt-1">{overallStats.completedTrainings}</p>
                     </div>
-                    <div className="p-3 bg-green-100 rounded-full">
-                      <CheckCircleIcon className="h-6 w-6 text-green-600" />
+                    <div className="p-3 bg-[#23544e]/10 rounded-full">
+                      <CheckCircleIcon className="h-6 w-6 text-[#23544e]" />
                     </div>
                   </div>
-                  <p className="text-sm text-green-600 mt-2">↗ +12% from last month</p>
+                  <p className="text-sm text-[#23544e] mt-2">↗ +12% from last month</p>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Overdue Items</p>
-                      <p className="text-3xl font-bold text-red-600 mt-1">{overallStats.overdueTrainings}</p>
+                      <p className="text-3xl font-bold text-[#1d453f] mt-1">{overallStats.overdueTrainings}</p>
                     </div>
-                    <div className="p-3 bg-red-100 rounded-full">
-                      <ExclamationTriangleIcon className="h-6 w-6 text-red-600" />
+                    <div className="p-3 bg-[#1d453f]/10 rounded-full">
+                      <ExclamationTriangleIcon className="h-6 w-6 text-[#1d453f]" />
                     </div>
                   </div>
-                  <p className="text-sm text-red-600 mt-2">Requires immediate attention</p>
+                  <p className="text-sm text-[#1d453f] mt-2">Requires immediate attention</p>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Upcoming Deadlines</p>
-                      <p className="text-3xl font-bold text-yellow-600 mt-1">{overallStats.upcomingDeadlines}</p>
+                      <p className="text-3xl font-bold text-[#0a7a6e] mt-1">{overallStats.upcomingDeadlines}</p>
                     </div>
-                    <div className="p-3 bg-yellow-100 rounded-full">
-                      <CalendarDaysIcon className="h-6 w-6 text-yellow-600" />
+                    <div className="p-3 bg-[#0a7a6e]/10 rounded-full">
+                      <CalendarDaysIcon className="h-6 w-6 text-[#0a7a6e]" />
                     </div>
                   </div>
-                  <p className="text-sm text-yellow-600 mt-2">Next 30 days</p>
+                  <p className="text-sm text-[#0a7a6e] mt-2">Next 30 days</p>
                 </div>
               </div>
 
@@ -587,9 +587,9 @@ export default function ComplianceTrackingPage(): React.JSX.Element {
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div 
                             className={`h-2 rounded-full transition-all duration-300 ${
-                              item.status === 'completed' ? 'bg-green-500' :
-                              item.status === 'in-progress' ? 'bg-blue-500' :
-                              item.status === 'overdue' ? 'bg-red-500' : 'bg-gray-400'
+                              item.status === 'completed' ? 'bg-[#23544e]' :
+                              item.status === 'in-progress' ? 'bg-[#0b867a]' :
+                              item.status === 'overdue' ? 'bg-[#1d453f]' : 'bg-gray-400'
                             }`}
                             style={{ width: `${item.completionRate}%` }}
                           ></div>
