@@ -110,7 +110,7 @@ export default function LandingPage() {
             <div className="absolute top-20 left-10 hidden lg:block">
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 border border-white/20 animate-float-slow">
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="w-3 h-3 bg-[#0b867a] rounded-full animate-pulse"></div>
                   <span className="text-white text-sm">+1,200 Students Online</span>
                 </div>
               </div>
@@ -178,14 +178,14 @@ export default function LandingPage() {
                   icon: AcademicCapIcon,
                   title: "Digital Certificates",
                   description: "Blockchain-verified certificates with social sharing capabilities and professional recognition.",
-                  color: "from-[#4f46e5] to-[#7c3aed]",
+                  color: "from-[#1d453f] to-[#0a7a6e]",
                   delay: "200"
                 },
                 {
                   icon: UserGroupIcon,
                   title: "Team Collaboration",
                   description: "Social learning features with peer-to-peer interactions and collaborative project management.",
-                  color: "from-[#ef4444] to-[#f97316]",
+                  color: "from-[#23544e] to-[#1d453f]",
                   delay: "300"
                 }
               ].map((feature, index) => (
@@ -281,7 +281,7 @@ export default function LandingPage() {
               <div className="relative">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Ready to Transform Your
-                  <span className="block text-green-200">Learning Culture?</span>
+                  <span className="block text-[#a7d8d1]">Learning Culture?</span>
                 </h2>
                 <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
                   Join the revolution in employee development. Start your free trial today and see the difference neom hydrogen can make.
