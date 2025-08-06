@@ -392,28 +392,376 @@ export default function LMSDashboardPage() {
                 </nav>
               </div>
 
-              {/* Learning Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                {learningStats.map((stat, index) => (
-                  <div key={index} className="bg-white rounded-xl border border-gray-200 p-6">
-                    <div className="flex items-center space-x-3">
-                      <stat.icon className={`h-6 w-6 ${stat.color}`} />
-                      <div>
-                        <p className="text-sm text-gray-600">{stat.label}</p>
-                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+              {/* Tab Content */}
+              {activeTab === 'learn' && (
+                <>
+                  {/* Learning Stats */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                    {learningStats.map((stat, index) => (
+                      <div key={index} className="bg-white rounded-xl border border-gray-200 p-6">
+                        <div className="flex items-center space-x-3">
+                          <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                          <div>
+                            <p className="text-sm text-gray-600">{stat.label}</p>
+                            <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    <div className="md:col-span-4 flex justify-end">
+                      <Link href="/achievements" className="text-sm text-[#23544e] hover:underline flex items-center">
+                        View All Achievements
+                        <ChevronRightIcon className="h-4 w-4 ml-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'career' && (
+                <>
+                  {/* Career Ready Plan Content */}
+                  <div className="space-y-8">
+                    {/* Career Roadmap Overview */}
+                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+                      <div className="max-w-4xl">
+                        <h2 className="text-3xl font-bold mb-4">🚀 Your Career Ready Plan</h2>
+                        <p className="text-xl opacity-90 mb-6">
+                          Transform your career with our personalized roadmap. Build in-demand skills, earn certifications, and land your dream job.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">📈 Career Growth</span>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">🎯 Skill Development</span>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">💼 Job Readiness</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Career Assessment */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <div className="flex items-center space-x-4 mb-6">
+                        <div className="bg-blue-100 p-3 rounded-full">
+                          <ChartBarIcon className="h-8 w-8 text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-900">Career Assessment</h3>
+                          <p className="text-gray-600">Discover your strengths and areas for improvement</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-gray-50 rounded-lg p-6 text-center">
+                          <div className="text-3xl mb-3">🎯</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Skills Assessment</h4>
+                          <p className="text-sm text-gray-600 mb-4">Evaluate your current skill level</p>
+                          <Link href="/talent/capability-assessment" className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                            Take Assessment
+                          </Link>
+                        </div>
+                        <div className="bg-gray-50 rounded-lg p-6 text-center">
+                          <div className="text-3xl mb-3">💡</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Interest Profiler</h4>
+                          <p className="text-sm text-gray-600 mb-4">Find careers that match your interests</p>
+                          <button className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+                            Start Profiler
+                          </button>
+                        </div>
+                        <div className="bg-gray-50 rounded-lg p-6 text-center">
+                          <div className="text-3xl mb-3">📊</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Career Fit Score</h4>
+                          <p className="text-sm text-gray-600 mb-4">See how well you match target roles</p>
+                          <button className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+                            View Score
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Learning Path */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">📚 Recommended Learning Path</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                          <div className="bg-green-100 p-2 rounded-full">
+                            <span className="text-green-600 font-bold">1</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900">Foundation Skills</h4>
+                            <p className="text-sm text-gray-600">Build essential workplace competencies</p>
+                          </div>
+                          <div className="text-green-600 font-medium">Completed ✓</div>
+                        </div>
+                        <div className="flex items-center space-x-4 p-4 border border-blue-200 bg-blue-50 rounded-lg">
+                          <div className="bg-blue-100 p-2 rounded-full">
+                            <span className="text-blue-600 font-bold">2</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900">Technical Specialization</h4>
+                            <p className="text-sm text-gray-600">Master job-specific technical skills</p>
+                          </div>
+                          <div className="text-blue-600 font-medium">In Progress (60%)</div>
+                        </div>
+                        <div className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg opacity-75">
+                          <div className="bg-gray-100 p-2 rounded-full">
+                            <span className="text-gray-600 font-bold">3</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900">Leadership & Management</h4>
+                            <p className="text-sm text-gray-600">Develop leadership and soft skills</p>
+                          </div>
+                          <div className="text-gray-500 font-medium">Locked</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Industry Insights */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">📈 Industry Insights</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-6">
+                          <h4 className="font-semibold text-gray-900 mb-4">🔥 Hot Skills in Demand</h4>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">Cloud Computing</span>
+                              <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">+45%</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">Data Analytics</span>
+                              <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">+38%</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">AI/Machine Learning</span>
+                              <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">+52%</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6">
+                          <h4 className="font-semibold text-gray-900 mb-4">💰 Salary Trends</h4>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">Software Engineer</span>
+                              <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">$95K avg</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">Data Scientist</span>
+                              <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">$118K avg</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-700">Product Manager</span>
+                              <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">$125K avg</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                ))}
-                <div className="md:col-span-4 flex justify-end">
-                  <Link href="/achievements" className="text-sm text-[#23544e] hover:underline flex items-center">
-                    View All Achievements
-                    <ChevronRightIcon className="h-4 w-4 ml-1" />
-                  </Link>
-                </div>
-              </div>
+                </>
+              )}
 
-              {/* Personalized Recommendations */}
+              {activeTab === 'hired' && (
+                <>
+                  {/* Get Hired Content */}
+                  <div className="space-y-8">
+                    {/* Job Search Hero */}
+                    <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-white">
+                      <div className="max-w-4xl">
+                        <h2 className="text-3xl font-bold mb-4">💼 Get Hired - Your Job Search Command Center</h2>
+                        <p className="text-xl opacity-90 mb-6">
+                          Land your dream job with our comprehensive job search tools, resume optimization, and interview preparation resources.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">📝 Resume Builder</span>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">🎯 Job Matching</span>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <span className="text-sm font-medium">🗣️ Interview Prep</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Job Search Stats */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+                        <div className="text-3xl mb-2">🎯</div>
+                        <div className="text-2xl font-bold text-gray-900">127</div>
+                        <div className="text-sm text-gray-600">Job Matches</div>
+                      </div>
+                      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+                        <div className="text-3xl mb-2">📄</div>
+                        <div className="text-2xl font-bold text-gray-900">3</div>
+                        <div className="text-sm text-gray-600">Applications Sent</div>
+                      </div>
+                      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+                        <div className="text-3xl mb-2">👀</div>
+                        <div className="text-2xl font-bold text-gray-900">12</div>
+                        <div className="text-sm text-gray-600">Profile Views</div>
+                      </div>
+                      <div className="bg-white rounded-xl border border-gray-200 p-6 text-center">
+                        <div className="text-3xl mb-2">📞</div>
+                        <div className="text-2xl font-bold text-gray-900">2</div>
+                        <div className="text-sm text-gray-600">Interview Invites</div>
+                      </div>
+                    </div>
+
+                    {/* Job Search Tools */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">🛠️ Job Search Tools</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-blue-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                          <div className="text-4xl mb-4">📝</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">AI Resume Builder</h4>
+                          <p className="text-sm text-gray-600 mb-4">Create ATS-optimized resumes that get noticed</p>
+                          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                            Build Resume
+                          </button>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                          <div className="text-4xl mb-4">🔍</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Smart Job Search</h4>
+                          <p className="text-sm text-gray-600 mb-4">Find jobs that match your skills and preferences</p>
+                          <button className="bg-green-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
+                            Search Jobs
+                          </button>
+                        </div>
+                        <div className="bg-purple-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow cursor-pointer">
+                          <div className="text-4xl mb-4">🎭</div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Interview Simulator</h4>
+                          <p className="text-sm text-gray-600 mb-4">Practice with AI-powered mock interviews</p>
+                          <button className="bg-purple-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
+                            Start Practice
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Recent Job Matches */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-2xl font-bold text-gray-900">🎯 Top Job Matches</h3>
+                        <Link href="/jobs" className="text-[#23544e] hover:underline font-medium">
+                          View All Jobs →
+                        </Link>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="border border-gray-200 rounded-lg p-6 hover:border-[#23544e] transition-colors">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h4 className="font-semibold text-gray-900">Senior Software Engineer</h4>
+                              <p className="text-gray-600">TechCorp Inc. • San Francisco, CA</p>
+                            </div>
+                            <div className="text-right">
+                              <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded mb-1">95% Match</div>
+                              <div className="text-gray-500 text-sm">$120K - $160K</div>
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">React</span>
+                            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Node.js</span>
+                            <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">TypeScript</span>
+                          </div>
+                          <div className="flex space-x-3">
+                            <button className="bg-[#23544e] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
+                              Apply Now
+                            </button>
+                            <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
+                              Save for Later
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="border border-gray-200 rounded-lg p-6 hover:border-[#23544e] transition-colors">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h4 className="font-semibold text-gray-900">Product Manager</h4>
+                              <p className="text-gray-600">InnovateLab • Remote</p>
+                            </div>
+                            <div className="text-right">
+                              <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded mb-1">87% Match</div>
+                              <div className="text-gray-500 text-sm">$110K - $140K</div>
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Product Strategy</span>
+                            <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Agile</span>
+                            <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Analytics</span>
+                          </div>
+                          <div className="flex space-x-3">
+                            <button className="bg-[#23544e] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#1d453f] transition-colors">
+                              Apply Now
+                            </button>
+                            <button className="border border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
+                              Save for Later
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Interview Preparation */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-8">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">🎯 Interview Preparation</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <h4 className="font-semibold text-gray-900">📚 Preparation Resources</h4>
+                          <div className="space-y-3">
+                            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                              <div className="text-blue-600">📖</div>
+                              <div>
+                                <div className="font-medium text-gray-900">Common Interview Questions</div>
+                                <div className="text-sm text-gray-600">50+ questions with sample answers</div>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                              <div className="text-green-600">🎬</div>
+                              <div>
+                                <div className="font-medium text-gray-900">Video Interview Tips</div>
+                                <div className="text-sm text-gray-600">Master virtual interviews</div>
+                              </div>
+                            </div>
+                            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                              <div className="text-purple-600">🧠</div>
+                              <div>
+                                <div className="font-medium text-gray-900">Technical Interview Prep</div>
+                                <div className="text-sm text-gray-600">Coding challenges and solutions</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h4 className="font-semibold text-gray-900">🚀 Quick Actions</h4>
+                          <div className="space-y-3">
+                            <button className="w-full text-left p-4 border border-gray-200 rounded-lg hover:border-[#23544e] hover:shadow-md transition-all">
+                              <div className="font-medium text-gray-900">Schedule Mock Interview</div>
+                              <div className="text-sm text-gray-600">Practice with industry experts</div>
+                            </button>
+                            <button className="w-full text-left p-4 border border-gray-200 rounded-lg hover:border-[#23544e] hover:shadow-md transition-all">
+                              <div className="font-medium text-gray-900">Company Research Tool</div>
+                              <div className="text-sm text-gray-600">Get insights on potential employers</div>
+                            </button>
+                            <button className="w-full text-left p-4 border border-gray-200 rounded-lg hover:border-[#23544e] hover:shadow-md transition-all">
+                              <div className="font-medium text-gray-900">Salary Negotiation Guide</div>
+                              <div className="text-sm text-gray-600">Maximize your earning potential</div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'learn' && (
+                <>
+                  {/* Personalized Recommendations */}
               <div className="bg-gradient-to-r from-[#23544e] to-[#0b867a] rounded-2xl p-8 mb-8 text-white overflow-hidden relative">
                 <div className="relative z-10">
                   <div className="max-w-4xl">
@@ -622,6 +970,8 @@ export default function LMSDashboardPage() {
                   </Link>
                 </div>
               </div>
+                </>
+              )}
             </div>
           </div>
         </div>
