@@ -18,103 +18,15 @@ import {
   ArrowRightIcon,
   ClockIcon,
   CurrencyDollarIcon,
-  UsersIcon
+  UsersIcon,
+  XMarkIcon,
+  PlusIcon,
+  TrashIcon
 } from '@heroicons/react/24/outline'
 
 export default function CareerPathingPage() {
-  // Sidebar state
-  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    learningCapability: false,
-    talentGrowth: true, // Expanded by default since we're on career pathing
-    talentInsight: false,
-    futureStrategic: false,
-    executionIntegration: false
-  })
-
-  // Filter state
-  const [selectedDepartment, setSelectedDepartment] = useState('All')
-  const [selectedPath, setSelectedPath] = useState('All')
-
-  // Sidebar configuration
-  const sidebarItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
-    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
-    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
-    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
-  ]
-
-  const talentManagementSections = [
-    {
-      id: 'learningCapability',
-      name: 'Learning & Capability',
-      icon: BookOpenIcon,
-      expanded: expandedSections.learningCapability,
-      subItems: [
-        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
-        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
-        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
-        { name: 'Courses', href: '/talent/courses' },
-        { name: 'Course Categories', href: '/talent/course-categories' },
-        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
-        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
-      ]
-    },
-    {
-      id: 'talentGrowth',
-      name: 'Talent Growth',
-      icon: ArrowTrendingUpIcon,
-      expanded: expandedSections.talentGrowth,
-      subItems: [
-        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
-        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
-        { name: 'Competency Framework', href: '/talent/competency-framework' }
-      ]
-    },
-    {
-      id: 'talentInsight',
-      name: 'Talent Insight',
-      icon: ChartBarIcon,
-      expanded: expandedSections.talentInsight,
-      subItems: [
-        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
-        { name: 'Talent KPIs', href: '/talent/kpis' },
-        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
-      ]
-    },
-    {
-      id: 'futureStrategic',
-      name: 'Future & Strategic Layer',
-      icon: MapIcon,
-      expanded: expandedSections.futureStrategic,
-      subItems: [
-        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
-        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
-        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
-      ]
-    },
-    {
-      id: 'executionIntegration',
-      name: 'Execution & Integration Layer',
-      icon: CogIcon,
-      expanded: expandedSections.executionIntegration,
-      subItems: [
-        { name: 'Integration', href: '/talent/integrations' },
-        { name: 'Change Management Plan', href: '/talent/change-management' },
-        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
-      ]
-    }
-  ]
-
-  const toggleSection = (sectionId: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }))
-  }
-
-  // Career paths data
-  const careerPaths = [
+  // Career paths data - moved here to be accessible in useState
+  const initialCareerPaths = [
     {
       id: 1,
       department: 'Engineering',
@@ -309,6 +221,217 @@ export default function CareerPathingPage() {
     }
   ]
 
+  // Sidebar state
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    learningCapability: false,
+    talentGrowth: true, // Expanded by default since we're on career pathing
+    talentInsight: false,
+    futureStrategic: false,
+    executionIntegration: false
+  })
+
+  // Filter state
+  const [selectedDepartment, setSelectedDepartment] = useState('All')
+  const [selectedPath, setSelectedPath] = useState('All')
+  
+  // Modal and form state
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [careerPathsData, setCareerPathsData] = useState(initialCareerPaths)
+  const [newPath, setNewPath] = useState({
+    department: '',
+    pathName: '',
+    color: 'blue',
+    roles: [
+      {
+        title: '',
+        level: 1,
+        avgTenure: '',
+        avgSalary: '',
+        keySkills: [''],
+        requirements: ''
+      }
+    ]
+  })
+
+  // Sidebar configuration
+  const sidebarItems = [
+    { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
+    { name: 'My Career Journey', href: '/career', icon: BriefcaseIcon, current: false },
+    { name: 'Learning Hub', href: '/learn', icon: BookOpenIcon, current: false },
+    { name: 'Content Library', href: '/library', icon: DocumentChartBarIcon, current: false },
+    { name: 'AI Assistant', href: '/ai', icon: CogIcon, current: false },
+  ]
+
+  const talentManagementSections = [
+    {
+      id: 'learningCapability',
+      name: 'Learning & Capability',
+      icon: BookOpenIcon,
+      expanded: expandedSections.learningCapability,
+      subItems: [
+        { name: 'LMS Dashboard', href: '/dashboard/talent/lms-dashboard' },
+        { name: 'Capability Assessment Tool', href: '/talent/capability-assessment' },
+        { name: 'Gap Analysis View', href: '/dashboard/talent/gap-analysis' },
+        { name: 'Courses', href: '/talent/courses' },
+        { name: 'Course Categories', href: '/talent/course-categories' },
+        { name: 'Compliance Tracking', href: '/talent/compliance-tracking' },
+        { name: 'Learner Journeys', href: '/talent/learner-journeys' }
+      ]
+    },
+    {
+      id: 'talentGrowth',
+      name: 'Talent Growth',
+      icon: ArrowTrendingUpIcon,
+      expanded: expandedSections.talentGrowth,
+      subItems: [
+        { name: 'Succession Planning Matrix', href: '/talent/succession-planning' },
+        { name: 'Career Pathing Map', href: '/talent/career-pathing' },
+        { name: 'Competency Framework', href: '/talent/competency-framework' }
+      ]
+    },
+    {
+      id: 'talentInsight',
+      name: 'Talent Insight',
+      icon: ChartBarIcon,
+      expanded: expandedSections.talentInsight,
+      subItems: [
+        { name: 'Performance Analytics', href: '/talent/performance-analytics' },
+        { name: 'Talent KPIs', href: '/talent/kpis' },
+        { name: 'Culture & Engagement', href: '/talent/culture-engagement' }
+      ]
+    },
+    {
+      id: 'futureStrategic',
+      name: 'Future & Strategic Layer',
+      icon: MapIcon,
+      expanded: expandedSections.futureStrategic,
+      subItems: [
+        { name: 'Workforce Planning', href: '/talent/workforce-planning' },
+        { name: 'Personalized Learning', href: '/talent/personalized-learning' },
+        { name: 'Internal Talent Marketplace', href: '/talent/talent-marketplace' }
+      ]
+    },
+    {
+      id: 'executionIntegration',
+      name: 'Execution & Integration Layer',
+      icon: CogIcon,
+      expanded: expandedSections.executionIntegration,
+      subItems: [
+        { name: 'Integration', href: '/talent/integrations' },
+        { name: 'Change Management Plan', href: '/talent/change-management' },
+        { name: 'ROI Tracking', href: '/talent/roi-tracking' }
+      ]
+    }
+  ]
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }))
+  }
+
+  // Handle creating new career path
+  const handleCreatePath = () => {
+    if (!newPath.department || !newPath.pathName || newPath.roles.some(role => !role.title)) {
+      alert('Please fill in all required fields')
+      return
+    }
+
+    const newCareerPath = {
+      id: careerPathsData.length + 1,
+      department: newPath.department,
+      pathName: newPath.pathName,
+      color: newPath.color,
+      roles: newPath.roles.map((role, index) => ({
+        ...role,
+        level: index + 1,
+        keySkills: role.keySkills.filter(skill => skill.trim() !== '')
+      }))
+    }
+
+    setCareerPathsData([...careerPathsData, newCareerPath])
+    setShowCreateModal(false)
+    resetForm()
+  }
+
+  // Reset form
+  const resetForm = () => {
+    setNewPath({
+      department: '',
+      pathName: '',
+      color: 'blue',
+      roles: [
+        {
+          title: '',
+          level: 1,
+          avgTenure: '',
+          avgSalary: '',
+          keySkills: [''],
+          requirements: ''
+        }
+      ]
+    })
+  }
+
+  // Add new role to the path
+  const addRole = () => {
+    setNewPath(prev => ({
+      ...prev,
+      roles: [...prev.roles, {
+        title: '',
+        level: prev.roles.length + 1,
+        avgTenure: '',
+        avgSalary: '',
+        keySkills: [''],
+        requirements: ''
+      }]
+    }))
+  }
+
+  // Remove role from the path
+  const removeRole = (index: number) => {
+    if (newPath.roles.length > 1) {
+      setNewPath(prev => ({
+        ...prev,
+        roles: prev.roles.filter((_, i) => i !== index)
+      }))
+    }
+  }
+
+  // Update role data
+  const updateRole = (index: number, field: string, value: string | string[]) => {
+    setNewPath(prev => ({
+      ...prev,
+      roles: prev.roles.map((role, i) => 
+        i === index ? { ...role, [field]: value } : role
+      )
+    }))
+  }
+
+  // Add skill to role
+  const addSkill = (roleIndex: number) => {
+    const updatedRoles = [...newPath.roles]
+    updatedRoles[roleIndex].keySkills.push('')
+    setNewPath(prev => ({ ...prev, roles: updatedRoles }))
+  }
+
+  // Remove skill from role
+  const removeSkill = (roleIndex: number, skillIndex: number) => {
+    const updatedRoles = [...newPath.roles]
+    updatedRoles[roleIndex].keySkills = updatedRoles[roleIndex].keySkills.filter((_, i) => i !== skillIndex)
+    setNewPath(prev => ({ ...prev, roles: updatedRoles }))
+  }
+
+  // Update skill
+  const updateSkill = (roleIndex: number, skillIndex: number, value: string) => {
+    const updatedRoles = [...newPath.roles]
+    updatedRoles[roleIndex].keySkills[skillIndex] = value
+    setNewPath(prev => ({ ...prev, roles: updatedRoles }))
+  }
+
+
+
   // Get color classes for different departments
   const getColorClasses = (color: string) => {
     const colorMap: {[key: string]: {bg: string, border: string, text: string}} = {
@@ -321,10 +444,10 @@ export default function CareerPathingPage() {
   }
 
   // Filter data
-  const departments = ['All', ...Array.from(new Set(careerPaths.map(path => path.department)))]
-  const pathNames = ['All', ...careerPaths.map(path => path.pathName)]
+  const departments = ['All', ...Array.from(new Set(careerPathsData.map(path => path.department)))]
+  const pathNames = ['All', ...careerPathsData.map(path => path.pathName)]
 
-  const filteredPaths = careerPaths.filter(path => {
+  const filteredPaths = careerPathsData.filter(path => {
     const matchesDepartment = selectedDepartment === 'All' || path.department === selectedDepartment
     const matchesPath = selectedPath === 'All' || path.pathName === selectedPath
     return matchesDepartment && matchesPath
@@ -436,7 +559,10 @@ export default function CareerPathingPage() {
                 <button className="bg-white text-gray-700 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
                   Export Paths
                 </button>
-                <button className="bg-[#23544e] text-white px-6 py-2 rounded-lg hover:bg-[#1a3f3a] transition-colors">
+                <button 
+                  onClick={() => setShowCreateModal(true)}
+                  className="bg-[#23544e] text-white px-6 py-2 rounded-lg hover:bg-[#1a3f3a] transition-colors"
+                >
                   Create Path
                 </button>
               </div>
@@ -454,7 +580,7 @@ export default function CareerPathingPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Career Paths</p>
-                  <p className="text-2xl font-bold text-gray-900">{careerPaths.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">{careerPathsData.length}</p>
                 </div>
               </div>
             </div>
@@ -468,7 +594,7 @@ export default function CareerPathingPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Total Roles</p>
-                  <p className="text-2xl font-bold text-gray-900">{careerPaths.reduce((sum, path) => sum + path.roles.length, 0)}</p>
+                  <p className="text-2xl font-bold text-gray-900">{careerPathsData.reduce((sum, path) => sum + path.roles.length, 0)}</p>
                 </div>
               </div>
             </div>
@@ -496,7 +622,7 @@ export default function CareerPathingPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-gray-600">Avg Levels</p>
-                  <p className="text-2xl font-bold text-gray-900">{Math.round(careerPaths.reduce((sum, path) => sum + path.roles.length, 0) / careerPaths.length)}</p>
+                  <p className="text-2xl font-bold text-gray-900">{Math.round(careerPathsData.reduce((sum, path) => sum + path.roles.length, 0) / careerPathsData.length)}</p>
                 </div>
               </div>
             </div>
@@ -683,6 +809,190 @@ export default function CareerPathingPage() {
           )}
         </div>
       </div>
+
+      {/* Create Path Modal */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-4xl shadow-lg rounded-md bg-white">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900">Create New Career Path</h3>
+              <button
+                onClick={() => {setShowCreateModal(false); resetForm()}}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="mt-6 max-h-96 overflow-y-auto">
+              {/* Basic Info */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Department *</label>
+                  <input
+                    type="text"
+                    value={newPath.department}
+                    onChange={(e) => setNewPath(prev => ({ ...prev, department: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Engineering"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Path Name *</label>
+                  <input
+                    type="text"
+                    value={newPath.pathName}
+                    onChange={(e) => setNewPath(prev => ({ ...prev, pathName: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                    placeholder="e.g., Technical Leadership Track"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Color Theme</label>
+                  <select
+                    value={newPath.color}
+                    onChange={(e) => setNewPath(prev => ({ ...prev, color: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                  >
+                    <option value="blue">Blue</option>
+                    <option value="purple">Purple</option>
+                    <option value="green">Green</option>
+                    <option value="orange">Orange</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Roles */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="text-lg font-medium text-gray-900">Career Levels</h4>
+                  <button
+                    onClick={addRole}
+                    className="flex items-center px-3 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors"
+                  >
+                    <PlusIcon className="h-4 w-4 mr-2" />
+                    Add Level
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {newPath.roles.map((role, roleIndex) => (
+                    <div key={roleIndex} className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h5 className="font-medium text-gray-900">Level {roleIndex + 1}</h5>
+                        {newPath.roles.length > 1 && (
+                          <button
+                            onClick={() => removeRole(roleIndex)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            <TrashIcon className="h-4 w-4" />
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Role Title *</label>
+                          <input
+                            type="text"
+                            value={role.title}
+                            onChange={(e) => updateRole(roleIndex, 'title', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                            placeholder="e.g., Junior Developer"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Average Tenure</label>
+                          <input
+                            type="text"
+                            value={role.avgTenure}
+                            onChange={(e) => updateRole(roleIndex, 'avgTenure', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                            placeholder="e.g., 1-2 years"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Average Salary</label>
+                          <input
+                            type="text"
+                            value={role.avgSalary}
+                            onChange={(e) => updateRole(roleIndex, 'avgSalary', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                            placeholder="e.g., $65,000"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">Requirements</label>
+                          <input
+                            type="text"
+                            value={role.requirements}
+                            onChange={(e) => updateRole(roleIndex, 'requirements', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                            placeholder="e.g., Computer Science degree"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Key Skills */}
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <label className="block text-sm font-medium text-gray-700">Key Skills</label>
+                          <button
+                            onClick={() => addSkill(roleIndex)}
+                            className="text-[#23544e] hover:text-[#1a3f3a] text-sm"
+                          >
+                            <PlusIcon className="h-4 w-4 inline mr-1" />
+                            Add Skill
+                          </button>
+                        </div>
+                        <div className="space-y-2">
+                          {role.keySkills.map((skill, skillIndex) => (
+                            <div key={skillIndex} className="flex items-center space-x-2">
+                              <input
+                                type="text"
+                                value={skill}
+                                onChange={(e) => updateSkill(roleIndex, skillIndex, e.target.value)}
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#23544e] focus:border-transparent"
+                                placeholder="e.g., Programming Basics"
+                              />
+                              {role.keySkills.length > 1 && (
+                                <button
+                                  onClick={() => removeSkill(roleIndex, skillIndex)}
+                                  className="text-red-600 hover:text-red-800"
+                                >
+                                  <TrashIcon className="h-4 w-4" />
+                                </button>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
+              <button
+                onClick={() => {setShowCreateModal(false); resetForm()}}
+                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreatePath}
+                className="px-6 py-2 bg-[#23544e] text-white rounded-lg hover:bg-[#1a3f3a] transition-colors"
+              >
+                Create Path
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
