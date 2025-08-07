@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neon Green Hydrogen LMS - Employee Learning Management System",
+  title: "Neom Green Hydrogen LMS - Employee Learning Management System",
   description: "Empowering organizations through innovative learning solutions",
 };
 

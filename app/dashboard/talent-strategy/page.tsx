@@ -319,12 +319,12 @@ export default function TalentStrategyPage() {
                 <Link href="/dashboard" className="flex items-center space-x-3">
                   <Image 
                     src="/logo.png" 
-                    alt="Neon Green Hydrogen Logo" 
+                    alt="Neom Green Hydrogen Logo" 
                     width={32}
                     height={32}
                     className="rounded-lg"
                   />
-                  <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                  <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                 </Link>
               </div>
               <nav className="mt-5 flex-1 px-2 space-y-1">
@@ -438,12 +438,12 @@ export default function TalentStrategyPage() {
                     <Link href="/dashboard" className="flex items-center space-x-2">
                       <Image 
                         src="/logo.png" 
-                        alt="Neon Green Hydrogen Logo" 
+                        alt="Neom Green Hydrogen Logo" 
                         width={32}
                         height={32}
                         className="rounded-lg"
                       />
-                      <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                      <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                     </Link>
                   </div>
                   <div className="flex items-center space-x-2">

@@ -438,7 +438,7 @@ export default function StudentDashboard() {
                 Hello, {session?.user?.name}!
               </h1>
               <p className="text-lg text-gray-600">
-                Ready to grow your skills and advance your career with Neon Green Hydrogen Learning?
+                Ready to grow your skills and advance your career with Neom Green Hydrogen Learning?
               </p>
             </div>
 

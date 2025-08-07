@@ -180,8 +180,8 @@ function SignInContent() {
 
             <div className="mt-4 space-y-2">
               <div className="text-xs text-white/70 text-center">
-                <div>Admin: admin@neongreenhydrogen.com / Admin@123123</div>
-                <div>Student: ahmad@neongreenhydrogen.com / Ahmad@123123</div>
+                <div>Admin: admin@neomgreenhydrogen.com / Admin@123123</div>
+                <div>Student: ahmad@neomgreenhydrogen.com / Ahmad@123123</div>
               </div>
             </div>
           </div>

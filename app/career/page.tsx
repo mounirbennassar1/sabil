@@ -144,7 +144,7 @@ export default function CareerJourneyPage() {
 
   const careerMilestones = [
     {
-      title: 'Junior Developer at Neon Green Hydrogen',
+      title: 'Junior Developer at Neom Green Hydrogen',
       date: '2024-01-15',
       description: 'Started my career in sustainable technology',
       completed: true
@@ -326,12 +326,12 @@ export default function CareerJourneyPage() {
                     <Link href="/dashboard" className="flex items-center space-x-2">
                       <Image 
                         src="/logo.png" 
-                        alt="Neon Green Hydrogen Logo" 
+                        alt="Neom Green Hydrogen Logo" 
                         width={32}
                         height={32}
                         className="rounded-lg"
                       />
-                      <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                      <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                     </Link>
                   </div>
                   <div className="flex items-center space-x-2">

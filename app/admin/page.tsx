@@ -111,11 +111,11 @@ const topCourses = [
 
 // Mock users data
 const mockUsers = [
-  { id: '1', name: 'Ahmad Hassan', email: 'ahmad@neongreenhydrogen.com', role: 'STUDENT', department: 'Engineering', createdAt: '2024-01-15' },
-  { id: '2', name: 'Admin User', email: 'admin@neongreenhydrogen.com', role: 'ADMIN', department: 'Administration', createdAt: '2024-01-10' },
-  { id: '3', name: 'Sarah Ahmed', email: 'sarah@neongreenhydrogen.com', role: 'STUDENT', department: 'Design', createdAt: '2024-02-20' },
-  { id: '4', name: 'Mohammed Ali', email: 'mohammed@neongreenhydrogen.com', role: 'INSTRUCTOR', department: 'Programming', createdAt: '2024-03-05' },
-  { id: '5', name: 'Fatima Khan', email: 'fatima@neongreenhydrogen.com', role: 'STUDENT', department: 'Data Science', createdAt: '2024-03-12' },
+  { id: '1', name: 'Ahmad Hassan', email: 'ahmad@neomgreenhydrogen.com', role: 'STUDENT', department: 'Engineering', createdAt: '2024-01-15' },
+  { id: '2', name: 'Admin User', email: 'admin@neomgreenhydrogen.com', role: 'ADMIN', department: 'Administration', createdAt: '2024-01-10' },
+  { id: '3', name: 'Sarah Ahmed', email: 'sarah@neomgreenhydrogen.com', role: 'STUDENT', department: 'Design', createdAt: '2024-02-20' },
+  { id: '4', name: 'Mohammed Ali', email: 'mohammed@neomgreenhydrogen.com', role: 'INSTRUCTOR', department: 'Programming', createdAt: '2024-03-05' },
+  { id: '5', name: 'Fatima Khan', email: 'fatima@neomgreenhydrogen.com', role: 'STUDENT', department: 'Data Science', createdAt: '2024-03-12' },
 ]
 
 export default function AdminDashboard() {
@@ -148,7 +148,7 @@ export default function AdminDashboard() {
 
   // Settings state
   const [settings, setSettings] = useState<SystemSettings>({
-    platformName: 'Neon Green Hydrogen Learning Platform',
+    platformName: 'Neom Green Hydrogen Learning Platform',
     allowRegistration: true,
     emailNotifications: true,
     autoEnrollment: false,
@@ -255,13 +255,13 @@ export default function AdminDashboard() {
             <div className="flex items-center space-x-4">
               <Image 
                 src="/logo.png" 
-                alt="Neon Green Hydrogen Logo" 
+                alt="Neom Green Hydrogen Logo" 
                 width={32}
                 height={32}
                 className="rounded-lg"
               />
               <div>
-                <h1 className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen Admin</h1>
+                <h1 className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen Admin</h1>
                 <p className="text-sm text-gray-500">Dashboard Overview</p>
               </div>
             </div>

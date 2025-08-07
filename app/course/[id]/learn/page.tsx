@@ -209,12 +209,12 @@ export default function LearnPage() {
                 <Link href="/dashboard" className="flex items-center space-x-3">
                   <Image 
                     src="/logo.png" 
-                    alt="Neon Green Hydrogen Logo" 
+                    alt="Neom Green Hydrogen Logo" 
                     width={32}
                     height={32}
                     className="rounded-lg"
                   />
-                  <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                  <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                 </Link>
                 <div className="hidden lg:block text-sm text-gray-500">
                   Learning Platform
@@ -257,12 +257,12 @@ export default function LearnPage() {
                   <Link href="/dashboard" className="flex items-center space-x-2">
                     <Image 
                       src="/logo.png" 
-                      alt="Neon Green Hydrogen Logo" 
+                      alt="Neom Green Hydrogen Logo" 
                       width={32}
                       height={32}
                       className="rounded-lg"
                     />
-                    <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                    <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                   </Link>
                   <div className="hidden lg:block text-sm text-gray-500">
                     Learning Platform

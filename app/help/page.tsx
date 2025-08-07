@@ -148,12 +148,12 @@ export default function HelpPage() {
                 <Link href="/dashboard" className="flex items-center space-x-3">
                   <Image 
                     src="/logo.png" 
-                    alt="Neon Green Hydrogen Logo" 
+                    alt="Neom Green Hydrogen Logo" 
                     width={32}
                     height={32}
                     className="rounded-lg"
                   />
-                  <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                  <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                 </Link>
               </div>
               <nav className="mt-5 flex-1 px-2 space-y-1">
@@ -200,12 +200,12 @@ export default function HelpPage() {
                     <Link href="/dashboard" className="flex items-center space-x-2">
                       <Image 
                         src="/logo.png" 
-                        alt="Neon Green Hydrogen Logo" 
+                        alt="Neom Green Hydrogen Logo" 
                         width={32}
                         height={32}
                         className="rounded-lg"
                       />
-                      <span className="text-xl font-bold text-[#23544e]">Neon Green Hydrogen</span>
+                      <span className="text-xl font-bold text-[#23544e]">Neom Green Hydrogen</span>
                     </Link>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -353,7 +353,7 @@ export default function HelpPage() {
                     <EnvelopeIcon className="h-6 w-6 text-[#23544e]" />
                     <div>
                       <p className="font-medium text-gray-900">Email</p>
-                      <p className="text-gray-600">support@neongh.com</p>
+                      <p className="text-gray-600">support@neomgh.com</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
