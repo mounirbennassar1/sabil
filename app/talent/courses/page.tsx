@@ -558,7 +558,7 @@ export default function CoursesPage() {
             <div className="mb-8 bg-[#23544e] rounded-lg p-6 text-white">
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="text-2xl font-bold mb-2">Courses</h1>
+                  <h1 className="text-2xl font-bold mb-2">Courses +5500</h1>
                   <p className="text-green-100">Discover our comprehensive course library and enhance your skills</p>
                 </div>
                 <button 

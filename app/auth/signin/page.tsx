@@ -168,23 +168,7 @@ function SignInContent() {
             </div>
           </form>
 
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/30" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-transparent text-white/80">Demo Accounts</span>
-              </div>
-            </div>
 
-            <div className="mt-4 space-y-2">
-              <div className="text-xs text-white/70 text-center">
-                <div>Admin: admin@neomgreenhydrogen.com / Admin@123123</div>
-                <div>Student: ahmad@neomgreenhydrogen.com / Ahmad@123123</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

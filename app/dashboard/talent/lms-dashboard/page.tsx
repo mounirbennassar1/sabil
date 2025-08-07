@@ -942,7 +942,7 @@ export default function LMSDashboardPage() {
               <div className="bg-white rounded-xl border border-gray-200 p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Actions</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Link href="/dashboard/talent/courses" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
+                  <Link href="/talent/courses" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
                     <BookOpenIcon className="h-8 w-8 text-[#23544e] mb-4" />
                     <h4 className="font-semibold text-gray-900 mb-2">Browse Courses</h4>
                     <p className="text-gray-600 text-sm">Explore our comprehensive course catalog</p>
@@ -951,7 +951,7 @@ export default function LMSDashboardPage() {
                     </div>
                   </Link>
                   
-                  <Link href="/dashboard/talent/capability-assessment" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
+                  <Link href="/talent/capability-assessment" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
                     <ChartBarIcon className="h-8 w-8 text-[#23544e] mb-4" />
                     <h4 className="font-semibold text-gray-900 mb-2">Skill Assessment</h4>
                     <p className="text-gray-600 text-sm">Evaluate your current capabilities</p>
@@ -960,7 +960,7 @@ export default function LMSDashboardPage() {
                     </div>
                   </Link>
                   
-                  <Link href="/dashboard/talent/career-pathing" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
+                  <Link href="/talent/career-pathing" className="group p-6 border border-gray-200 rounded-xl hover:border-[#23544e] hover:shadow-lg transition-all">
                     <MapIcon className="h-8 w-8 text-[#23544e] mb-4" />
                     <h4 className="font-semibold text-gray-900 mb-2">Career Path</h4>
                     <p className="text-gray-600 text-sm">Plan your professional development journey</p>
